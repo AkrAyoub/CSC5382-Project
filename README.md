@@ -4,7 +4,7 @@ Repository for the course project.
 
 ## Quick Links
 
-- [Milestone 1 � Project Inception](Milestone_1-Project_Inception/README.md)
-- [Milestone 2 � Proof of Concept](Milestone_2-PoC/README.md)
+- [Milestone 1: Project Inception](Milestone_1-Project_Inception)
+- [Milestone 2:  Proof of Concept](Milestone_2-PoC)
 
 ---
