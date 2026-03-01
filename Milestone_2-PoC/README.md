@@ -1,7 +1,22 @@
 ## AI-Assisted Symbolic Optimization for Strategic Facility Network Design
 ## UFLP Baseline vs LLM-Generated Solver (Streamlit)
 
----
+
+## Table of Contents
+
+- [Overview](#overview)
+- [Repository structure (Milestone_2-PoC)](#repository-structure-milestone_2-poc)
+- [Dataset (OR-Library UFLP)](#dataset-or-library-uflp)
+- [Highlights](#highlights)
+- [Installation & Setup](#installation--setup)
+- [Running the StreamlitApp](#running-the-streamlitapp)
+  - [Mode A - Baseline Solver](#mode-a---baseline-solver)
+  - [Mode B - LLM + Verification Pipeline](#mode-b---llm--verification-pipeline)
+- [End-to-End Testing (Mode A and Mode B)](#end-to-end-testing-mode-a-and-mode-b)
+- [Demo Screenshots](#demo-screenshots)
+- [Troubleshooting](#troubleshooting)
+
+
 
 ## Overview
 
@@ -18,7 +33,7 @@ The system demonstrates:
 - Streamlit user interface  
 - Automated end-to-end testing covering both modes  
 
----
+
 
 ## Repository structure (Milestone_2-PoC)
 
@@ -37,7 +52,7 @@ The system demonstrates:
 - **Data (in repo root, shared by all milestones)**
   - [`../data/raw/`](../data/raw/) — OR-Library instances + `uncapopt.txt`
 
----
+
 
 ## Dataset (OR-Library UFLP)
 
@@ -46,9 +61,9 @@ The PoC uses OR-Library UFLP instances stored in:
 - **Instances directory:** [`../data/raw/`](../data/raw/)
 - **Known optima file:** [`../data/raw/uncapopt.txt`](../data/raw/uncapopt.txt)
 
-Supported instance files include: `cap71.txt … cap74.txt`, `cap101 …`, `cap131 …`, plus `capa/capb/capc`.
+Supported instance files include: `cap71.txt … cap74.txt`, `cap101 …`, `cap131 …`, `capa/capb/capc`.
 
----
+
 
 ## Highlights
 
@@ -70,7 +85,7 @@ Supported instance files include: `cap71.txt … cap74.txt`, `cap101 …`, `cap1
 - It generates symbolic solver code.
 - The classical solver guarantees correctness.
 
----
+
 
 ## Installation & Setup
 
@@ -103,7 +118,7 @@ $env:GROQ_MODEL="llama-3.1-8b-instant"
 
 A key can be obtained from: https://console.groq.com/keys
 
----
+
 
 ## Running the StreamlitApp
 
@@ -159,7 +174,7 @@ Core modules:
 ['src/compare.py'](src/compare.py)
 ['src/pipeline_trace.py'](src/pipeline_trace.py)
 
----
+
 
 ## End-to-End Testing (Mode A and Mode B)
 
@@ -192,7 +207,10 @@ E2E_TOL=1e-6
 E2E_MODE_B_INSTANCE=cap71.txt
 ```
 
----
+## Demo Screenshots
+
+Demonstration screenshots can be found here:  [`assets/screenshots/`](assets/screenshots/)
+
 
 ## Troubleshooting
 
