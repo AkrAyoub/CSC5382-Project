@@ -1,0 +1,102 @@
+{
+  "instances.csv": {
+    "required_columns": [
+      "instance_id",
+      "facility_count_m",
+      "customer_count_n",
+      "total_fixed_cost",
+      "avg_fixed_cost",
+      "min_fixed_cost",
+      "max_fixed_cost",
+      "total_assignment_cost_entries"
+    ],
+    "numeric_columns": [
+      "facility_count_m",
+      "customer_count_n",
+      "total_fixed_cost",
+      "avg_fixed_cost",
+      "min_fixed_cost",
+      "max_fixed_cost",
+      "total_assignment_cost_entries"
+    ],
+    "non_negative_columns": [
+      "facility_count_m",
+      "customer_count_n",
+      "total_fixed_cost",
+      "avg_fixed_cost",
+      "min_fixed_cost",
+      "max_fixed_cost",
+      "total_assignment_cost_entries"
+    ],
+    "id_columns": [
+      "instance_id"
+    ]
+  },
+  "facilities.csv": {
+    "required_columns": [
+      "instance_id",
+      "facility_id",
+      "fixed_cost"
+    ],
+    "numeric_columns": [
+      "facility_id",
+      "fixed_cost"
+    ],
+    "non_negative_columns": [
+      "facility_id",
+      "fixed_cost"
+    ],
+    "id_columns": [
+      "instance_id",
+      "facility_id"
+    ]
+  },
+  "customers.csv": {
+    "required_columns": [
+      "instance_id",
+      "customer_id",
+      "min_assignment_cost",
+      "max_assignment_cost",
+      "avg_assignment_cost"
+    ],
+    "numeric_columns": [
+      "customer_id",
+      "min_assignment_cost",
+      "max_assignment_cost",
+      "avg_assignment_cost"
+    ],
+    "non_negative_columns": [
+      "customer_id",
+      "min_assignment_cost",
+      "max_assignment_cost",
+      "avg_assignment_cost"
+    ],
+    "id_columns": [
+      "instance_id",
+      "customer_id"
+    ]
+  },
+  "assignment_costs.csv": {
+    "required_columns": [
+      "instance_id",
+      "customer_id",
+      "facility_id",
+      "assignment_cost"
+    ],
+    "numeric_columns": [
+      "customer_id",
+      "facility_id",
+      "assignment_cost"
+    ],
+    "non_negative_columns": [
+      "customer_id",
+      "facility_id",
+      "assignment_cost"
+    ],
+    "id_columns": [
+      "instance_id",
+      "customer_id",
+      "facility_id"
+    ]
+  }
+}

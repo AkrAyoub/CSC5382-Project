@@ -1,0 +1,140 @@
+{
+  "instance_features.csv": {
+    "required_columns": [
+      "instance_id",
+      "facility_count_m",
+      "customer_count_n",
+      "facility_customer_ratio",
+      "total_fixed_cost",
+      "avg_fixed_cost",
+      "min_fixed_cost",
+      "max_fixed_cost",
+      "std_fixed_cost",
+      "total_assignment_cost_entries",
+      "avg_assignment_cost",
+      "min_assignment_cost",
+      "max_assignment_cost",
+      "std_assignment_cost",
+      "fixed_cost_range",
+      "assignment_cost_range",
+      "event_timestamp"
+    ],
+    "numeric_columns": [
+      "facility_count_m",
+      "customer_count_n",
+      "facility_customer_ratio",
+      "total_fixed_cost",
+      "avg_fixed_cost",
+      "min_fixed_cost",
+      "max_fixed_cost",
+      "std_fixed_cost",
+      "total_assignment_cost_entries",
+      "avg_assignment_cost",
+      "min_assignment_cost",
+      "max_assignment_cost",
+      "std_assignment_cost",
+      "fixed_cost_range",
+      "assignment_cost_range"
+    ],
+    "non_negative_columns": [
+      "facility_count_m",
+      "customer_count_n",
+      "facility_customer_ratio",
+      "total_fixed_cost",
+      "avg_fixed_cost",
+      "min_fixed_cost",
+      "max_fixed_cost",
+      "std_fixed_cost",
+      "total_assignment_cost_entries",
+      "avg_assignment_cost",
+      "min_assignment_cost",
+      "max_assignment_cost",
+      "std_assignment_cost",
+      "fixed_cost_range",
+      "assignment_cost_range"
+    ],
+    "id_columns": [
+      "instance_id"
+    ]
+  },
+  "facility_features.csv": {
+    "required_columns": [
+      "instance_id",
+      "facility_id",
+      "fixed_cost",
+      "normalized_fixed_cost_minmax",
+      "fixed_cost_zscore",
+      "fixed_cost_rank_ascending",
+      "avg_assignment_cost_from_facility",
+      "min_assignment_cost_from_facility",
+      "max_assignment_cost_from_facility",
+      "std_assignment_cost_from_facility",
+      "facility_key",
+      "event_timestamp"
+    ],
+    "numeric_columns": [
+      "facility_id",
+      "fixed_cost",
+      "normalized_fixed_cost_minmax",
+      "fixed_cost_zscore",
+      "fixed_cost_rank_ascending",
+      "avg_assignment_cost_from_facility",
+      "min_assignment_cost_from_facility",
+      "max_assignment_cost_from_facility",
+      "std_assignment_cost_from_facility"
+    ],
+    "non_negative_columns": [
+      "facility_id",
+      "fixed_cost",
+      "normalized_fixed_cost_minmax",
+      "fixed_cost_rank_ascending",
+      "avg_assignment_cost_from_facility",
+      "min_assignment_cost_from_facility",
+      "max_assignment_cost_from_facility",
+      "std_assignment_cost_from_facility"
+    ],
+    "id_columns": [
+      "instance_id",
+      "facility_id"
+    ]
+  },
+  "customer_features.csv": {
+    "required_columns": [
+      "instance_id",
+      "customer_id",
+      "min_assignment_cost",
+      "max_assignment_cost",
+      "avg_assignment_cost",
+      "std_assignment_cost",
+      "assignment_cost_range",
+      "nearest_facility_id",
+      "nearest_facility_cost",
+      "customer_key",
+      "event_timestamp"
+    ],
+    "numeric_columns": [
+      "customer_id",
+      "min_assignment_cost",
+      "max_assignment_cost",
+      "avg_assignment_cost",
+      "std_assignment_cost",
+      "assignment_cost_range",
+      "nearest_facility_id",
+      "nearest_facility_cost"
+    ],
+    "non_negative_columns": [
+      "customer_id",
+      "min_assignment_cost",
+      "max_assignment_cost",
+      "avg_assignment_cost",
+      "std_assignment_cost",
+      "assignment_cost_range",
+      "nearest_facility_id",
+      "nearest_facility_cost"
+    ],
+    "id_columns": [
+      "instance_id",
+      "customer_id"
+    ]
+  }
+}

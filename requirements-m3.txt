@@ -1,0 +1,5 @@
+# Milestone 3 Python dependencies
+pandas
+pyarrow
+feast
+dvc

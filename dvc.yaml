@@ -1,0 +1,69 @@
+stages:
+  ingest:
+    cmd: python pipeline/ingest_data.py
+    deps:
+      - pipeline/ingest_data.py
+      - data/raw
+    outs:
+      - data/interim/dataset_manifest.csv
+      - data/interim/dataset_manifest.json
+
+  preprocess:
+    cmd: python pipeline/preprocess_data.py
+    deps:
+      - pipeline/preprocess_data.py
+      - data/raw
+      - data/interim/dataset_manifest.csv
+      - data/interim/dataset_manifest.json
+    outs:
+      - data/processed/instances.csv
+      - data/processed/facilities.csv
+      - data/processed/customers.csv
+      - data/processed/assignment_costs.csv
+      - data/processed/instances.json
+      - data/processed/facilities.json
+      - data/processed/customers.json
+      - data/processed/assignment_costs.json
+
+  features:
+    cmd: python pipeline/engineer_features.py
+    deps:
+      - pipeline/engineer_features.py
+      - data/processed/instances.csv
+      - data/processed/facilities.csv
+      - data/processed/customers.csv
+      - data/processed/assignment_costs.csv
+    outs:
+      - data/features/instance_features.csv
+      - data/features/instance_features.parquet
+      - data/features/facility_features.csv
+      - data/features/facility_features.parquet
+      - data/features/customer_features.csv
+      - data/features/customer_features.parquet
+      - data/features/instance_features.json
+      - data/features/facility_features.json
+      - data/features/customer_features.json
+
+  validate:
+    cmd: python pipeline/validate_data.py
+    deps:
+      - pipeline/validate_data.py
+      - schema/raw_schema.json
+      - schema/processed_schema.json
+      - schema/feature_schema.json
+      - data/interim/dataset_manifest.csv
+      - data/interim/dataset_manifest.json
+      - data/processed/instances.csv
+      - data/processed/facilities.csv
+      - data/processed/customers.csv
+      - data/processed/assignment_costs.csv
+      - data/features/instance_features.csv
+      - data/features/facility_features.csv
+      - data/features/customer_features.csv
+    outs:
+      - reports/validation/validation_summary.json
+      - reports/validation/anomalies.json
+      - reports/validation/anomalies.txt
+      - reports/stats/raw_statistics.json
+      - reports/stats/processed_statistics.json
+      - reports/stats/feature_statistics.json

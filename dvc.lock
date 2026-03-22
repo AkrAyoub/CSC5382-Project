@@ -1,0 +1,204 @@
+schema: '2.0'
+stages:
+  ingest:
+    cmd: python pipeline/ingest_data.py
+    deps:
+    - path: data/raw
+      hash: md5
+      md5: ccc0de273905a430705433e50eabb6a1.dir
+      size: 3920909
+      nfiles: 16
+    - path: pipeline/ingest_data.py
+      hash: md5
+      md5: 7101dfee765ee512346e92275f9083fc
+      size: 5940
+    outs:
+    - path: data/interim/dataset_manifest.csv
+      hash: md5
+      md5: 0e9a2617eb7642a7c20d6f181de72409
+      size: 3455
+    - path: data/interim/dataset_manifest.json
+      hash: md5
+      md5: 3425b3d03f54cbdaf160254cc3d7c139
+      size: 6858
+  preprocess:
+    cmd: python pipeline/preprocess_data.py
+    deps:
+    - path: data/interim/dataset_manifest.csv
+      hash: md5
+      md5: 0e9a2617eb7642a7c20d6f181de72409
+      size: 3455
+    - path: data/interim/dataset_manifest.json
+      hash: md5
+      md5: 3425b3d03f54cbdaf160254cc3d7c139
+      size: 6858
+    - path: data/raw
+      hash: md5
+      md5: ccc0de273905a430705433e50eabb6a1.dir
+      size: 3920909
+      nfiles: 16
+    - path: pipeline/preprocess_data.py
+      hash: md5
+      md5: acca0a8aeef09930a17d5beb17037ed6
+      size: 9003
+    outs:
+    - path: data/processed/assignment_costs.csv
+      hash: md5
+      md5: 18a0b76f0f4f9a2c994faf535d579c39
+      size: 7742669
+    - path: data/processed/assignment_costs.json
+      hash: md5
+      md5: ceaa4588c10de1de2566f40331a20a4f
+      size: 39244419
+    - path: data/processed/customers.csv
+      hash: md5
+      md5: 86099449137c83ef5cfb42ec614d3ef6
+      size: 167376
+    - path: data/processed/customers.json
+      hash: md5
+      md5: 7b5b099492a58294e3e560fc09e1806a
+      size: 671294
+    - path: data/processed/facilities.csv
+      hash: md5
+      md5: 28dca572fdcd2039ff76112cdaf4f3e7
+      size: 12102
+    - path: data/processed/facilities.json
+      hash: md5
+      md5: 731da411a69c31582409cbd7efe5f1ea
+      size: 60541
+    - path: data/processed/instances.csv
+      hash: md5
+      md5: 15b1568dc11209ed28f420862887ea09
+      size: 892
+    - path: data/processed/instances.json
+      hash: md5
+      md5: c174708bbfdfc8d3d2db8b19e167c76f
+      size: 4071
+  features:
+    cmd: python pipeline/engineer_features.py
+    deps:
+    - path: data/processed/assignment_costs.csv
+      hash: md5
+      md5: 18a0b76f0f4f9a2c994faf535d579c39
+      size: 7742669
+    - path: data/processed/customers.csv
+      hash: md5
+      md5: 86099449137c83ef5cfb42ec614d3ef6
+      size: 167376
+    - path: data/processed/facilities.csv
+      hash: md5
+      md5: 28dca572fdcd2039ff76112cdaf4f3e7
+      size: 12102
+    - path: data/processed/instances.csv
+      hash: md5
+      md5: 15b1568dc11209ed28f420862887ea09
+      size: 892
+    - path: pipeline/engineer_features.py
+      hash: md5
+      md5: 8c2b5940b956166cb016e9df66b85a6c
+      size: 11614
+    outs:
+    - path: data/features/customer_features.csv
+      hash: md5
+      md5: 0190d4c3911c045fdd5ededd863424ee
+      size: 329609
+    - path: data/features/customer_features.json
+      hash: md5
+      md5: 5ea6c1dd9341c6c8ec00c7cc6373cb64
+      size: 1265443
+    - path: data/features/facility_features.csv
+      hash: md5
+      md5: 843c9307d0cd4c278f709f53882814ba
+      size: 68805
+    - path: data/features/facility_features.json
+      hash: md5
+      md5: f4837f427283c4833451922a0560b584
+      size: 297643
+    - path: data/features/instance_features.csv
+      hash: md5
+      md5: 51e46c5ff6c934ce7a32fe2aa240bbb9
+      size: 2338
+    - path: data/features/instance_features.json
+      hash: md5
+      md5: d48791cf371d31884e5a90d0480e4c93
+      size: 8809
+  validate:
+    cmd: python pipeline/validate_data.py
+    deps:
+    - path: data/features/customer_features.csv
+      hash: md5
+      md5: 0190d4c3911c045fdd5ededd863424ee
+      size: 329609
+    - path: data/features/facility_features.csv
+      hash: md5
+      md5: 843c9307d0cd4c278f709f53882814ba
+      size: 68805
+    - path: data/features/instance_features.csv
+      hash: md5
+      md5: 51e46c5ff6c934ce7a32fe2aa240bbb9
+      size: 2338
+    - path: data/interim/dataset_manifest.csv
+      hash: md5
+      md5: 0e9a2617eb7642a7c20d6f181de72409
+      size: 3455
+    - path: data/interim/dataset_manifest.json
+      hash: md5
+      md5: 3425b3d03f54cbdaf160254cc3d7c139
+      size: 6858
+    - path: data/processed/assignment_costs.csv
+      hash: md5
+      md5: 18a0b76f0f4f9a2c994faf535d579c39
+      size: 7742669
+    - path: data/processed/customers.csv
+      hash: md5
+      md5: 86099449137c83ef5cfb42ec614d3ef6
+      size: 167376
+    - path: data/processed/facilities.csv
+      hash: md5
+      md5: 28dca572fdcd2039ff76112cdaf4f3e7
+      size: 12102
+    - path: data/processed/instances.csv
+      hash: md5
+      md5: 15b1568dc11209ed28f420862887ea09
+      size: 892
+    - path: pipeline/validate_data.py
+      hash: md5
+      md5: 13319e4c1dc3f2ca5ef804d18d7accef
+      size: 14161
+    - path: schema/feature_schema.json
+      hash: md5
+      md5: 4d54ccbc8f62d5afc2e98db06d711e08
+      size: 3497
+    - path: schema/processed_schema.json
+      hash: md5
+      md5: 43c54470b73c5a51ea3a832944268f30
+      size: 2077
+    - path: schema/raw_schema.json
+      hash: md5
+      md5: 49cfbd55afbcd91d8188a41c4a60c4af
+      size: 469
+    outs:
+    - path: reports/stats/feature_statistics.json
+      hash: md5
+      md5: fa62382223a11c4c32763a44f7844e51
+      size: 6269
+    - path: reports/stats/processed_statistics.json
+      hash: md5
+      md5: b7cd91e1b9eac8843f201df79e045e2d
+      size: 3185
+    - path: reports/stats/raw_statistics.json
+      hash: md5
+      md5: e3e4d1bd7d7c31ab8dda9bf7df5fde63
+      size: 728
+    - path: reports/validation/anomalies.json
+      hash: md5
+      md5: 865d96be45159e3f1d28db5afbf884b4
+      size: 23
+    - path: reports/validation/anomalies.txt
+      hash: md5
+      md5: ce6bff03312ab7a99e87d28c94f7ad02
+      size: 22
+    - path: reports/validation/validation_summary.json
+      hash: md5
+      md5: 70b77dd73fbe4b00b3689b5e7037450f
+      size: 351
