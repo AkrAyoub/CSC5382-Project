@@ -1,7 +1,0 @@
-{
-  "selection_rule": "highest validation F1, tie-broken by test F1",
-  "recommended_model_family": "hist_gradient_boosting",
-  "recommended_threshold": 0.6,
-  "recommended_validation_f1": 0.6865671641791046,
-  "recommended_test_f1": 0.2933333333333333
-}

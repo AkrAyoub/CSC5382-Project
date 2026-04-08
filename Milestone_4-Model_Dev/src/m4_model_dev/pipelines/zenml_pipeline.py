@@ -1,11 +1,16 @@
-from __future__ import annotations
-
 import os
 from pathlib import Path
+from typing import Any
 from uuid import UUID
 
 from m4_model_dev.paths import M4_REPORTS_DIR, M4_ROOT
-from m4_model_dev.pipelines.training_pipeline import run_training_pipeline
+from m4_model_dev.pipelines.training_pipeline import (
+    evaluate_model_bundle,
+    load_training_config,
+    persist_training_outputs,
+    prepare_training_inputs,
+    train_model_bundle,
+)
 from m4_model_dev.utils.io import write_json, write_text
 
 
@@ -61,15 +66,59 @@ except ImportError:
 
 if step is not None:
     @step(enable_cache=False)
-    def training_step(config_path_str=None):
+    def load_config_step(config_path_str: str | None = None) -> dict[str, Any]:
         path = Path(config_path_str) if config_path_str else None
-        run_training_pipeline(path)
+        _, config = load_training_config(path)
+        return config
+
+    @step(enable_cache=False)
+    def prepare_data_step(config: dict[str, Any]) -> dict[str, Any]:
+        return prepare_training_inputs(config)
+
+    @step(enable_cache=False)
+    def train_model_step(config: dict[str, Any], training_inputs: dict[str, Any]) -> dict[str, Any]:
+        return train_model_bundle(config, training_inputs)
+
+    @step(enable_cache=False)
+    def evaluate_model_step(
+        config: dict[str, Any],
+        training_inputs: dict[str, Any],
+        trained_model: dict[str, Any],
+    ) -> dict[str, Any]:
+        return evaluate_model_bundle(config, training_inputs, trained_model)
+
+    @step(enable_cache=False)
+    def persist_outputs_step(
+        config_path_str: str | None,
+        config: dict[str, Any],
+        training_inputs: dict[str, Any],
+        trained_model: dict[str, Any],
+        evaluation_results: dict[str, Any],
+    ) -> dict[str, Any]:
+        resolved_config_path, _ = load_training_config(Path(config_path_str) if config_path_str else None)
+        return persist_training_outputs(
+            config=config,
+            config_path=resolved_config_path,
+            training_inputs=training_inputs,
+            trained_model=trained_model,
+            evaluation_results=evaluation_results,
+        )
 
 
 if pipeline is not None:
     @pipeline(enable_cache=False)
     def milestone4_pipeline(config_path_str=None):
-        training_step(config_path_str)
+        config = load_config_step(config_path_str)
+        training_inputs = prepare_data_step(config)
+        trained_model = train_model_step(config, training_inputs)
+        evaluation_results = evaluate_model_step(config, training_inputs, trained_model)
+        persist_outputs_step(
+            config_path_str,
+            config,
+            training_inputs,
+            trained_model,
+            evaluation_results,
+        )
 
 
 def _coerce_uuid_config_values() -> None:
@@ -127,7 +176,9 @@ def _write_zenml_status(success: bool, config_path: Path | None, details: str) -
 def run_zenml_training_pipeline(config_path: Path | None = None):
     zen_root = M4_ROOT / ".zen"
     zen_root.mkdir(parents=True, exist_ok=True)
-    local_store_root = M4_ROOT / ".zen" / "local_stores"
+    # Keep the local store path short on Windows to avoid step artifact paths
+    # exceeding filesystem limits during multi-step materialization.
+    local_store_root = M4_ROOT.parent.parent / ".zen_local"
     local_store_root.mkdir(parents=True, exist_ok=True)
     os.environ.setdefault("ZENML_CONFIG_PATH", str(zen_root))
     os.environ.setdefault("ZENML_LOCAL_STORES_PATH", str(local_store_root))
