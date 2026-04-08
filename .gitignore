@@ -21,3 +21,12 @@ Thumbs.db
 
 # Environment variables
 .env
+
+# Milestone 4 local runtime state
+Milestone_4-Model_Dev/.zen/local_stores/
+Milestone_4-Model_Dev/.zen_local/
+Milestone_4-Model_Dev/mlruns/
+Milestone_4-Model_Dev/mlflow.db
+Milestone_4-Model_Dev/artifacts/*.joblib
+Milestone_4-Model_Dev/artifacts/*.npz
+Milestone_4-Model_Dev/reports/emissions.csv
