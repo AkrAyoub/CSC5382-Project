@@ -1,0 +1,571 @@
+candidate_name,candidate_kind,backend_name,model_name,prompt_template,split,instance_id,instance_path,facility_count_m,customer_count_n,status,error,generation_success,execution_success,feasible_solution,exact_match_with_baseline,baseline_objective,baseline_best_known,baseline_gap_percent,baseline_runtime_s,candidate_objective,gap_vs_baseline_pct,gap_vs_best_known_pct,generation_runtime_s,execution_runtime_s,total_runtime_s,generated_code_path
+llm_robust_prompt_v1,llm,groq,llama-3.1-8b-instant,robust_v1,test,cap74,D:\aui\Ayoub\Spring_2026\AI for Digital Transformation\Project\Milestone X - Refactoring\CSC5382-Project\data\raw\cap74.txt,16,50,FAIL,"RuntimeError: GenValidationError: MISSING_COST_ACCUMULATION: robust_v1 must accumulate customer costs until len(row) == m.
+
+RAW_PREVIEW:
+===BEGIN_CODE===
+import pathlib
+from typing import Dict, List
+import re
+from ortools.linear_solver import pywraplp
+
+def _numbers(line: str) -> List[float]:
+    return [float(token) for token in re.findall(r""[-+]?\d*\.\d+|[-+]?\d+"", line)]
+
+def solve(instance_path: str) -> Dict:
+    lines = [line.strip() for line in pathlib.Path(instance_path).read_text().splitlines() if line.strip()]
+    header = _numbers(lines[0])
+    m = int(header[0])
+    n = int(header[1])
+    line_idx = 1
+    fixed = []
+    for _ in range(m):
+        values = _numbers(lines[line_idx])
+        line_idx += 1
+        fixed.append(values[-1])
+    assignments = [0] * m
+    open_facilities = set()
+    solver = pywraplp.Solver.CreateSolver('CBC')
+    y = [solver.BoolVar(f'open_facility_{i}') for i in range(n)]
+    x = [[solver.BoolVar(f'assign_customer_{j}_{i}') for i in range(n)] for j in range(m)]
+    objective = 0
+    for i in range(n):
+        objective += fixed[i] * y[i]
+        for j in range(m):
+            values = _numbers(lines[line_idx])
+            line_idx += 1
+            while len(values) < m:
+                line_idx += 1
+                values = _numbers(lines[line_idx])
+            for k in range(m)",0,0,0,0,1034976.975,1034976.975,1.1248107410982242e-14,0.0349817276000976,,,,1.188480758666992,0.0,1.188480758666992,
+llm_robust_prompt_v1,llm,groq,llama-3.1-8b-instant,robust_v1,test,cap104,D:\aui\Ayoub\Spring_2026\AI for Digital Transformation\Project\Milestone X - Refactoring\CSC5382-Project\data\raw\cap104.txt,25,50,FAIL,"RuntimeError: GenValidationError: MISSING_COST_ACCUMULATION: robust_v1 must accumulate customer costs until len(row) == m.
+
+RAW_PREVIEW:
+===BEGIN_CODE===
+import pathlib
+from typing import Dict, List
+import re
+from ortools.linear_solver import pywraplp
+
+def _numbers(line: str) -> List[float]:
+    return [float(token) for token in re.findall(r""[-+]?\d*\.\d+|[-+]?\d+"", line)]
+
+def solve(instance_path: str) -> Dict:
+    lines = [line.strip() for line in pathlib.Path(instance_path).read_text().splitlines() if line.strip()]
+    header = _numbers(lines[0])
+    m = int(header[0])
+    n = int(header[1])
+    line_idx = 1
+    fixed = []
+    for _ in range(m):
+        values = _numbers(lines[line_idx])
+        line_idx += 1
+        fixed.append(values[-1])
+    assignments = [0] * m
+    open_facilities = set()
+    solver = pywraplp.Solver.CreateSolver('CBC')
+    y = [solver.BoolVar(f'open_facility_{i}') for i in range(n)]
+    x = [[solver.BoolVar(f'assign_customer_{j}_{i}') for i in range(n)] for j in range(m)]
+    objective = 0
+    for i in range(n):
+        objective += fixed[i] * y[i]
+        for j in range(m):
+            values = _numbers(lines[line_idx])
+            line_idx += 1
+            while len(values) < m:
+                line_idx += 1
+                values = _numbers(lines[line_idx])
+            for k in range(m)",0,0,0,0,928941.75,928941.75,1.2532036785614904e-14,0.0690381526947021,,,,1.188480758666992,0.0,1.188480758666992,
+llm_robust_prompt_v1,llm,groq,llama-3.1-8b-instant,robust_v1,test,cap134,D:\aui\Ayoub\Spring_2026\AI for Digital Transformation\Project\Milestone X - Refactoring\CSC5382-Project\data\raw\cap134.txt,50,50,FAIL,"RuntimeError: GenValidationError: MISSING_COST_ACCUMULATION: robust_v1 must accumulate customer costs until len(row) == m.
+
+RAW_PREVIEW:
+===BEGIN_CODE===
+import pathlib
+from typing import Dict, List
+import re
+from ortools.linear_solver import pywraplp
+
+def _numbers(line: str) -> List[float]:
+    return [float(token) for token in re.findall(r""[-+]?\d*\.\d+|[-+]?\d+"", line)]
+
+def solve(instance_path: str) -> Dict:
+    lines = [line.strip() for line in pathlib.Path(instance_path).read_text().splitlines() if line.strip()]
+    header = _numbers(lines[0])
+    m = int(header[0])
+    n = int(header[1])
+    line_idx = 1
+    fixed = []
+    for _ in range(m):
+        values = _numbers(lines[line_idx])
+        line_idx += 1
+        fixed.append(values[-1])
+    assignments = [0] * m
+    open_facilities = set()
+    solver = pywraplp.Solver.CreateSolver('CBC')
+    y = [solver.BoolVar(f'open_facility_{i}') for i in range(n)]
+    x = [[solver.BoolVar(f'assign_customer_{j}_{i}') for i in range(n)] for j in range(m)]
+    objective = 0
+    for i in range(n):
+        objective += fixed[i] * y[i]
+        for j in range(m):
+            values = _numbers(lines[line_idx])
+            line_idx += 1
+            while len(values) < m:
+                line_idx += 1
+                values = _numbers(lines[line_idx])
+            for k in range(m)",0,0,0,0,928941.75,928941.75,1.2532036785614904e-14,0.1437864303588867,,,,1.188480758666992,0.0,1.188480758666992,
+llm_robust_prompt_v1,llm,groq,llama-3.1-8b-instant,robust_v1,test,capc,D:\aui\Ayoub\Spring_2026\AI for Digital Transformation\Project\Milestone X - Refactoring\CSC5382-Project\data\raw\capc.txt,100,1000,FAIL,"RuntimeError: GenValidationError: MISSING_COST_ACCUMULATION: robust_v1 must accumulate customer costs until len(row) == m.
+
+RAW_PREVIEW:
+===BEGIN_CODE===
+import pathlib
+from typing import Dict, List
+import re
+from ortools.linear_solver import pywraplp
+
+def _numbers(line: str) -> List[float]:
+    return [float(token) for token in re.findall(r""[-+]?\d*\.\d+|[-+]?\d+"", line)]
+
+def solve(instance_path: str) -> Dict:
+    lines = [line.strip() for line in pathlib.Path(instance_path).read_text().splitlines() if line.strip()]
+    header = _numbers(lines[0])
+    m = int(header[0])
+    n = int(header[1])
+    line_idx = 1
+    fixed = []
+    for _ in range(m):
+        values = _numbers(lines[line_idx])
+        line_idx += 1
+        fixed.append(values[-1])
+    assignments = [0] * m
+    open_facilities = set()
+    solver = pywraplp.Solver.CreateSolver('CBC')
+    y = [solver.BoolVar(f'open_facility_{i}') for i in range(n)]
+    x = [[solver.BoolVar(f'assign_customer_{j}_{i}') for i in range(n)] for j in range(m)]
+    objective = 0
+    for i in range(n):
+        objective += fixed[i] * y[i]
+        for j in range(m):
+            values = _numbers(lines[line_idx])
+            line_idx += 1
+            while len(values) < m:
+                line_idx += 1
+                values = _numbers(lines[line_idx])
+            for k in range(m)",0,0,0,0,11505594.328779982,11505594.329,-1.912265471743193e-09,142.66670536994934,,,,1.188480758666992,0.0,1.188480758666992,
+llm_robust_prompt_v1,llm,groq,llama-3.1-8b-instant,robust_v1,train,cap71,D:\aui\Ayoub\Spring_2026\AI for Digital Transformation\Project\Milestone X - Refactoring\CSC5382-Project\data\raw\cap71.txt,16,50,FAIL,"RuntimeError: GenValidationError: MISSING_COST_ACCUMULATION: robust_v1 must accumulate customer costs until len(row) == m.
+
+RAW_PREVIEW:
+===BEGIN_CODE===
+import pathlib
+from typing import Dict, List
+import re
+from ortools.linear_solver import pywraplp
+
+def _numbers(line: str) -> List[float]:
+    return [float(token) for token in re.findall(r""[-+]?\d*\.\d+|[-+]?\d+"", line)]
+
+def solve(instance_path: str) -> Dict:
+    lines = [line.strip() for line in pathlib.Path(instance_path).read_text().splitlines() if line.strip()]
+    header = _numbers(lines[0])
+    m = int(header[0])
+    n = int(header[1])
+    line_idx = 1
+    fixed = []
+    for _ in range(m):
+        values = _numbers(lines[line_idx])
+        line_idx += 1
+        fixed.append(values[-1])
+    assignments = [0] * m
+    open_facilities = set()
+    solver = pywraplp.Solver.CreateSolver('CBC')
+    y = [solver.BoolVar(f'open_facility_{i}') for i in range(n)]
+    x = [[solver.BoolVar(f'assign_customer_{j}_{i}') for i in range(n)] for j in range(m)]
+    objective = 0
+    for i in range(n):
+        objective += fixed[i] * y[i]
+        for j in range(m):
+            values = _numbers(lines[line_idx])
+            line_idx += 1
+            while len(values) < m:
+                line_idx += 1
+                values = _numbers(lines[line_idx])
+            for k in range(m)",0,0,0,0,932615.75,932615.75,0.0,0.0432147979736328,,,,1.188480758666992,0.0,1.188480758666992,
+llm_robust_prompt_v1,llm,groq,llama-3.1-8b-instant,robust_v1,train,cap72,D:\aui\Ayoub\Spring_2026\AI for Digital Transformation\Project\Milestone X - Refactoring\CSC5382-Project\data\raw\cap72.txt,16,50,FAIL,"RuntimeError: GenValidationError: MISSING_COST_ACCUMULATION: robust_v1 must accumulate customer costs until len(row) == m.
+
+RAW_PREVIEW:
+===BEGIN_CODE===
+import pathlib
+from typing import Dict, List
+import re
+from ortools.linear_solver import pywraplp
+
+def _numbers(line: str) -> List[float]:
+    return [float(token) for token in re.findall(r""[-+]?\d*\.\d+|[-+]?\d+"", line)]
+
+def solve(instance_path: str) -> Dict:
+    lines = [line.strip() for line in pathlib.Path(instance_path).read_text().splitlines() if line.strip()]
+    header = _numbers(lines[0])
+    m = int(header[0])
+    n = int(header[1])
+    line_idx = 1
+    fixed = []
+    for _ in range(m):
+        values = _numbers(lines[line_idx])
+        line_idx += 1
+        fixed.append(values[-1])
+    assignments = [0] * m
+    open_facilities = set()
+    solver = pywraplp.Solver.CreateSolver('CBC')
+    y = [solver.BoolVar(f'open_facility_{i}') for i in range(n)]
+    x = [[solver.BoolVar(f'assign_customer_{j}_{i}') for i in range(n)] for j in range(m)]
+    objective = 0
+    for i in range(n):
+        objective += fixed[i] * y[i]
+        for j in range(m):
+            values = _numbers(lines[line_idx])
+            line_idx += 1
+            while len(values) < m:
+                line_idx += 1
+                values = _numbers(lines[line_idx])
+            for k in range(m)",0,0,0,0,977799.4,977799.4,0.0,0.0442967414855957,,,,1.188480758666992,0.0,1.188480758666992,
+llm_robust_prompt_v1,llm,groq,llama-3.1-8b-instant,robust_v1,train,cap101,D:\aui\Ayoub\Spring_2026\AI for Digital Transformation\Project\Milestone X - Refactoring\CSC5382-Project\data\raw\cap101.txt,25,50,FAIL,"RuntimeError: GenValidationError: MISSING_COST_ACCUMULATION: robust_v1 must accumulate customer costs until len(row) == m.
+
+RAW_PREVIEW:
+===BEGIN_CODE===
+import pathlib
+from typing import Dict, List
+import re
+from ortools.linear_solver import pywraplp
+
+def _numbers(line: str) -> List[float]:
+    return [float(token) for token in re.findall(r""[-+]?\d*\.\d+|[-+]?\d+"", line)]
+
+def solve(instance_path: str) -> Dict:
+    lines = [line.strip() for line in pathlib.Path(instance_path).read_text().splitlines() if line.strip()]
+    header = _numbers(lines[0])
+    m = int(header[0])
+    n = int(header[1])
+    line_idx = 1
+    fixed = []
+    for _ in range(m):
+        values = _numbers(lines[line_idx])
+        line_idx += 1
+        fixed.append(values[-1])
+    assignments = [0] * m
+    open_facilities = set()
+    solver = pywraplp.Solver.CreateSolver('CBC')
+    y = [solver.BoolVar(f'open_facility_{i}') for i in range(n)]
+    x = [[solver.BoolVar(f'assign_customer_{j}_{i}') for i in range(n)] for j in range(m)]
+    objective = 0
+    for i in range(n):
+        objective += fixed[i] * y[i]
+        for j in range(m):
+            values = _numbers(lines[line_idx])
+            line_idx += 1
+            while len(values) < m:
+                line_idx += 1
+                values = _numbers(lines[line_idx])
+            for k in range(m)",0,0,0,0,796648.4375000001,796648.437,6.276295273223345e-08,0.0756301879882812,,,,1.188480758666992,0.0,1.188480758666992,
+llm_robust_prompt_v1,llm,groq,llama-3.1-8b-instant,robust_v1,train,cap102,D:\aui\Ayoub\Spring_2026\AI for Digital Transformation\Project\Milestone X - Refactoring\CSC5382-Project\data\raw\cap102.txt,25,50,FAIL,"RuntimeError: GenValidationError: MISSING_COST_ACCUMULATION: robust_v1 must accumulate customer costs until len(row) == m.
+
+RAW_PREVIEW:
+===BEGIN_CODE===
+import pathlib
+from typing import Dict, List
+import re
+from ortools.linear_solver import pywraplp
+
+def _numbers(line: str) -> List[float]:
+    return [float(token) for token in re.findall(r""[-+]?\d*\.\d+|[-+]?\d+"", line)]
+
+def solve(instance_path: str) -> Dict:
+    lines = [line.strip() for line in pathlib.Path(instance_path).read_text().splitlines() if line.strip()]
+    header = _numbers(lines[0])
+    m = int(header[0])
+    n = int(header[1])
+    line_idx = 1
+    fixed = []
+    for _ in range(m):
+        values = _numbers(lines[line_idx])
+        line_idx += 1
+        fixed.append(values[-1])
+    assignments = [0] * m
+    open_facilities = set()
+    solver = pywraplp.Solver.CreateSolver('CBC')
+    y = [solver.BoolVar(f'open_facility_{i}') for i in range(n)]
+    x = [[solver.BoolVar(f'assign_customer_{j}_{i}') for i in range(n)] for j in range(m)]
+    objective = 0
+    for i in range(n):
+        objective += fixed[i] * y[i]
+        for j in range(m):
+            values = _numbers(lines[line_idx])
+            line_idx += 1
+            while len(values) < m:
+                line_idx += 1
+                values = _numbers(lines[line_idx])
+            for k in range(m)",0,0,0,0,854704.2000000001,854704.2,1.3620539342960386e-14,0.0802018642425537,,,,1.188480758666992,0.0,1.188480758666992,
+llm_robust_prompt_v1,llm,groq,llama-3.1-8b-instant,robust_v1,train,cap131,D:\aui\Ayoub\Spring_2026\AI for Digital Transformation\Project\Milestone X - Refactoring\CSC5382-Project\data\raw\cap131.txt,50,50,FAIL,"RuntimeError: GenValidationError: MISSING_COST_ACCUMULATION: robust_v1 must accumulate customer costs until len(row) == m.
+
+RAW_PREVIEW:
+===BEGIN_CODE===
+import pathlib
+from typing import Dict, List
+import re
+from ortools.linear_solver import pywraplp
+
+def _numbers(line: str) -> List[float]:
+    return [float(token) for token in re.findall(r""[-+]?\d*\.\d+|[-+]?\d+"", line)]
+
+def solve(instance_path: str) -> Dict:
+    lines = [line.strip() for line in pathlib.Path(instance_path).read_text().splitlines() if line.strip()]
+    header = _numbers(lines[0])
+    m = int(header[0])
+    n = int(header[1])
+    line_idx = 1
+    fixed = []
+    for _ in range(m):
+        values = _numbers(lines[line_idx])
+        line_idx += 1
+        fixed.append(values[-1])
+    assignments = [0] * m
+    open_facilities = set()
+    solver = pywraplp.Solver.CreateSolver('CBC')
+    y = [solver.BoolVar(f'open_facility_{i}') for i in range(n)]
+    x = [[solver.BoolVar(f'assign_customer_{j}_{i}') for i in range(n)] for j in range(m)]
+    objective = 0
+    for i in range(n):
+        objective += fixed[i] * y[i]
+        for j in range(m):
+            values = _numbers(lines[line_idx])
+            line_idx += 1
+            while len(values) < m:
+                line_idx += 1
+                values = _numbers(lines[line_idx])
+            for k in range(m)",0,0,0,0,793439.5625000001,793439.562,6.30167823616018e-08,0.1367199420928955,,,,1.188480758666992,0.0,1.188480758666992,
+llm_robust_prompt_v1,llm,groq,llama-3.1-8b-instant,robust_v1,train,cap132,D:\aui\Ayoub\Spring_2026\AI for Digital Transformation\Project\Milestone X - Refactoring\CSC5382-Project\data\raw\cap132.txt,50,50,FAIL,"RuntimeError: GenValidationError: MISSING_COST_ACCUMULATION: robust_v1 must accumulate customer costs until len(row) == m.
+
+RAW_PREVIEW:
+===BEGIN_CODE===
+import pathlib
+from typing import Dict, List
+import re
+from ortools.linear_solver import pywraplp
+
+def _numbers(line: str) -> List[float]:
+    return [float(token) for token in re.findall(r""[-+]?\d*\.\d+|[-+]?\d+"", line)]
+
+def solve(instance_path: str) -> Dict:
+    lines = [line.strip() for line in pathlib.Path(instance_path).read_text().splitlines() if line.strip()]
+    header = _numbers(lines[0])
+    m = int(header[0])
+    n = int(header[1])
+    line_idx = 1
+    fixed = []
+    for _ in range(m):
+        values = _numbers(lines[line_idx])
+        line_idx += 1
+        fixed.append(values[-1])
+    assignments = [0] * m
+    open_facilities = set()
+    solver = pywraplp.Solver.CreateSolver('CBC')
+    y = [solver.BoolVar(f'open_facility_{i}') for i in range(n)]
+    x = [[solver.BoolVar(f'assign_customer_{j}_{i}') for i in range(n)] for j in range(m)]
+    objective = 0
+    for i in range(n):
+        objective += fixed[i] * y[i]
+        for j in range(m):
+            values = _numbers(lines[line_idx])
+            line_idx += 1
+            while len(values) < m:
+                line_idx += 1
+                values = _numbers(lines[line_idx])
+            for k in range(m)",0,0,0,0,851495.3250000001,851495.325,1.3671868583299011e-14,0.1485545635223388,,,,1.188480758666992,0.0,1.188480758666992,
+llm_robust_prompt_v1,llm,groq,llama-3.1-8b-instant,robust_v1,train,capa,D:\aui\Ayoub\Spring_2026\AI for Digital Transformation\Project\Milestone X - Refactoring\CSC5382-Project\data\raw\capa.txt,100,1000,FAIL,"RuntimeError: GenValidationError: MISSING_COST_ACCUMULATION: robust_v1 must accumulate customer costs until len(row) == m.
+
+RAW_PREVIEW:
+===BEGIN_CODE===
+import pathlib
+from typing import Dict, List
+import re
+from ortools.linear_solver import pywraplp
+
+def _numbers(line: str) -> List[float]:
+    return [float(token) for token in re.findall(r""[-+]?\d*\.\d+|[-+]?\d+"", line)]
+
+def solve(instance_path: str) -> Dict:
+    lines = [line.strip() for line in pathlib.Path(instance_path).read_text().splitlines() if line.strip()]
+    header = _numbers(lines[0])
+    m = int(header[0])
+    n = int(header[1])
+    line_idx = 1
+    fixed = []
+    for _ in range(m):
+        values = _numbers(lines[line_idx])
+        line_idx += 1
+        fixed.append(values[-1])
+    assignments = [0] * m
+    open_facilities = set()
+    solver = pywraplp.Solver.CreateSolver('CBC')
+    y = [solver.BoolVar(f'open_facility_{i}') for i in range(n)]
+    x = [[solver.BoolVar(f'assign_customer_{j}_{i}') for i in range(n)] for j in range(m)]
+    objective = 0
+    for i in range(n):
+        objective += fixed[i] * y[i]
+        for j in range(m):
+            values = _numbers(lines[line_idx])
+            line_idx += 1
+            while len(values) < m:
+                line_idx += 1
+                values = _numbers(lines[line_idx])
+            for k in range(m)",0,0,0,0,17156454.478299994,17156454.478,1.7485774979295783e-09,90.7822721004486,,,,1.188480758666992,0.0,1.188480758666992,
+llm_robust_prompt_v1,llm,groq,llama-3.1-8b-instant,robust_v1,val,cap73,D:\aui\Ayoub\Spring_2026\AI for Digital Transformation\Project\Milestone X - Refactoring\CSC5382-Project\data\raw\cap73.txt,16,50,FAIL,"RuntimeError: GenValidationError: MISSING_COST_ACCUMULATION: robust_v1 must accumulate customer costs until len(row) == m.
+
+RAW_PREVIEW:
+===BEGIN_CODE===
+import pathlib
+from typing import Dict, List
+import re
+from ortools.linear_solver import pywraplp
+
+def _numbers(line: str) -> List[float]:
+    return [float(token) for token in re.findall(r""[-+]?\d*\.\d+|[-+]?\d+"", line)]
+
+def solve(instance_path: str) -> Dict:
+    lines = [line.strip() for line in pathlib.Path(instance_path).read_text().splitlines() if line.strip()]
+    header = _numbers(lines[0])
+    m = int(header[0])
+    n = int(header[1])
+    line_idx = 1
+    fixed = []
+    for _ in range(m):
+        values = _numbers(lines[line_idx])
+        line_idx += 1
+        fixed.append(values[-1])
+    assignments = [0] * m
+    open_facilities = set()
+    solver = pywraplp.Solver.CreateSolver('CBC')
+    y = [solver.BoolVar(f'open_facility_{i}') for i in range(n)]
+    x = [[solver.BoolVar(f'assign_customer_{j}_{i}') for i in range(n)] for j in range(m)]
+    objective = 0
+    for i in range(n):
+        objective += fixed[i] * y[i]
+        for j in range(m):
+            values = _numbers(lines[line_idx])
+            line_idx += 1
+            while len(values) < m:
+                line_idx += 1
+                values = _numbers(lines[line_idx])
+            for k in range(m)",0,0,0,0,1010641.45,1010641.45,0.0,0.0390553474426269,,,,1.188480758666992,0.0,1.188480758666992,
+llm_robust_prompt_v1,llm,groq,llama-3.1-8b-instant,robust_v1,val,cap103,D:\aui\Ayoub\Spring_2026\AI for Digital Transformation\Project\Milestone X - Refactoring\CSC5382-Project\data\raw\cap103.txt,25,50,FAIL,"RuntimeError: GenValidationError: MISSING_COST_ACCUMULATION: robust_v1 must accumulate customer costs until len(row) == m.
+
+RAW_PREVIEW:
+===BEGIN_CODE===
+import pathlib
+from typing import Dict, List
+import re
+from ortools.linear_solver import pywraplp
+
+def _numbers(line: str) -> List[float]:
+    return [float(token) for token in re.findall(r""[-+]?\d*\.\d+|[-+]?\d+"", line)]
+
+def solve(instance_path: str) -> Dict:
+    lines = [line.strip() for line in pathlib.Path(instance_path).read_text().splitlines() if line.strip()]
+    header = _numbers(lines[0])
+    m = int(header[0])
+    n = int(header[1])
+    line_idx = 1
+    fixed = []
+    for _ in range(m):
+        values = _numbers(lines[line_idx])
+        line_idx += 1
+        fixed.append(values[-1])
+    assignments = [0] * m
+    open_facilities = set()
+    solver = pywraplp.Solver.CreateSolver('CBC')
+    y = [solver.BoolVar(f'open_facility_{i}') for i in range(n)]
+    x = [[solver.BoolVar(f'assign_customer_{j}_{i}') for i in range(n)] for j in range(m)]
+    objective = 0
+    for i in range(n):
+        objective += fixed[i] * y[i]
+        for j in range(m):
+            values = _numbers(lines[line_idx])
+            line_idx += 1
+            while len(values) < m:
+                line_idx += 1
+                values = _numbers(lines[line_idx])
+            for k in range(m)",0,0,0,0,893782.1125,893782.112,5.594205514334421e-08,0.0790777206420898,,,,1.188480758666992,0.0,1.188480758666992,
+llm_robust_prompt_v1,llm,groq,llama-3.1-8b-instant,robust_v1,val,cap133,D:\aui\Ayoub\Spring_2026\AI for Digital Transformation\Project\Milestone X - Refactoring\CSC5382-Project\data\raw\cap133.txt,50,50,FAIL,"RuntimeError: GenValidationError: MISSING_COST_ACCUMULATION: robust_v1 must accumulate customer costs until len(row) == m.
+
+RAW_PREVIEW:
+===BEGIN_CODE===
+import pathlib
+from typing import Dict, List
+import re
+from ortools.linear_solver import pywraplp
+
+def _numbers(line: str) -> List[float]:
+    return [float(token) for token in re.findall(r""[-+]?\d*\.\d+|[-+]?\d+"", line)]
+
+def solve(instance_path: str) -> Dict:
+    lines = [line.strip() for line in pathlib.Path(instance_path).read_text().splitlines() if line.strip()]
+    header = _numbers(lines[0])
+    m = int(header[0])
+    n = int(header[1])
+    line_idx = 1
+    fixed = []
+    for _ in range(m):
+        values = _numbers(lines[line_idx])
+        line_idx += 1
+        fixed.append(values[-1])
+    assignments = [0] * m
+    open_facilities = set()
+    solver = pywraplp.Solver.CreateSolver('CBC')
+    y = [solver.BoolVar(f'open_facility_{i}') for i in range(n)]
+    x = [[solver.BoolVar(f'assign_customer_{j}_{i}') for i in range(n)] for j in range(m)]
+    objective = 0
+    for i in range(n):
+        objective += fixed[i] * y[i]
+        for j in range(m):
+            values = _numbers(lines[line_idx])
+            line_idx += 1
+            while len(values) < m:
+                line_idx += 1
+                values = _numbers(lines[line_idx])
+            for k in range(m)",0,0,0,0,893076.7125,893076.712,5.5986228150697176e-08,0.1404871940612793,,,,1.188480758666992,0.0,1.188480758666992,
+llm_robust_prompt_v1,llm,groq,llama-3.1-8b-instant,robust_v1,val,capb,D:\aui\Ayoub\Spring_2026\AI for Digital Transformation\Project\Milestone X - Refactoring\CSC5382-Project\data\raw\capb.txt,100,1000,FAIL,"RuntimeError: GenValidationError: MISSING_COST_ACCUMULATION: robust_v1 must accumulate customer costs until len(row) == m.
+
+RAW_PREVIEW:
+===BEGIN_CODE===
+import pathlib
+from typing import Dict, List
+import re
+from ortools.linear_solver import pywraplp
+
+def _numbers(line: str) -> List[float]:
+    return [float(token) for token in re.findall(r""[-+]?\d*\.\d+|[-+]?\d+"", line)]
+
+def solve(instance_path: str) -> Dict:
+    lines = [line.strip() for line in pathlib.Path(instance_path).read_text().splitlines() if line.strip()]
+    header = _numbers(lines[0])
+    m = int(header[0])
+    n = int(header[1])
+    line_idx = 1
+    fixed = []
+    for _ in range(m):
+        values = _numbers(lines[line_idx])
+        line_idx += 1
+        fixed.append(values[-1])
+    assignments = [0] * m
+    open_facilities = set()
+    solver = pywraplp.Solver.CreateSolver('CBC')
+    y = [solver.BoolVar(f'open_facility_{i}') for i in range(n)]
+    x = [[solver.BoolVar(f'assign_customer_{j}_{i}') for i in range(n)] for j in range(m)]
+    objective = 0
+    for i in range(n):
+        objective += fixed[i] * y[i]
+        for j in range(m):
+            values = _numbers(lines[line_idx])
+            line_idx += 1
+            while len(values) < m:
+                line_idx += 1
+                values = _numbers(lines[line_idx])
+            for k in range(m)",0,0,0,0,12979071.58142998,12979071.582,-4.3918373011690055e-09,53.54404425621033,,,,1.188480758666992,0.0,1.188480758666992,

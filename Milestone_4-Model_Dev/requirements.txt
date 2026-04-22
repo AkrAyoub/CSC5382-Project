@@ -3,8 +3,15 @@ numpy
 pyarrow
 ortools
 pyyaml
-scikit-learn
 matplotlib
 mlflow
-zenml
+zenml[local]
 codecarbon
+groq
+sqlmodel==0.0.18
+passlib[bcrypt]~=1.7.4
+bcrypt==4.0.1
+pymysql>=1.1.1,<1.2.0
+sqlalchemy>=2.0.0,<3.0.0
+sqlalchemy-utils
+alembic>=1.8.1,<=1.15.2

@@ -1,0 +1,11 @@
+{
+  "name": "llm_fine_tuned",
+  "kind": "llm",
+  "backend": "groq",
+  "model_name": null,
+  "prompt_template": "robust_v1",
+  "temperature": 0.0,
+  "max_tokens": 850,
+  "enabled": false,
+  "notes": "Optional slot for a future fine-tuned model id."
+}

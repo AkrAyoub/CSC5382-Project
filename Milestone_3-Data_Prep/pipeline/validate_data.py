@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 from pathlib import Path
+import sys
 
 try:
     from .common import (
@@ -25,17 +26,27 @@ except ImportError:
         write_text_file,
     )
 
-
-PROJECT_ROOT = Path(__file__).resolve().parent.parent
-
-RAW_DATA_DIR = PROJECT_ROOT / "data" / "raw"
-INTERIM_DATA_DIR = PROJECT_ROOT / "data" / "interim"
-PROCESSED_DATA_DIR = PROJECT_ROOT / "data" / "processed"
-FEATURES_DATA_DIR = PROJECT_ROOT / "data" / "features"
-
-SCHEMA_DIR = PROJECT_ROOT / "schema"
-VALIDATION_DIR = PROJECT_ROOT / "reports" / "validation"
-STATS_DIR = PROJECT_ROOT / "reports" / "stats"
+try:
+    from ..paths import (
+        FEATURES_DATA_DIR,
+        INTERIM_DATA_DIR,
+        PROCESSED_DATA_DIR,
+        RAW_DATA_DIR,
+        SCHEMA_DIR,
+        STATS_DIR,
+        VALIDATION_DIR,
+    )
+except ImportError:
+    sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
+    from paths import (
+        FEATURES_DATA_DIR,
+        INTERIM_DATA_DIR,
+        PROCESSED_DATA_DIR,
+        RAW_DATA_DIR,
+        SCHEMA_DIR,
+        STATS_DIR,
+        VALIDATION_DIR,
+    )
 
 
 def summarize_numeric_column(rows: list[dict[str, str]], column: str) -> dict:
@@ -250,7 +261,7 @@ def validate_feature_consistency(
     return anomalies
 
 
-def main() -> None:
+def run_validation() -> dict[str, object]:
     raw_schema = read_json_file(SCHEMA_DIR / "raw_schema.json")
     processed_schema = read_json_file(SCHEMA_DIR / "processed_schema.json")
     feature_schema = read_json_file(SCHEMA_DIR / "feature_schema.json")
@@ -358,6 +369,28 @@ def main() -> None:
     print(f"- {STATS_DIR / 'raw_statistics.json'}")
     print(f"- {STATS_DIR / 'processed_statistics.json'}")
     print(f"- {STATS_DIR / 'feature_statistics.json'}")
+
+    return {
+        "status": summary["status"],
+        "anomaly_count": summary["anomaly_count"],
+        "raw_instance_count": raw_stats["instance_count"],
+        "processed_instances": len(instances),
+        "processed_facilities": len(facilities),
+        "processed_customers": len(customers),
+        "processed_assignment_costs": len(assignments),
+        "feature_instances": len(instance_features),
+        "feature_facilities": len(facility_features),
+        "feature_customers": len(customer_features),
+        "validation_summary_path": str(VALIDATION_DIR / "validation_summary.json"),
+        "anomalies_path": str(VALIDATION_DIR / "anomalies.json"),
+        "raw_stats_path": str(STATS_DIR / "raw_statistics.json"),
+        "processed_stats_path": str(STATS_DIR / "processed_statistics.json"),
+        "feature_stats_path": str(STATS_DIR / "feature_statistics.json"),
+    }
+
+
+def main() -> None:
+    run_validation()
 
 
 if __name__ == "__main__":

@@ -3,70 +3,47 @@ from __future__ import annotations
 from pathlib import Path
 from typing import Any, TypedDict
 
-import numpy as np
-
-from m4_model_dev.models.logistic_numpy import StandardScaler
+import pandas as pd
 
 
-class TrainingInputs(TypedDict):
-    labels_path: Path
+class EvaluationInputs(TypedDict):
+    reference_path: Path
     dataset_path: Path
     split_path: Path
-    merged_dataset_path: Path
-    feature_columns: list[str]
+    sft_paths: dict[str, Path]
     split_counts: dict[str, int]
-    x_train_raw: np.ndarray
-    x_val_raw: np.ndarray
-    x_test_raw: np.ndarray
-    x_train_scaled: np.ndarray
-    x_val_scaled: np.ndarray
-    x_test_scaled: np.ndarray
-    y_train: np.ndarray
-    y_val: np.ndarray
-    y_test: np.ndarray
-    scaler: StandardScaler
+    evaluation_instances: list[dict[str, Any]]
 
 
-class TrainedModel(TypedDict):
-    bundle: dict[str, Any]
-    model_family: str
-    emissions_path: Path | None
+class CandidateRunResult(TypedDict):
+    candidate_name: str
+    candidate_kind: str
+    metrics_df: pd.DataFrame
+    raw_results_df: pd.DataFrame
 
 
-class EvaluationResults(TypedDict):
-    threshold: float
-    metrics: dict[str, dict[str, float | int]]
-    confusion_report: dict[str, dict[str, float | int]]
-    feature_importance_rows: list[dict[str, float | str]]
+class SingleCandidatePipelineResult(TypedDict):
+    config: dict[str, Any]
+    config_path: Path
+    summary_path: Path
+    metrics_path: Path
+    raw_results_path: Path
+    manifest_path: Path
+    figure_paths: dict[str, Path]
+    model_spec_path: Path
+    sft_manifest_path: Path | None
+    mlflow_logged: bool
+    registered_model_name: str | None
+    metrics_df: pd.DataFrame
+    raw_results_df: pd.DataFrame
 
 
 class ComparisonPipelineResult(TypedDict):
-    results_df: Any
-    csv_path: Path
-    json_path: Path
+    results_df: pd.DataFrame
+    raw_results_df: pd.DataFrame
+    raw_results_path: Path
+    metrics_path: Path
     summary_path: Path
     selection_path: Path
     figure_paths: dict[str, Path]
     mlflow_logged: bool
-
-
-class TrainingPipelineResult(TypedDict):
-    config: dict[str, Any]
-    config_path: Path
-    dataset_path: Path
-    split_path: Path
-    metrics_path: Path
-    summary_path: Path
-    manifest_path: Path
-    confusion_path: Path
-    feature_importance_path: Path | None
-    emissions_path: Path | None
-    model_artifact_path: Path
-    figure_paths: dict[str, Path]
-    mlflow_logged: bool
-    registered_model_name: str | None
-    metrics: dict[str, dict[str, float | int]]
-    model_family: str
-    model_bundle: dict[str, Any]
-    feature_columns: list[str]
-    threshold: float

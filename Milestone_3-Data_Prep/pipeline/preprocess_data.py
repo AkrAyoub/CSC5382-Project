@@ -2,17 +2,21 @@ from __future__ import annotations
 
 from dataclasses import dataclass
 from pathlib import Path
-from typing import Iterator
+import re
+import sys
+from typing import Iterable
 
 try:
     from .common import safe_mean, write_dataclass_rows_csv, write_dataclass_rows_json
 except ImportError:
     from common import safe_mean, write_dataclass_rows_csv, write_dataclass_rows_json
 
+try:
+    from ..paths import PROCESSED_DATA_DIR, RAW_DATA_DIR
+except ImportError:
+    sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
+    from paths import PROCESSED_DATA_DIR, RAW_DATA_DIR
 
-PROJECT_ROOT = Path(__file__).resolve().parent.parent
-RAW_DATA_DIR = PROJECT_ROOT / "data" / "raw"
-PROCESSED_DATA_DIR = PROJECT_ROOT / "data" / "processed"
 ALLOWED_INSTANCE_FILES = {
     "cap71.txt",
     "cap72.txt",
@@ -77,32 +81,62 @@ class AssignmentCostRow:
     assignment_cost: float
 
 
-def read_next_float(tokens: Iterator[str], *, allow_label: bool) -> float:
-    first_token = next(tokens)
-    if allow_label:
-        try:
-            return float(first_token)
-        except ValueError:
-            return float(next(tokens))
-    return float(first_token)
+NUMBER_PATTERN = re.compile(r"[-+]?(?:\d+\.\d*|\d+|\.\d+)(?:[eE][-+]?\d+)?")
+
+
+def extract_numeric_tokens(line: str) -> list[float]:
+    return [float(token) for token in NUMBER_PATTERN.findall(line)]
 
 
 def parse_orlib_uncap(instance_path: Path) -> UFLPInstance:
-    """Parse an OR-Library UFLP instance and ignore capacity or demand labels."""
-    tokens = iter(instance_path.read_text(encoding="utf-8").split())
+    """Parse OR-Library UFLP files that may use either numeric or labeled facility rows."""
+    lines = [line.strip() for line in instance_path.read_text(encoding="utf-8").splitlines() if line.strip()]
+    if not lines:
+        raise ValueError(f"Empty instance file: {instance_path}")
 
-    m = int(next(tokens))
-    n = int(next(tokens))
+    header = extract_numeric_tokens(lines[0])
+    if len(header) < 2:
+        raise ValueError(f"Invalid header in {instance_path.name}: {lines[0]!r}")
+
+    m = int(header[0])
+    n = int(header[1])
+    line_idx = 1
 
     fixed_costs: list[float] = []
-    for _ in range(m):
-        fixed_costs.append(read_next_float(tokens, allow_label=True))
+    for facility_idx in range(m):
+        if line_idx >= len(lines):
+            raise ValueError(f"Unexpected end of file while reading facilities in {instance_path.name}")
+
+        facility_values = extract_numeric_tokens(lines[line_idx])
+        line_idx += 1
+
+        if not facility_values:
+            raise ValueError(f"Missing facility values for facility {facility_idx} in {instance_path.name}")
+
+        # Small instances store `capacity fixed_cost`; large ones store `capacity <fixed_cost>` with
+        # the capacity token written literally, leaving only one numeric value on the line.
+        fixed_costs.append(facility_values[-1])
 
     costs: list[list[float]] = []
-    for _ in range(n):
-        _ = read_next_float(tokens, allow_label=True)
-        row = [float(next(tokens)) for _ in range(m)]
-        costs.append(row)
+    for customer_idx in range(n):
+        if line_idx >= len(lines):
+            raise ValueError(f"Unexpected end of file while reading customer {customer_idx} in {instance_path.name}")
+
+        demand_values = extract_numeric_tokens(lines[line_idx])
+        line_idx += 1
+        if not demand_values:
+            raise ValueError(f"Missing demand value for customer {customer_idx} in {instance_path.name}")
+
+        row: list[float] = []
+        while len(row) < m:
+            if line_idx >= len(lines):
+                raise ValueError(
+                    f"Unexpected end of file while reading assignment costs for customer {customer_idx} in {instance_path.name}"
+                )
+            row.extend(extract_numeric_tokens(lines[line_idx]))
+            line_idx += 1
+
+        costs.append(row[:m])
 
     return UFLPInstance(
         instance_id=instance_path.stem,
@@ -207,7 +241,7 @@ def write_json(rows: list[object], output_path: Path) -> None:
     write_dataclass_rows_json(rows, output_path)
 
 
-def main() -> None:
+def run_preprocessing() -> dict[str, object]:
     if not RAW_DATA_DIR.exists():
         raise FileNotFoundError(f"Raw data directory not found: {RAW_DATA_DIR}")
 
@@ -215,7 +249,7 @@ def main() -> None:
     if not instance_files:
         raise FileNotFoundError(
             f"No instance .txt files found in {RAW_DATA_DIR}. "
-            "Run ingestion and ensure raw OR-Library files are present."
+            "Run ingestion and ensure the shared OR-Library files are present."
         )
 
     parsed_instances: list[UFLPInstance] = []
@@ -289,6 +323,25 @@ def main() -> None:
     print(f"- {PROCESSED_DATA_DIR / 'facilities.csv'}")
     print(f"- {PROCESSED_DATA_DIR / 'customers.csv'}")
     print(f"- {PROCESSED_DATA_DIR / 'assignment_costs.csv'}")
+
+    return {
+        "raw_directory": str(RAW_DATA_DIR),
+        "accepted_instance_count": len(instance_files),
+        "parsed_instance_count": len(parsed_instances),
+        "failed_instance_count": len(failed_files),
+        "instances_csv": str(PROCESSED_DATA_DIR / "instances.csv"),
+        "facilities_csv": str(PROCESSED_DATA_DIR / "facilities.csv"),
+        "customers_csv": str(PROCESSED_DATA_DIR / "customers.csv"),
+        "assignment_costs_csv": str(PROCESSED_DATA_DIR / "assignment_costs.csv"),
+        "instance_rows": len(instance_rows),
+        "facility_rows": len(facility_rows),
+        "customer_rows": len(customer_rows),
+        "assignment_cost_rows": len(assignment_rows),
+    }
+
+
+def main() -> None:
+    run_preprocessing()
 
 
 if __name__ == "__main__":

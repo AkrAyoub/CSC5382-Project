@@ -4,7 +4,7 @@ from pathlib import Path
 
 import pandas as pd
 
-from m4_model_dev.paths import M4_MERGED_DIR, M4_SPLITS_DIR
+from m4_model_dev.paths import M4_DATASETS_DIR, M4_SPLITS_DIR
 
 
 SPLIT_TRAIN = "train"
@@ -40,24 +40,15 @@ def assign_split_for_group(instance_ids: list[str]) -> dict[str, str]:
     return assignments
 
 
-def _build_instance_catalog(df: pd.DataFrame) -> pd.DataFrame:
-    return (
-        df[["instance_id", "facility_count_m", "customer_count_n"]]
-        .drop_duplicates()
-        .sort_values(["facility_count_m", "customer_count_n", "instance_id"])
-    )
-
-
 def _build_split_rows(instances: pd.DataFrame) -> list[dict[str, str | int]]:
     split_rows: list[dict[str, str | int]] = []
-    # Group by problem size so related variants stay together when we assign
-    # train/validation/test instances.
     for (_, group_df) in instances.groupby(["facility_count_m", "customer_count_n"], sort=True):
         assignments = assign_split_for_group(group_df["instance_id"].tolist())
         for _, row in group_df.iterrows():
             split_rows.append(
                 {
                     "instance_id": row["instance_id"],
+                    "instance_path": row["instance_path"],
                     "facility_count_m": int(row["facility_count_m"]),
                     "customer_count_n": int(row["customer_count_n"]),
                     "split": assignments[row["instance_id"]],
@@ -70,12 +61,15 @@ def build_grouped_splits(
     dataset_path: Path | None = None,
     output_path: Path | None = None,
 ) -> Path:
-    dataset_path = dataset_path or (M4_MERGED_DIR / "facility_training_dataset.csv")
+    dataset_path = dataset_path or (M4_DATASETS_DIR / "benchmark_instances.csv")
     output_path = output_path or (M4_SPLITS_DIR / "instance_splits.csv")
 
     df = pd.read_csv(dataset_path)
-    instances = _build_instance_catalog(df)
-    split_rows = _build_split_rows(instances)
+    split_rows = _build_split_rows(
+        df[["instance_id", "instance_path", "facility_count_m", "customer_count_n"]]
+        .drop_duplicates()
+        .sort_values(["facility_count_m", "customer_count_n", "instance_id"])
+    )
 
     split_df = pd.DataFrame(split_rows).sort_values(["split", "facility_count_m", "instance_id"])
     output_path.parent.mkdir(parents=True, exist_ok=True)

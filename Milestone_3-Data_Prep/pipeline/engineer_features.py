@@ -3,6 +3,7 @@ from __future__ import annotations
 from dataclasses import asdict, dataclass
 from datetime import datetime, timezone
 from pathlib import Path
+import sys
 
 import pandas as pd
 
@@ -11,10 +12,11 @@ try:
 except ImportError:
     from common import read_csv_rows, safe_mean, safe_std, write_dataclass_rows_json
 
-
-PROJECT_ROOT = Path(__file__).resolve().parent.parent
-PROCESSED_DATA_DIR = PROJECT_ROOT / "data" / "processed"
-FEATURES_DATA_DIR = PROJECT_ROOT / "data" / "features"
+try:
+    from ..paths import FEATURES_DATA_DIR, PROCESSED_DATA_DIR
+except ImportError:
+    sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
+    from paths import FEATURES_DATA_DIR, PROCESSED_DATA_DIR
 
 # A fixed timestamp keeps Feast joins deterministic for this milestone dataset.
 DEFAULT_EVENT_TIMESTAMP = datetime(2026, 3, 21, 0, 0, 0, tzinfo=timezone.utc).isoformat()
@@ -283,7 +285,7 @@ def enrich_instance_fixed_cost_std(
     return enriched
 
 
-def main() -> None:
+def run_feature_engineering() -> dict[str, object]:
     instances_rows = read_csv_rows(PROCESSED_DATA_DIR / "instances.csv")
     facility_rows = read_csv_rows(PROCESSED_DATA_DIR / "facilities.csv")
     customer_rows = read_csv_rows(PROCESSED_DATA_DIR / "customers.csv")
@@ -325,6 +327,22 @@ def main() -> None:
     print(f"- {FEATURES_DATA_DIR / 'facility_features.parquet'}")
     print(f"- {FEATURES_DATA_DIR / 'customer_features.csv'}")
     print(f"- {FEATURES_DATA_DIR / 'customer_features.parquet'}")
+
+    return {
+        "instance_feature_rows": len(instance_features),
+        "facility_feature_rows": len(facility_features),
+        "customer_feature_rows": len(customer_features),
+        "instance_features_csv": str(FEATURES_DATA_DIR / "instance_features.csv"),
+        "facility_features_csv": str(FEATURES_DATA_DIR / "facility_features.csv"),
+        "customer_features_csv": str(FEATURES_DATA_DIR / "customer_features.csv"),
+        "instance_features_parquet": str(FEATURES_DATA_DIR / "instance_features.parquet"),
+        "facility_features_parquet": str(FEATURES_DATA_DIR / "facility_features.parquet"),
+        "customer_features_parquet": str(FEATURES_DATA_DIR / "customer_features.parquet"),
+    }
+
+
+def main() -> None:
+    run_feature_engineering()
 
 
 if __name__ == "__main__":

@@ -1,541 +1,229 @@
-## AI-Assisted Symbolic Optimization for Strategic Facility Network Design
-## Milestone 3: Data Acquisition, Validation, Preparation, and Feature Store
+# Milestone 3 - Data Acquisition, Validation, and Preparation
 
+This milestone implements the data layer for the UFLP project defined in Milestone 1 and used by the solver PoC in Milestone 2. The refactor keeps the project on one shared benchmark source, builds reproducible derived datasets, validates them against explicit contracts, versions the pipeline with DVC, and exposes engineered features through Feast.
 
-## Table of Contents
+### Table of Contents
 
-- [Overview](#overview)
-- [Quick Links](#quick-links)
-- [Project Context and Integration with Previous Milestones](#project-context-and-integration-with-previous-milestones)
-- [Repository Structure (Milestone 3)](#repository-structure-milestone-3)
-- [Dataset (OR-Library UFLP)](#dataset-or-library-uflp)
-- [Highlights](#highlights)
-- [Installation and Setup](#installation-and-setup)
-- [Running the Data Pipeline](#running-the-data-pipeline)
-  - [Stage A - Raw Data Ingestion](#stage-a---raw-data-ingestion)
-  - [Stage B - Data Preprocessing and Transformation](#stage-b---data-preprocessing-and-transformation)
-  - [Stage C - Feature Engineering](#stage-c---feature-engineering)
-  - [Stage D - Validation and Anomaly Analysis](#stage-d---validation-and-anomaly-analysis)
-  - [Stage E - Feature Store Setup (Feast)](#stage-e---feature-store-setup-feast)
-- [DVC Pipeline and Reproducibility](#dvc-pipeline-and-reproducibility)
-- [Produced Artifacts](#produced-artifacts)
-- [Results Summary](#results-summary)
-- [Limitations and Next Steps](#limitations-and-next-steps)
-- [Troubleshooting](#troubleshooting)
-
+- [1. Setup, Usage, and Pipeline Guide](#1-setup-usage-and-pipeline-guide)
+  - [1.1 Repository Structure](#11-repository-structure)
+  - [1.2 Installation and Setup](#12-installation-and-setup)
+  - [1.3 Running the Pipeline](#13-running-the-pipeline)
+  - [1.4 Troubleshooting](#14-troubleshooting)
+- [2. Milestone 3 - ML Pipeline Development - Data Ingestion, Validation and Preparation](#2-milestone-3---ml-pipeline-development---data-ingestion-validation-and-preparation)
+  - [2.1 Schema Definition](#21-schema-definition)
+  - [2.2 Data Validation and Verification](#22-data-validation-and-verification)
+  - [2.3 Data Versioning](#23-data-versioning)
+  - [2.4 Setting up a Feature Store](#24-setting-up-a-feature-store)
+  - [2.5 Setup of Data Pipeline within the Larger ML Pipeline / MLOps Platform](#25-setup-of-data-pipeline-within-the-larger-ml-pipeline--mlops-platform)
+    - [2.5.1 Ingestion of Raw Data and Storage into a Repository](#251-ingestion-of-raw-data-and-storage-into-a-repository)
+    - [2.5.2 Preprocessing and Feature Engineering](#252-preprocessing-and-feature-engineering)
+- [3. References](#3-references)
 
 ## Quick Links
 
-- **[Milestone 3 Report (PDF)](report/report.pdf)**
-- **[DVC Pipeline Definition](dvc.yaml)**
-- **[Full Workflow Runner](run_full_workflow.py)**
-- **[Data Pipeline Runner](pipeline/run_data_pipeline.py)**
-- **[Feature Store Demo](feature_repo/run_feature_store_demo.py)**
-- **[Milestone 1 README](../Milestone_1-Project_Inception/README.md)**
-- **[Milestone 2 README](../Milestone_2-PoC/README.md)**
+- Report PDF: [report/report.pdf](report/report.pdf)
+- Shared raw dataset: [../data/raw/](../data/raw/)
+- DVC pipeline: [dvc.yaml](dvc.yaml)
+- Pipeline runner: [pipeline/run_data_pipeline.py](pipeline/run_data_pipeline.py)
+- Full workflow runner: [run_full_workflow.py](run_full_workflow.py)
+- ZenML workflow runner: [run_zenml_workflow.py](run_zenml_workflow.py)
+- ZenML pipeline definition: [pipeline/zenml_pipeline.py](pipeline/zenml_pipeline.py)
+- Validation summary: [reports/validation/validation_summary.json](reports/validation/validation_summary.json)
+- ZenML status: [reports/zenml_status.json](reports/zenml_status.json)
+- Feast demo: [feature_repo/run_feature_store_demo.py](feature_repo/run_feature_store_demo.py)
+- Milestone 1 README: [../Milestone_1-Project_Inception/README.md](../Milestone_1-Project_Inception/README.md)
+- Milestone 2 README: [../Milestone_2-PoC/README.md](../Milestone_2-PoC/README.md)
 
+## 1. Setup, Usage, and Pipeline Guide
 
-## Overview
+### 1.1 Repository Structure
 
-This milestone implements the **data and MLOps layer** for the **Uncapacitated Facility Location Problem (UFLP)** project.
+Milestone 3 uses the shared root raw dataset and keeps all derived artifacts inside the milestone folder:
 
-While Milestone 1 established the research framing and Milestone 2 implemented the solver pipeline, Milestone 3 focuses on everything required to make the system operationally reliable:
+- [../data/raw/](../data/raw/): canonical OR-Library UFLP input and [../data/raw/uncapopt.txt](../data/raw/uncapopt.txt)
+- [pipeline/ingest_data.py](pipeline/ingest_data.py): manifest creation from the shared raw dataset
+- [pipeline/preprocess_data.py](pipeline/preprocess_data.py): normalized relational tables
+- [pipeline/engineer_features.py](pipeline/engineer_features.py): instance-, facility-, and customer-level features
+- [pipeline/validate_data.py](pipeline/validate_data.py): schema checks, statistics, anomaly checks, and consistency validation
+- [feature_repo/](feature_repo/): Feast entities, views, apply script, and retrieval demo
+- [data/interim/](data/interim/), [data/processed/](data/processed/), [data/features/](data/features/): generated M3 outputs
+- [reports/validation/](reports/validation/) and [reports/stats/](reports/stats/): validation and statistics outputs
 
-- structured raw data ingestion
-- reproducible preprocessing
-- feature engineering for analytics and ML-oriented experimentation
-- schema-based validation and anomaly analysis
-- dataset versioning with DVC
-- feature-store integration with Feast
+### 1.2 Installation and Setup
 
-The outcome is a transition from a solver-centric prototype into a **data-centric optimization workflow**, where downstream symbolic optimization components can rely on validated, versioned, and reusable data assets.
+From the repo root:
 
-
-## Project Context and Integration with Previous Milestones
-
-The full project evolves across three connected milestones:
-
-- **Milestone 1 - Problem Framing:** defined UFLP as an AI-assisted symbolic optimization problem and introduced the LLM-as-modeler architecture.
-- **Milestone 2 - Solver Layer:** implemented a deterministic OR-Tools baseline and an LLM-generated verified solver pipeline.
-- **Milestone 3 - Data and MLOps Layer:** adds ingestion, preprocessing, validation, versioning, and feature management so that the solver stack operates on trustworthy data.
-
-In practical terms, this milestone ensures that:
-
-- raw OR-Library benchmark files are cataloged and auditable
-- processed tables are structured for analysis and reuse
-- engineered features are available for experimentation
-- validation catches structural and statistical issues before solver use
-- data lineage is reproducible through DVC
-- feature retrieval is centralized through Feast
-
-
-## Repository Structure (Milestone 3)
-
-- **Pipeline**
-  - [`pipeline/ingest_data.py`](pipeline/ingest_data.py) - discovers raw instances, parses header metadata, and builds the dataset manifest
-  - [`pipeline/preprocess_data.py`](pipeline/preprocess_data.py) - parses OR-Library instances into structured relational tables
-  - [`pipeline/engineer_features.py`](pipeline/engineer_features.py) - computes instance-, facility-, and customer-level features
-  - [`pipeline/validate_data.py`](pipeline/validate_data.py) - validates raw, processed, and feature layers against schemas and consistency rules
-  - [`pipeline/run_data_pipeline.py`](pipeline/run_data_pipeline.py) - runs the full Milestone 3 data pipeline end-to-end
-- **Feature Store**
-  - [`feature_repo/entities.py`](feature_repo/entities.py) - Feast entities: `instance_id`, `facility_key`, `customer_key`
-  - [`feature_repo/views.py`](feature_repo/views.py) - Feast feature views backed by Parquet feature files
-  - [`feature_repo/apply_repo.py`](feature_repo/apply_repo.py) - applies Feast definitions
-  - [`feature_repo/run_feature_store_demo.py`](feature_repo/run_feature_store_demo.py) - historical feature retrieval demo
-  - [`feature_repo/feature_store.yaml`](feature_repo/feature_store.yaml) - local Feast configuration
-- **Schemas**
-  - [`schema/raw_schema.json`](schema/raw_schema.json)
-  - [`schema/processed_schema.json`](schema/processed_schema.json)
-  - [`schema/feature_schema.json`](schema/feature_schema.json)
-- **Workflow / Reproducibility**
-  - [`dvc.yaml`](dvc.yaml) - DVC stage definition
-  - [`dvc.lock`](dvc.lock) - locked dependencies and outputs
-  - [`run_full_workflow.py`](run_full_workflow.py) - runs data pipeline, applies Feast repo, and executes demo retrieval
-- **Data**
-  - [`data/raw/`](data/raw/) - OR-Library instance files and `uncapopt.txt`
-  - [`data/interim/`](data/interim/) - ingestion manifests
-  - [`data/processed/`](data/processed/) - normalized tabular outputs
-  - [`data/features/`](data/features/) - engineered features in CSV, JSON, and Parquet
-- **Reports**
-  - [`reports/validation/`](reports/validation/) - validation summaries and anomaly outputs
-  - [`reports/stats/`](reports/stats/) - descriptive statistics for each pipeline layer
-- **Documentation**
-  - [`report/report.pdf`](report/report.pdf) - milestone report
-  - [`requirements-m3.txt`](requirements-m3.txt) - Python dependencies for Milestone 3
-
-
-## Dataset (OR-Library UFLP)
-
-This milestone uses the **OR-Library UFLP benchmark collection**, the same benchmark family used throughout the project.
-
-- **Raw data directory:** [`data/raw/`](data/raw/)
-- **Known optima file:** [`data/raw/uncapopt.txt`](data/raw/uncapopt.txt)
-
-Supported benchmark instances:
-
-- `cap71.txt` to `cap74.txt`
-- `cap101.txt` to `cap104.txt`
-- `cap131.txt` to `cap134.txt`
-- `capa.txt`, `capb.txt`, `capc.txt`
-
-Each instance provides:
-
-- number of facilities `m`
-- number of customers `n`
-- facility opening costs
-- customer-to-facility assignment costs
-
-For the uncapacitated setting, capacity and demand tokens from the original OR-Library format are ignored during parsing, while fixed costs and assignment costs are preserved as the effective optimization input.
-
-
-## Highlights
-
-### Structured Raw Data Ingestion
-
-- discovers all benchmark instance files automatically
-- parses key metadata (`m`, `n`, file size, source, optimum availability)
-- produces auditable manifest files in CSV and JSON
-
-### Relational Data Preparation
-
-- converts raw text instances into structured tables
-- separates the dataset into `instances`, `facilities`, `customers`, and `assignment_costs`
-- preserves exact benchmark information for reproducible downstream use
-
-### Feature Engineering for Reuse
-
-- computes statistical, normalized, and derived features
-- supports instance-level, facility-level, and customer-level analysis
-- exports features to Parquet for feature-store consumption
-
-### Validation and Data Quality Controls
-
-- checks required columns, numeric fields, non-negativity constraints, and ID uniqueness
-- validates cross-table consistency such as `m`, `n`, and full assignment-matrix completeness
-- generates anomaly logs and descriptive statistics automatically
-
-### Reproducibility and MLOps Readiness
-
-- DVC defines a multi-stage reproducible pipeline
-- Feast exposes engineered features through a local feature store
-- outputs are organized for repeated experimentation and future solver integration
-
-
-## Installation and Setup
-
-### 1. Create a Virtual Environment
-
-**Windows (PowerShell)**
-
-```bash
+```powershell
 python -m venv .venv
-```
-
-### 2. Activate the Environment
-
-```bash
 .venv\Scripts\Activate.ps1
-```
-
-### 3. Install Milestone 3 Dependencies
-
-```bash
+cd Milestone_3-Data_Prep
 pip install -r requirements-m3.txt
 ```
 
-Dependencies include:
+[requirements-m3.txt](requirements-m3.txt) now includes the ZenML local-runtime dependencies used by [run_zenml_workflow.py](run_zenml_workflow.py), including `zenml[local]`, `sqlmodel`, `passlib[bcrypt]`, and the supporting SQL/runtime packages needed by the local ZenML store.
 
-- `pandas`
-- `pyarrow`
-- `feast`
-- `dvc`
+For deep Windows paths, DVC works more reliably with a short local cache path:
 
-### 4. Work from the Milestone Directory
-
-```bash
-cd Milestone_3-Data_Prep
+```powershell
+..\.venv\Scripts\python.exe -m dvc config cache.dir D:/dvc-cache-csc5382-m3 --local
 ```
 
+If you use a different short local path, substitute it in the command above.
 
-## Running the Data Pipeline
+### 1.3 Running the Pipeline
 
-### Full Milestone 3 Workflow
+Run the data pipeline only:
 
-This runs:
-
-1. the full data pipeline,
-2. Feast repository application,
-3. a sample feature retrieval demo.
-
-```bash
-python run_full_workflow.py
-```
-
-### Data Pipeline Only
-
-```bash
+```powershell
 python pipeline/run_data_pipeline.py
 ```
 
+Run the full workflow, including Feast apply and retrieval demo:
 
-### Stage A - Raw Data Ingestion
-
-```bash
-python pipeline/ingest_data.py
+```powershell
+python run_full_workflow.py
 ```
 
-What this stage does:
+Run the ZenML-orchestrated workflow:
 
-- scans [`data/raw/`](data/raw/) for OR-Library instance files
-- excludes non-instance companion files such as `uncapopt.txt`
-- reads the leading `m n` pair from each file
-- checks whether each instance has a known optimum entry
-- writes:
-  - [`data/interim/dataset_manifest.csv`](data/interim/dataset_manifest.csv)
-  - [`data/interim/dataset_manifest.json`](data/interim/dataset_manifest.json)
-
-Manifest fields include:
-
-- `instance_id`
-- `file_name`
-- `file_path`
-- `source`
-- `file_size_bytes`
-- `facility_count_m`
-- `customer_count_n`
-- `has_known_optimum`
-- `ingestion_status`
-
-
-### Stage B - Data Preprocessing and Transformation
-
-```bash
-python pipeline/preprocess_data.py
+```powershell
+python run_zenml_workflow.py
 ```
 
-This stage parses each OR-Library instance into normalized tables suitable for analytics and downstream modeling.
+Run DVC reproduction:
 
-Produced outputs:
-
-- [`data/processed/instances.csv`](data/processed/instances.csv)
-- [`data/processed/facilities.csv`](data/processed/facilities.csv)
-- [`data/processed/customers.csv`](data/processed/customers.csv)
-- [`data/processed/assignment_costs.csv`](data/processed/assignment_costs.csv)
-- JSON mirrors of all four datasets in [`data/processed/`](data/processed/)
-
-Core parsing logic:
-
-- ignores irrelevant capacity and demand labels from the capacitated source format
-- extracts facility fixed costs correctly
-- reconstructs the full customer-facility assignment cost matrix
-- builds relational tables with stable identifiers
-
-Processed tables:
-
-| Table | Description |
-|---|---|
-| `instances` | instance-level metadata and aggregate fixed-cost statistics |
-| `facilities` | one row per facility with fixed opening cost |
-| `customers` | one row per customer with assignment-cost summaries |
-| `assignment_costs` | full customer-facility cost matrix |
-
-
-### Stage C - Feature Engineering
-
-```bash
-python pipeline/engineer_features.py
+```powershell
+..\.venv\Scripts\python.exe -m dvc repro
 ```
 
-This stage transforms processed tables into feature datasets for analysis, benchmarking, and future ML-assisted extensions.
+### 1.4 Troubleshooting
 
-Produced outputs:
+- If raw data is not found, confirm that the shared dataset exists in [../data/raw/](../data/raw/).
+- If DVC fails on Windows path length, use a short local cache path as shown above.
+- If Feast retrieval fails, rerun the feature stage first, then apply the repo with [feature_repo/apply_repo.py](feature_repo/apply_repo.py).
+- If ZenML reports missing modules such as `sqlmodel` or `passlib`, reinstall [requirements-m3.txt](requirements-m3.txt) in the active environment and rerun [run_zenml_workflow.py](run_zenml_workflow.py).
+- If the environment has older conflicting ZenML dependencies, recreate the virtual environment and reinstall from [requirements-m3.txt](requirements-m3.txt).
 
-- [`data/features/instance_features.csv`](data/features/instance_features.csv)
-- [`data/features/facility_features.csv`](data/features/facility_features.csv)
-- [`data/features/customer_features.csv`](data/features/customer_features.csv)
-- Parquet mirrors for all three datasets in [`data/features/`](data/features/)
-- JSON mirrors for all three datasets in [`data/features/`](data/features/)
+## 2. Milestone 3 - ML Pipeline Development - Data Ingestion, Validation and Preparation
 
-Feature categories:
+This milestone converts the project from the solver-centric PoC of Milestone 2 into a reproducible data pipeline built on the same UFLP benchmark defined in Milestone 1. The refactor keeps one shared raw benchmark source, produces structured derived datasets, validates them, versions the pipeline with DVC, and exposes features through Feast.
 
-- **Instance-level**
-  - `facility_count_m`
-  - `customer_count_n`
-  - `facility_customer_ratio`
-  - `avg_fixed_cost`
-  - `avg_assignment_cost`
-  - `fixed_cost_range`
-  - `assignment_cost_range`
-- **Facility-level**
-  - `facility_key`
-  - `normalized_fixed_cost_minmax`
-  - `fixed_cost_zscore`
-  - `fixed_cost_rank_ascending`
-  - `avg_assignment_cost_from_facility`
-- **Customer-level**
-  - `customer_key`
-  - `std_assignment_cost`
-  - `assignment_cost_range`
-  - `nearest_facility_id`
-  - `nearest_facility_cost`
+### 2.1 Schema Definition
 
-Implementation notes:
+Milestone 3 uses explicit schemas for each layer:
 
-- synthetic keys are generated as `instance_id__facility_id` and `instance_id__customer_id`
-- a fixed event timestamp is used to keep Feast joins deterministic for this benchmark dataset
-- outputs are written in CSV, JSON, and Parquet for both inspection and feature-store compatibility
+- [schema/raw_schema.json](schema/raw_schema.json)
+- [schema/processed_schema.json](schema/processed_schema.json)
+- [schema/feature_schema.json](schema/feature_schema.json)
 
+These schemas define expected files, required columns, numeric and non-negative fields, and identifier keys. They serve as the contracts enforced during validation for the raw, processed, and feature layers.
 
-### Stage D - Validation and Anomaly Analysis
+### 2.2 Data Validation and Verification
 
-```bash
-python pipeline/validate_data.py
-```
+[pipeline/validate_data.py](pipeline/validate_data.py) validates:
 
-The validation layer enforces explicit contracts over the raw, processed, and feature datasets.
+- raw dataset completeness against the expected OR-Library benchmark files
+- required columns and numeric typing
+- non-negativity constraints
+- duplicate identifier detection
+- processed consistency for `m`, `n`, and the complete `m x n` assignment matrix
+- feature consistency against processed tables
+- value range checks such as normalized fields remaining in `[0, 1]`
 
-Schemas used:
+It writes:
 
-- [`schema/raw_schema.json`](schema/raw_schema.json)
-- [`schema/processed_schema.json`](schema/processed_schema.json)
-- [`schema/feature_schema.json`](schema/feature_schema.json)
+- [reports/validation/validation_summary.json](reports/validation/validation_summary.json)
+- [reports/validation/anomalies.json](reports/validation/anomalies.json)
+- [reports/validation/anomalies.txt](reports/validation/anomalies.txt)
+- [reports/stats/raw_statistics.json](reports/stats/raw_statistics.json)
+- [reports/stats/processed_statistics.json](reports/stats/processed_statistics.json)
+- [reports/stats/feature_statistics.json](reports/stats/feature_statistics.json)
 
-Validation logic includes:
+Current result: `status = passed`, `anomaly_count = 0`.
 
-- required-column checks
-- numeric-column checks
-- non-negativity checks
-- duplicate ID detection
-- raw dataset completeness checks
-- processed row consistency (`m`, `n`, and `m x n` assignment matrix)
-- feature row consistency against processed tables
-- range checks such as `normalized_fixed_cost_minmax in [0,1]`
+### 2.3 Data Versioning
 
-Produced outputs:
+Milestone 3 uses DVC through [dvc.yaml](dvc.yaml) and [dvc.lock](dvc.lock). The refactor removed the duplicated milestone-local raw snapshot, switched DVC dependencies to the shared root dataset [../data/raw/](../data/raw/), and moved generated Parquet outputs out of normal Git tracking so DVC can manage the pipeline outputs correctly.
 
-- [`reports/validation/validation_summary.json`](reports/validation/validation_summary.json)
-- [`reports/validation/anomalies.json`](reports/validation/anomalies.json)
-- [`reports/validation/anomalies.txt`](reports/validation/anomalies.txt)
-- [`reports/stats/raw_statistics.json`](reports/stats/raw_statistics.json)
-- [`reports/stats/processed_statistics.json`](reports/stats/processed_statistics.json)
-- [`reports/stats/feature_statistics.json`](reports/stats/feature_statistics.json)
-
-
-### Stage E - Feature Store Setup (Feast)
-
-Apply the feature repository:
-
-```bash
-python feature_repo/apply_repo.py
-```
-
-Run the retrieval demo:
-
-```bash
-python feature_repo/run_feature_store_demo.py
-```
-
-Feast configuration:
-
-- provider: local
-- registry: SQLite-backed local registry
-- online store: SQLite
-- offline source: generated Parquet feature files
-
-Defined entities:
-
-- `instance_id`
-- `facility_key`
-- `customer_key`
-
-Defined feature views:
-
-- `instance_features_view`
-- `facility_features_view`
-- `customer_features_view`
-
-The retrieval demo fetches example instance-level features such as:
-
-- `facility_count_m`
-- `customer_count_n`
-- `avg_fixed_cost`
-- `avg_assignment_cost`
-
-
-## DVC Pipeline and Reproducibility
-
-Milestone 3 uses **Data Version Control (DVC)** to track data artifacts and execution dependencies.
-
-- **Pipeline file:** [`dvc.yaml`](dvc.yaml)
-- **Locked outputs:** [`dvc.lock`](dvc.lock)
-- **Raw data tracking:** [`data/raw.dvc`](data/raw.dvc)
-
-Defined DVC stages:
+The current DVC stages are:
 
 1. `ingest`
 2. `preprocess`
 3. `features`
 4. `validate`
 
-Typical usage:
+### 2.4 Setting up a Feature Store
 
-```bash
-dvc repro
-```
+Milestone 3 uses Feast through [feature_repo/](feature_repo/) with:
 
-Tracked artifact families include:
+- entities: `instance_id`, `facility_key`, `customer_key`
+- feature views over the generated Parquet files
+- local registry and online store for demonstration
 
-- raw data
-- interim manifests
-- processed datasets
-- engineered features
-- validation outputs
-- statistics reports
+[feature_repo/views.py](feature_repo/views.py) now points directly at the generated M3 feature outputs through the shared path contract. Both [feature_repo/apply_repo.py](feature_repo/apply_repo.py) and [feature_repo/run_feature_store_demo.py](feature_repo/run_feature_store_demo.py) run successfully after the refactor, and the feature-store publish step is also included in the ZenML workflow.
 
-Windows note:
+### 2.5 Setup of Data Pipeline within the Larger ML Pipeline / MLOps Platform
 
-- due to long path handling on some Windows setups, DVC path resolution may require a drive-mapping workaround such as `subst X: <repo-path>` before running the pipeline
+Milestone 3 now exposes two orchestration layers:
 
+- a lightweight local runner in [pipeline/run_data_pipeline.py](pipeline/run_data_pipeline.py) and [run_full_workflow.py](run_full_workflow.py)
+- an MLOps-platform runner in [pipeline/zenml_pipeline.py](pipeline/zenml_pipeline.py), launched through [run_zenml_workflow.py](run_zenml_workflow.py)
 
-## Produced Artifacts
+The ZenML pipeline wraps the same refactored stage functions used by the local workflow and executes them in explicit order:
 
-### Raw and Interim
+1. ingestion
+2. preprocessing
+3. feature engineering
+4. validation
+5. feature-store publication
 
-- [`data/raw/`](data/raw/)
-- [`data/raw/uncapopt.txt`](data/raw/uncapopt.txt)
-- [`data/interim/dataset_manifest.csv`](data/interim/dataset_manifest.csv)
-- [`data/interim/dataset_manifest.json`](data/interim/dataset_manifest.json)
+This keeps the milestone reproducible for local development while also satisfying the requirement to integrate the data pipeline into a larger ML pipeline / MLOps platform. The most recent ZenML execution status is written to:
 
-### Processed Data
+- [reports/zenml_status.json](reports/zenml_status.json)
+- [reports/zenml_status.txt](reports/zenml_status.txt)
 
-- [`data/processed/instances.csv`](data/processed/instances.csv)
-- [`data/processed/facilities.csv`](data/processed/facilities.csv)
-- [`data/processed/customers.csv`](data/processed/customers.csv)
-- [`data/processed/assignment_costs.csv`](data/processed/assignment_costs.csv)
+#### 2.5.1 Ingestion of Raw Data and Storage into a Repository
 
-### Engineered Features
+[pipeline/ingest_data.py](pipeline/ingest_data.py) scans the shared benchmark source in [../data/raw/](../data/raw/), excludes `uncapopt.txt`, reads each instance header, checks optimum availability, and writes a structured manifest to:
 
-- [`data/features/instance_features.csv`](data/features/instance_features.csv)
-- [`data/features/facility_features.csv`](data/features/facility_features.csv)
-- [`data/features/customer_features.csv`](data/features/customer_features.csv)
-- [`data/features/instance_features.parquet`](data/features/instance_features.parquet)
-- [`data/features/facility_features.parquet`](data/features/facility_features.parquet)
-- [`data/features/customer_features.parquet`](data/features/customer_features.parquet)
+- [data/interim/dataset_manifest.csv](data/interim/dataset_manifest.csv)
+- [data/interim/dataset_manifest.json](data/interim/dataset_manifest.json)
 
-### Validation and Statistics
+The manifest captures source path, file size, facility count, customer count, optimum availability, and ingestion status for all 15 benchmark instances.
 
-- [`reports/validation/validation_summary.json`](reports/validation/validation_summary.json)
-- [`reports/validation/anomalies.txt`](reports/validation/anomalies.txt)
-- [`reports/stats/raw_statistics.json`](reports/stats/raw_statistics.json)
-- [`reports/stats/processed_statistics.json`](reports/stats/processed_statistics.json)
-- [`reports/stats/feature_statistics.json`](reports/stats/feature_statistics.json)
+#### 2.5.2 Preprocessing and Feature Engineering
 
+[pipeline/preprocess_data.py](pipeline/preprocess_data.py) parses the OR-Library benchmark into normalized relational tables:
 
-## Results Summary
+- [data/processed/instances.csv](data/processed/instances.csv)
+- [data/processed/facilities.csv](data/processed/facilities.csv)
+- [data/processed/customers.csv](data/processed/customers.csv)
+- [data/processed/assignment_costs.csv](data/processed/assignment_costs.csv)
 
-The generated pipeline outputs in this repository show the following milestone-scale results:
+The refactor fixed the parser so it now handles both benchmark formats used in the dataset, including the larger `capa/capb/capc` files that contain literal `capacity` tokens in facility rows.
 
-| Output | Result |
-|---|---:|
-| Raw benchmark instances cataloged | 15 |
-| Facilities parsed | 664 |
-| Customers parsed | 3600 |
-| Assignment cost rows generated | 318200 |
-| Instance feature rows | 15 |
-| Facility feature rows | 664 |
-| Customer feature rows | 3600 |
-| Validation anomalies detected | 0 |
+[pipeline/engineer_features.py](pipeline/engineer_features.py) then builds:
 
-Validation status from [`reports/validation/validation_summary.json`](reports/validation/validation_summary.json):
+- instance features: counts, ratios, and cost summaries
+- facility features: normalized fixed costs, z-scores, ranks, and assignment-cost summaries
+- customer features: assignment-cost statistics and nearest-facility features
 
-- `status = passed`
-- `anomaly_count = 0`
+Current pipeline output counts are:
 
-This confirms that the milestone successfully produces:
+- 15 ingested benchmark instances
+- 15 processed instance rows
+- 664 processed facility rows
+- 3600 processed customer rows
+- 318200 assignment-cost rows
+- 15 instance feature rows
+- 664 facility feature rows
+- 3600 customer feature rows
 
-- a complete dataset manifest
-- a normalized processed data layer
-- reusable feature datasets
-- schema-compliant and statistically summarized outputs
-- a Feast feature-store configuration over generated Parquet files
+These counts are recorded in [reports/validation/validation_summary.json](reports/validation/validation_summary.json).
 
+## 3. References
 
-## Limitations and Next Steps
-
-### Current Limitations
-
-- event timestamps are synthetic and fixed for deterministic joins
-- the dataset is static rather than streaming
-- DVC path handling may be awkward on Windows with long directory names
-- the feature store is local-only in this milestone configuration
-
-### Future Work
-
-- integrate real-time or incremental ingestion
-- support dynamic feature refresh and materialization workflows
-- connect feature retrieval directly to solver-facing experimentation
-- add automated retriggering of validation when raw inputs change
-- extend the MLOps layer toward cloud deployment and scheduled orchestration
-
-
-## Troubleshooting
-
-- **No raw instances found**
-  - ensure benchmark files exist in [`data/raw/`](data/raw/)
-
-- **Validation reports missing**
-  - rerun:
-  ```bash
-  python pipeline/run_data_pipeline.py
-  ```
-
-- **Feast demo fails**
-  - verify dependencies are installed from [`requirements-m3.txt`](requirements-m3.txt)
-  - ensure feature Parquet files were generated in [`data/features/`](data/features/)
-  - apply the repo first with:
-  ```bash
-  python feature_repo/apply_repo.py
-  ```
-
-- **DVC path issues on Windows**
-  - use a shorter working path or a mapped drive before running `dvc repro`
+- OR-Library UFLP benchmark dataset, mirrored in [../data/raw/](../data/raw/)
+- DVC documentation: https://dvc.org/doc
+- Feast documentation: https://docs.feast.dev/
+- Google OR-Tools documentation: https://developers.google.com/optimization

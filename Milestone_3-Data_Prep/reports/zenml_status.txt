@@ -1,0 +1,3 @@
+Milestone 3 ZenML status
+success: True
+details: ZenML pipeline executed successfully.

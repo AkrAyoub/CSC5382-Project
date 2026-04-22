@@ -2,17 +2,19 @@ from __future__ import annotations
 
 from dataclasses import dataclass
 from pathlib import Path
+import sys
 
 try:
     from .common import write_dataclass_rows_csv, write_dataclass_rows_json
 except ImportError:
     from common import write_dataclass_rows_csv, write_dataclass_rows_json
 
+try:
+    from ..paths import INTERIM_DATA_DIR, RAW_DATA_DIR, UNCAPOPT_PATH
+except ImportError:
+    sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
+    from paths import INTERIM_DATA_DIR, RAW_DATA_DIR, UNCAPOPT_PATH
 
-PROJECT_ROOT = Path(__file__).resolve().parent.parent
-RAW_DATA_DIR = PROJECT_ROOT / "data" / "raw"
-INTERIM_DATA_DIR = PROJECT_ROOT / "data" / "interim"
-OPTIMA_FILE = RAW_DATA_DIR / "uncapopt.txt"
 MANIFEST_FIELDNAMES = (
     "instance_id",
     "file_name",
@@ -137,17 +139,17 @@ def print_summary(records: list[RawInstanceRecord], optima_file_exists: bool) ->
             )
 
 
-def main() -> None:
+def run_ingestion() -> dict[str, object]:
     INTERIM_DATA_DIR.mkdir(parents=True, exist_ok=True)
 
     if not RAW_DATA_DIR.exists():
         raise FileNotFoundError(
             f"Expected raw data directory at {RAW_DATA_DIR}. "
-            "Place OR-Library UFLP files in data/raw/."
+            "Place shared OR-Library UFLP files in the repo-root data/raw/."
         )
 
-    optima_exists = OPTIMA_FILE.exists()
-    records = build_manifest(RAW_DATA_DIR, OPTIMA_FILE)
+    optima_exists = UNCAPOPT_PATH.exists()
+    records = build_manifest(RAW_DATA_DIR, UNCAPOPT_PATH)
 
     csv_path = INTERIM_DATA_DIR / "dataset_manifest.csv"
     json_path = INTERIM_DATA_DIR / "dataset_manifest.json"
@@ -159,6 +161,20 @@ def main() -> None:
     print("\nManifest files written:")
     print(f"- {csv_path}")
     print(f"- {json_path}")
+
+    return {
+        "raw_directory": str(RAW_DATA_DIR),
+        "optima_file_present": optima_exists,
+        "instance_count": len(records),
+        "header_parse_errors": sum(record.ingestion_status != "ok" for record in records),
+        "instances_with_known_optimum": sum(record.has_known_optimum for record in records),
+        "manifest_csv": str(csv_path),
+        "manifest_json": str(json_path),
+    }
+
+
+def main() -> None:
+    run_ingestion()
 
 
 if __name__ == "__main__":

@@ -1,4 +1,5 @@
 from pathlib import Path
+import sys
 
 from feast import FeatureView, Field
 from feast.infra.offline_stores.file_source import FileSource
@@ -9,13 +10,17 @@ try:
 except ImportError:
     from entities import customer, facility, instance
 
-ROOT = Path(__file__).resolve().parent.parent
+try:
+    from paths import FEATURES_DATA_DIR
+except ImportError:
+    sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
+    from paths import FEATURES_DATA_DIR
 
 
 def build_file_source(file_name: str) -> FileSource:
     """Point Feast at one of the generated feature parquet files."""
     return FileSource(
-        path=str(ROOT / "data" / "features" / file_name),
+        path=str(FEATURES_DATA_DIR / file_name),
         timestamp_field="event_timestamp",
     )
 

@@ -1,16 +1,16 @@
-instance_id,facility_count_m,customer_count_n,split
-cap74,16,50,test
-cap104,25,50,test
-cap134,50,50,test
-capc,100,1000,test
-cap71,16,50,train
-cap72,16,50,train
-cap101,25,50,train
-cap102,25,50,train
-cap131,50,50,train
-cap132,50,50,train
-capa,100,1000,train
-cap73,16,50,val
-cap103,25,50,val
-cap133,50,50,val
-capb,100,1000,val
+instance_id,instance_path,facility_count_m,customer_count_n,split
+cap74,D:\aui\Ayoub\Spring_2026\AI for Digital Transformation\Project\Milestone X - Refactoring\CSC5382-Project\data\raw\cap74.txt,16,50,test
+cap104,D:\aui\Ayoub\Spring_2026\AI for Digital Transformation\Project\Milestone X - Refactoring\CSC5382-Project\data\raw\cap104.txt,25,50,test
+cap134,D:\aui\Ayoub\Spring_2026\AI for Digital Transformation\Project\Milestone X - Refactoring\CSC5382-Project\data\raw\cap134.txt,50,50,test
+capc,D:\aui\Ayoub\Spring_2026\AI for Digital Transformation\Project\Milestone X - Refactoring\CSC5382-Project\data\raw\capc.txt,100,1000,test
+cap71,D:\aui\Ayoub\Spring_2026\AI for Digital Transformation\Project\Milestone X - Refactoring\CSC5382-Project\data\raw\cap71.txt,16,50,train
+cap72,D:\aui\Ayoub\Spring_2026\AI for Digital Transformation\Project\Milestone X - Refactoring\CSC5382-Project\data\raw\cap72.txt,16,50,train
+cap101,D:\aui\Ayoub\Spring_2026\AI for Digital Transformation\Project\Milestone X - Refactoring\CSC5382-Project\data\raw\cap101.txt,25,50,train
+cap102,D:\aui\Ayoub\Spring_2026\AI for Digital Transformation\Project\Milestone X - Refactoring\CSC5382-Project\data\raw\cap102.txt,25,50,train
+cap131,D:\aui\Ayoub\Spring_2026\AI for Digital Transformation\Project\Milestone X - Refactoring\CSC5382-Project\data\raw\cap131.txt,50,50,train
+cap132,D:\aui\Ayoub\Spring_2026\AI for Digital Transformation\Project\Milestone X - Refactoring\CSC5382-Project\data\raw\cap132.txt,50,50,train
+capa,D:\aui\Ayoub\Spring_2026\AI for Digital Transformation\Project\Milestone X - Refactoring\CSC5382-Project\data\raw\capa.txt,100,1000,train
+cap73,D:\aui\Ayoub\Spring_2026\AI for Digital Transformation\Project\Milestone X - Refactoring\CSC5382-Project\data\raw\cap73.txt,16,50,val
+cap103,D:\aui\Ayoub\Spring_2026\AI for Digital Transformation\Project\Milestone X - Refactoring\CSC5382-Project\data\raw\cap103.txt,25,50,val
+cap133,D:\aui\Ayoub\Spring_2026\AI for Digital Transformation\Project\Milestone X - Refactoring\CSC5382-Project\data\raw\cap133.txt,50,50,val
+capb,D:\aui\Ayoub\Spring_2026\AI for Digital Transformation\Project\Milestone X - Refactoring\CSC5382-Project\data\raw\capb.txt,100,1000,val

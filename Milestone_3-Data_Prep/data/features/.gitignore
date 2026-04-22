@@ -4,3 +4,6 @@
 /instance_features.json
 /facility_features.json
 /customer_features.json
+/instance_features.parquet
+/facility_features.parquet
+/customer_features.parquet

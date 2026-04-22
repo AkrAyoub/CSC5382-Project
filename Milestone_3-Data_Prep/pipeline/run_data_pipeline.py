@@ -4,9 +4,13 @@ import subprocess
 import sys
 from dataclasses import dataclass
 from pathlib import Path
+import sys as _sys
 
-
-PROJECT_ROOT = Path(__file__).resolve().parent.parent
+try:
+    from ..paths import FEATURES_DATA_DIR, INTERIM_DATA_DIR, M3_ROOT, PROCESSED_DATA_DIR, STATS_DIR, VALIDATION_DIR
+except ImportError:
+    _sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
+    from paths import FEATURES_DATA_DIR, INTERIM_DATA_DIR, M3_ROOT, PROCESSED_DATA_DIR, STATS_DIR, VALIDATION_DIR
 
 
 @dataclass(frozen=True)
@@ -22,7 +26,7 @@ def run_step(step: PipelineStep) -> None:
 
     result = subprocess.run(
         [sys.executable, str(step.script_path)],
-        cwd=PROJECT_ROOT,
+        cwd=M3_ROOT,
         check=False,
     )
 
@@ -34,10 +38,10 @@ def run_step(step: PipelineStep) -> None:
 
 def main() -> None:
     steps = [
-        PipelineStep("Raw Data Ingestion", PROJECT_ROOT / "pipeline" / "ingest_data.py"),
-        PipelineStep("Data Preprocessing", PROJECT_ROOT / "pipeline" / "preprocess_data.py"),
-        PipelineStep("Feature Engineering", PROJECT_ROOT / "pipeline" / "engineer_features.py"),
-        PipelineStep("Data Validation", PROJECT_ROOT / "pipeline" / "validate_data.py"),
+        PipelineStep("Raw Data Ingestion", M3_ROOT / "pipeline" / "ingest_data.py"),
+        PipelineStep("Data Preprocessing", M3_ROOT / "pipeline" / "preprocess_data.py"),
+        PipelineStep("Feature Engineering", M3_ROOT / "pipeline" / "engineer_features.py"),
+        PipelineStep("Data Validation", M3_ROOT / "pipeline" / "validate_data.py"),
     ]
 
     print("Starting Milestone 3 full data pipeline...")
@@ -49,12 +53,11 @@ def main() -> None:
     print("MILESTONE 3 DATA PIPELINE COMPLETED SUCCESSFULLY")
     print(f"{'=' * 80}")
     print("\nGenerated artifact locations:")
-    print(f"- Raw data:        {PROJECT_ROOT / 'data' / 'raw'}")
-    print(f"- Interim data:    {PROJECT_ROOT / 'data' / 'interim'}")
-    print(f"- Processed data:  {PROJECT_ROOT / 'data' / 'processed'}")
-    print(f"- Features:        {PROJECT_ROOT / 'data' / 'features'}")
-    print(f"- Validation:      {PROJECT_ROOT / 'reports' / 'validation'}")
-    print(f"- Statistics:      {PROJECT_ROOT / 'reports' / 'stats'}")
+    print(f"- Interim data:    {INTERIM_DATA_DIR}")
+    print(f"- Processed data:  {PROCESSED_DATA_DIR}")
+    print(f"- Features:        {FEATURES_DATA_DIR}")
+    print(f"- Validation:      {VALIDATION_DIR}")
+    print(f"- Statistics:      {STATS_DIR}")
 
 
 if __name__ == "__main__":

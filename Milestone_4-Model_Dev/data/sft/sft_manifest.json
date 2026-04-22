@@ -1,0 +1,5 @@
+{
+  "test": "D:\\aui\\Ayoub\\Spring_2026\\AI for Digital Transformation\\Project\\Milestone X - Refactoring\\CSC5382-Project\\Milestone_4-Model_Dev\\data\\sft\\sft_test.jsonl",
+  "train": "D:\\aui\\Ayoub\\Spring_2026\\AI for Digital Transformation\\Project\\Milestone X - Refactoring\\CSC5382-Project\\Milestone_4-Model_Dev\\data\\sft\\sft_train.jsonl",
+  "val": "D:\\aui\\Ayoub\\Spring_2026\\AI for Digital Transformation\\Project\\Milestone X - Refactoring\\CSC5382-Project\\Milestone_4-Model_Dev\\data\\sft\\sft_val.jsonl"
+}

@@ -1,8 +1,11 @@
 {
-  "selection_rule": "highest validation F1, tie-broken by validation ROC-AUC, then validation precision, then model_name",
-  "selected_model_family": "random_forest",
-  "selected_threshold": 0.5,
-  "selected_validation_f1": 0.634920634920635,
-  "selected_validation_roc_auc": 0.8943908851884312,
-  "selected_test_f1": 0.3571428571428571
+  "selection_rule": "highest validation success rate, tie-broken by validation exact match rate, then by lower validation mean gap vs baseline, then candidate_name",
+  "selected_candidate_name": "llm_robust_prompt_v1",
+  "selected_candidate_kind": "llm",
+  "selected_backend_name": "groq",
+  "selected_model_name": "llama-3.1-8b-instant",
+  "selected_prompt_template": "robust_v1",
+  "selected_validation_success_rate": 0.0,
+  "selected_validation_exact_match_rate": 0.0,
+  "selected_validation_mean_gap_vs_baseline_pct": 0.0
 }

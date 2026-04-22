@@ -3,44 +3,44 @@ stages:
   ingest:
     cmd: python pipeline/ingest_data.py
     deps:
-    - path: data/raw
+    - path: ../data/raw
       hash: md5
       md5: ccc0de273905a430705433e50eabb6a1.dir
       size: 3920909
       nfiles: 16
     - path: pipeline/ingest_data.py
       hash: md5
-      md5: 7101dfee765ee512346e92275f9083fc
-      size: 5940
+      md5: 32fa30fd8a86c46e0809cd051637149f
+      size: 5526
     outs:
     - path: data/interim/dataset_manifest.csv
       hash: md5
-      md5: 0e9a2617eb7642a7c20d6f181de72409
-      size: 3455
+      md5: 86441e1ed26eeea39e53da789eda6ca1
+      size: 2810
     - path: data/interim/dataset_manifest.json
       hash: md5
-      md5: 3425b3d03f54cbdaf160254cc3d7c139
-      size: 6858
+      md5: 8b16124e2929f97164bdfbe1a842eb2f
+      size: 6198
   preprocess:
     cmd: python pipeline/preprocess_data.py
     deps:
-    - path: data/interim/dataset_manifest.csv
-      hash: md5
-      md5: 0e9a2617eb7642a7c20d6f181de72409
-      size: 3455
-    - path: data/interim/dataset_manifest.json
-      hash: md5
-      md5: 3425b3d03f54cbdaf160254cc3d7c139
-      size: 6858
-    - path: data/raw
+    - path: ../data/raw
       hash: md5
       md5: ccc0de273905a430705433e50eabb6a1.dir
       size: 3920909
       nfiles: 16
+    - path: data/interim/dataset_manifest.csv
+      hash: md5
+      md5: 86441e1ed26eeea39e53da789eda6ca1
+      size: 2810
+    - path: data/interim/dataset_manifest.json
+      hash: md5
+      md5: 8b16124e2929f97164bdfbe1a842eb2f
+      size: 6198
     - path: pipeline/preprocess_data.py
       hash: md5
-      md5: acca0a8aeef09930a17d5beb17037ed6
-      size: 9003
+      md5: d6cd9bbd71268da75699a105020138e1
+      size: 10562
     outs:
     - path: data/processed/assignment_costs.csv
       hash: md5
@@ -95,56 +95,68 @@ stages:
       size: 892
     - path: pipeline/engineer_features.py
       hash: md5
-      md5: 8c2b5940b956166cb016e9df66b85a6c
-      size: 11614
+      md5: 73c1b5d08ebbf8fcba0e22791cc68843
+      size: 12827
     outs:
     - path: data/features/customer_features.csv
       hash: md5
-      md5: 0190d4c3911c045fdd5ededd863424ee
-      size: 329609
+      md5: f6bd2f7f5bd6a78f321013b7ae80531c
+      size: 459188
     - path: data/features/customer_features.json
       hash: md5
-      md5: 5ea6c1dd9341c6c8ec00c7cc6373cb64
-      size: 1265443
+      md5: d9a1c66b654368618666518192b8973e
+      size: 1578593
+    - path: data/features/customer_features.parquet
+      hash: md5
+      md5: fe5d50aaaf11a831a0d56cf406a777ca
+      size: 214707
     - path: data/features/facility_features.csv
       hash: md5
-      md5: 843c9307d0cd4c278f709f53882814ba
-      size: 68805
+      md5: ecd2d0bb4eeff7eb17b3326c400570e1
+      size: 92588
     - path: data/features/facility_features.json
       hash: md5
-      md5: f4837f427283c4833451922a0560b584
-      size: 297643
+      md5: 37066745a8dc48db7dcdae63666a0b1c
+      size: 355261
+    - path: data/features/facility_features.parquet
+      hash: md5
+      md5: 261ab38cfd54dde198664d55bb42fdd2
+      size: 35749
     - path: data/features/instance_features.csv
       hash: md5
-      md5: 51e46c5ff6c934ce7a32fe2aa240bbb9
-      size: 2338
+      md5: 18de9f0cc497ddbdbf3f2e2bbf3ac940
+      size: 2744
     - path: data/features/instance_features.json
       hash: md5
-      md5: d48791cf371d31884e5a90d0480e4c93
-      size: 8809
+      md5: 9ab87a3281d9afd4de5828d913f8a16a
+      size: 9604
+    - path: data/features/instance_features.parquet
+      hash: md5
+      md5: c4f53c16e6941eb587e6c533367a8ac6
+      size: 12313
   validate:
     cmd: python pipeline/validate_data.py
     deps:
     - path: data/features/customer_features.csv
       hash: md5
-      md5: 0190d4c3911c045fdd5ededd863424ee
-      size: 329609
+      md5: f6bd2f7f5bd6a78f321013b7ae80531c
+      size: 459188
     - path: data/features/facility_features.csv
       hash: md5
-      md5: 843c9307d0cd4c278f709f53882814ba
-      size: 68805
+      md5: ecd2d0bb4eeff7eb17b3326c400570e1
+      size: 92588
     - path: data/features/instance_features.csv
       hash: md5
-      md5: 51e46c5ff6c934ce7a32fe2aa240bbb9
-      size: 2338
+      md5: 18de9f0cc497ddbdbf3f2e2bbf3ac940
+      size: 2744
     - path: data/interim/dataset_manifest.csv
       hash: md5
-      md5: 0e9a2617eb7642a7c20d6f181de72409
-      size: 3455
+      md5: 86441e1ed26eeea39e53da789eda6ca1
+      size: 2810
     - path: data/interim/dataset_manifest.json
       hash: md5
-      md5: 3425b3d03f54cbdaf160254cc3d7c139
-      size: 6858
+      md5: 8b16124e2929f97164bdfbe1a842eb2f
+      size: 6198
     - path: data/processed/assignment_costs.csv
       hash: md5
       md5: 18a0b76f0f4f9a2c994faf535d579c39
@@ -163,20 +175,20 @@ stages:
       size: 892
     - path: pipeline/validate_data.py
       hash: md5
-      md5: 13319e4c1dc3f2ca5ef804d18d7accef
-      size: 14161
+      md5: 020584620c57256186ec8f97a0442d98
+      size: 13685
     - path: schema/feature_schema.json
       hash: md5
-      md5: 4d54ccbc8f62d5afc2e98db06d711e08
-      size: 3497
+      md5: dd642af9939eab6bad97704e9135b156
+      size: 3755
     - path: schema/processed_schema.json
       hash: md5
-      md5: 43c54470b73c5a51ea3a832944268f30
-      size: 2077
+      md5: 940a31b4de92351eee18779d65f4b83c
+      size: 2178
     - path: schema/raw_schema.json
       hash: md5
-      md5: 49cfbd55afbcd91d8188a41c4a60c4af
-      size: 469
+      md5: c0f3242f2af683a11b96564887b22205
+      size: 495
     outs:
     - path: reports/stats/feature_statistics.json
       hash: md5

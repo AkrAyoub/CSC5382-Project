@@ -1,5 +1,5 @@
 {
-  "success": false,
-  "config_path": "D:\\aui\\Ayoub\\Spring_2026\\AI for Digital Transformation\\Project\\Milestone 4 - Model Development and Evaluation\\CSC5382-Project\\Milestone_4-Model_Dev\\configs\\train_best_model.yaml",
-  "details": "ZenML pipeline initialization succeeded, but local Windows execution failed inside ZenML with: Pipeline run has failed due to failure in step(s): load_config_step"
+  "success": true,
+  "config_path": "D:\\aui\\Ayoub\\Spring_2026\\AI for Digital Transformation\\Project\\Milestone X - Refactoring\\CSC5382-Project\\Milestone_4-Model_Dev\\configs\\train_best_model.yaml",
+  "details": "ZenML pipeline executed successfully."
 }

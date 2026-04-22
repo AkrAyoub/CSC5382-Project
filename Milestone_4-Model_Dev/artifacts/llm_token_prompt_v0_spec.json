@@ -1,0 +1,11 @@
+{
+  "name": "llm_token_prompt_v0",
+  "kind": "llm",
+  "backend": "groq",
+  "model_name": "llama-3.1-8b-instant",
+  "prompt_template": "token_v0",
+  "temperature": 0.0,
+  "max_tokens": 650,
+  "enabled": true,
+  "notes": "Original token-stream prompt inherited from the M2 PoC."
+}

@@ -1,0 +1,11 @@
+{
+  "name": "deterministic_baseline",
+  "kind": "deterministic_baseline",
+  "backend": null,
+  "model_name": null,
+  "prompt_template": null,
+  "temperature": 0.0,
+  "max_tokens": 0,
+  "enabled": true,
+  "notes": "Trusted CBC solver reference."
+}

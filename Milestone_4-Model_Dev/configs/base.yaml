@@ -1,31 +1,23 @@
-run_name: facility_opening_baseline
+run_name: symbolic_generator_baseline
 random_seed: 42
-regenerate_labels: true
-feature_set: facility_plus_instance
-training:
-  learning_rate: 0.05
-  epochs: 2500
-  l2_strength: 0.001
-  beta1: 0.9
-  beta2: 0.999
-  epsilon: 1.0e-8
-  threshold_grid:
-    - 0.10
-    - 0.15
-    - 0.20
-    - 0.25
-    - 0.30
-    - 0.35
-    - 0.40
-    - 0.45
-    - 0.50
-    - 0.55
-    - 0.60
-    - 0.65
-    - 0.70
-    - 0.75
-    - 0.80
-    - 0.85
+candidate:
+  name: deterministic_baseline
+evaluation:
+  splits:
+    - train
+    - val
+    - test
+  exact_match_tolerance_pct: 1.0e-6
 tracking:
   enable_mlflow: true
   enable_codecarbon: false
+  experiment_name: milestone4-symbolic-evaluation
+  register_model: false
+comparison:
+  candidate_names:
+    - deterministic_baseline
+    - llm_token_prompt_v0
+    - llm_robust_prompt_v1
+  llm_fine_tuned:
+    enabled: false
+    model_name: ""

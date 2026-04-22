@@ -1,32 +1,20 @@
-run_name: facility_opening_random_forest
+run_name: symbolic_generator_robust_prompt_v1
 random_seed: 42
-regenerate_labels: false
-feature_set: facility_plus_instance
-model_family: random_forest
-training:
-  n_estimators: 400
-  max_depth: 8
-  min_samples_leaf: 3
-  class_weight: balanced
-  threshold_grid:
-    - 0.10
-    - 0.15
-    - 0.20
-    - 0.25
-    - 0.30
-    - 0.35
-    - 0.40
-    - 0.45
-    - 0.50
-    - 0.55
-    - 0.60
-    - 0.65
-    - 0.70
-    - 0.75
-    - 0.80
+candidate:
+  name: llm_robust_prompt_v1
+  enabled: true
+  model_name: llama-3.1-8b-instant
+  prompt_template: robust_v1
+  max_tokens: 850
+evaluation:
+  splits:
+    - train
+    - val
+    - test
+  exact_match_tolerance_pct: 1.0e-6
 tracking:
   enable_mlflow: true
   enable_codecarbon: true
   register_model: true
-  registered_model_name: m4-facility-opening-best
-  experiment_name: milestone4-facility-opening
+  registered_model_name: m4-symbolic-generator-best
+  experiment_name: milestone4-symbolic-evaluation

@@ -1,0 +1,4 @@
+candidate_name,candidate_kind,backend_name,model_name,prompt_template,split,attempted_instances,successful_instances,failed_instances,skipped_instances,success_rate,generation_success_rate,execution_success_rate,feasibility_rate,exact_match_rate,mean_gap_vs_baseline_pct,median_gap_vs_baseline_pct,mean_gap_vs_best_known_pct,mean_total_runtime_s,mean_generation_runtime_s,mean_execution_runtime_s
+llm_robust_prompt_v1,llm,groq,llama-3.1-8b-instant,robust_v1,train,7,0,7,0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,1.1884807586669923,1.1884807586669923,0.0
+llm_robust_prompt_v1,llm,groq,llama-3.1-8b-instant,robust_v1,val,4,0,4,0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,1.188480758666992,1.188480758666992,0.0
+llm_robust_prompt_v1,llm,groq,llama-3.1-8b-instant,robust_v1,test,4,0,4,0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,1.188480758666992,1.188480758666992,0.0

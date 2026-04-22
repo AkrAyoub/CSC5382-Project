@@ -23,6 +23,7 @@ Thumbs.db
 .env
 
 # Milestone 4 local runtime state
+Milestone_4-Model_Dev/.zen/
 Milestone_4-Model_Dev/.zen/local_stores/
 Milestone_4-Model_Dev/.zen_local/
 Milestone_4-Model_Dev/mlruns/

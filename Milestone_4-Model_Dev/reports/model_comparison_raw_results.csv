@@ -1,0 +1,1261 @@
+candidate_name,candidate_kind,backend_name,model_name,prompt_template,split,instance_id,instance_path,facility_count_m,customer_count_n,status,error,generation_success,execution_success,feasible_solution,exact_match_with_baseline,baseline_objective,baseline_best_known,baseline_gap_percent,baseline_runtime_s,candidate_objective,gap_vs_baseline_pct,gap_vs_best_known_pct,generation_runtime_s,execution_runtime_s,total_runtime_s,generated_code_path
+deterministic_baseline,deterministic_baseline,,,,test,cap74,D:\aui\Ayoub\Spring_2026\AI for Digital Transformation\Project\Milestone X - Refactoring\CSC5382-Project\data\raw\cap74.txt,16,50,OK,,1,1,1,1,1034976.975,1034976.975,1.1248107410982242e-14,0.0365669727325439,1034976.975,0.0,0.0,0.0,0.0,0.0365669727325439,
+deterministic_baseline,deterministic_baseline,,,,test,cap104,D:\aui\Ayoub\Spring_2026\AI for Digital Transformation\Project\Milestone X - Refactoring\CSC5382-Project\data\raw\cap104.txt,25,50,OK,,1,1,1,1,928941.75,928941.75,1.2532036785614904e-14,0.0560102462768554,928941.75,0.0,0.0,0.0,0.0,0.0560102462768554,
+deterministic_baseline,deterministic_baseline,,,,test,cap134,D:\aui\Ayoub\Spring_2026\AI for Digital Transformation\Project\Milestone X - Refactoring\CSC5382-Project\data\raw\cap134.txt,50,50,OK,,1,1,1,1,928941.75,928941.75,1.2532036785614904e-14,0.1330223083496093,928941.75,0.0,0.0,0.0,0.0,0.1330223083496093,
+deterministic_baseline,deterministic_baseline,,,,test,capc,D:\aui\Ayoub\Spring_2026\AI for Digital Transformation\Project\Milestone X - Refactoring\CSC5382-Project\data\raw\capc.txt,100,1000,OK,,1,1,1,1,11505594.328779982,11505594.329,-1.912265471743193e-09,141.83182668685913,11505594.328779982,0.0,-1.912265471743193e-09,0.0,0.0,141.83182668685913,
+deterministic_baseline,deterministic_baseline,,,,train,cap71,D:\aui\Ayoub\Spring_2026\AI for Digital Transformation\Project\Milestone X - Refactoring\CSC5382-Project\data\raw\cap71.txt,16,50,OK,,1,1,1,1,932615.75,932615.75,0.0,0.0339174270629882,932615.75,0.0,0.0,0.0,0.0,0.0339174270629882,
+deterministic_baseline,deterministic_baseline,,,,train,cap72,D:\aui\Ayoub\Spring_2026\AI for Digital Transformation\Project\Milestone X - Refactoring\CSC5382-Project\data\raw\cap72.txt,16,50,OK,,1,1,1,1,977799.4,977799.4,0.0,0.033761978149414,977799.4,0.0,0.0,0.0,0.0,0.033761978149414,
+deterministic_baseline,deterministic_baseline,,,,train,cap101,D:\aui\Ayoub\Spring_2026\AI for Digital Transformation\Project\Milestone X - Refactoring\CSC5382-Project\data\raw\cap101.txt,25,50,OK,,1,1,1,1,796648.4375000001,796648.437,6.276295273223345e-08,0.0652625560760498,796648.4375000001,0.0,6.276295273223345e-08,0.0,0.0,0.0652625560760498,
+deterministic_baseline,deterministic_baseline,,,,train,cap102,D:\aui\Ayoub\Spring_2026\AI for Digital Transformation\Project\Milestone X - Refactoring\CSC5382-Project\data\raw\cap102.txt,25,50,OK,,1,1,1,1,854704.2000000001,854704.2,1.3620539342960386e-14,0.0555548667907714,854704.2000000001,0.0,1.3620539342960386e-14,0.0,0.0,0.0555548667907714,
+deterministic_baseline,deterministic_baseline,,,,train,cap131,D:\aui\Ayoub\Spring_2026\AI for Digital Transformation\Project\Milestone X - Refactoring\CSC5382-Project\data\raw\cap131.txt,50,50,OK,,1,1,1,1,793439.5625000001,793439.562,6.30167823616018e-08,0.1196627616882324,793439.5625000001,0.0,6.30167823616018e-08,0.0,0.0,0.1196627616882324,
+deterministic_baseline,deterministic_baseline,,,,train,cap132,D:\aui\Ayoub\Spring_2026\AI for Digital Transformation\Project\Milestone X - Refactoring\CSC5382-Project\data\raw\cap132.txt,50,50,OK,,1,1,1,1,851495.3250000001,851495.325,1.3671868583299011e-14,0.1245663166046142,851495.3250000001,0.0,1.3671868583299013e-14,0.0,0.0,0.1245663166046142,
+deterministic_baseline,deterministic_baseline,,,,train,capa,D:\aui\Ayoub\Spring_2026\AI for Digital Transformation\Project\Milestone X - Refactoring\CSC5382-Project\data\raw\capa.txt,100,1000,OK,,1,1,1,1,17156454.478299994,17156454.478,1.7485774979295783e-09,87.66307473182678,17156454.478299994,0.0,1.7485774979295783e-09,0.0,0.0,87.66307473182678,
+deterministic_baseline,deterministic_baseline,,,,val,cap73,D:\aui\Ayoub\Spring_2026\AI for Digital Transformation\Project\Milestone X - Refactoring\CSC5382-Project\data\raw\cap73.txt,16,50,OK,,1,1,1,1,1010641.45,1010641.45,0.0,0.0322415828704834,1010641.45,0.0,0.0,0.0,0.0,0.0322415828704834,
+deterministic_baseline,deterministic_baseline,,,,val,cap103,D:\aui\Ayoub\Spring_2026\AI for Digital Transformation\Project\Milestone X - Refactoring\CSC5382-Project\data\raw\cap103.txt,25,50,OK,,1,1,1,1,893782.1125,893782.112,5.594205514334421e-08,0.0568594932556152,893782.1125,0.0,5.594205514334421e-08,0.0,0.0,0.0568594932556152,
+deterministic_baseline,deterministic_baseline,,,,val,cap133,D:\aui\Ayoub\Spring_2026\AI for Digital Transformation\Project\Milestone X - Refactoring\CSC5382-Project\data\raw\cap133.txt,50,50,OK,,1,1,1,1,893076.7125,893076.712,5.5986228150697176e-08,0.1251528263092041,893076.7125,0.0,5.598622815069717e-08,0.0,0.0,0.1251528263092041,
+deterministic_baseline,deterministic_baseline,,,,val,capb,D:\aui\Ayoub\Spring_2026\AI for Digital Transformation\Project\Milestone X - Refactoring\CSC5382-Project\data\raw\capb.txt,100,1000,OK,,1,1,1,1,12979071.58142998,12979071.582,-4.3918373011690055e-09,49.16669726371765,12979071.58142998,0.0,-4.3918373011690055e-09,0.0,0.0,49.16669726371765,
+llm_token_prompt_v0,llm,groq,llama-3.1-8b-instant,token_v0,test,cap74,D:\aui\Ayoub\Spring_2026\AI for Digital Transformation\Project\Milestone X - Refactoring\CSC5382-Project\data\raw\cap74.txt,16,50,FAIL,"RuntimeError: GenValidationError: MISSING_HEADER_PARSE: token_v0 must parse m and n from the header tokens.
+
+RAW_PREVIEW:
+===BEGIN_CODE===
+from pathlib import Path
+from typing import Dict, Any
+from ortools.linear_solver import pywraplp
+
+def solve(instance_path: str) -> Dict[str, Any]:
+    tokens = Path(instance_path).read_text().split()
+    header = [float(tokens[0]), float(tokens[1])]
+    m, n = int(header[0]), int(header[1])
+    cursor = 2
+
+    # Read facility data
+    facilities = [float(tokens[cursor]) for cursor in range(m)]
+    cursor += m
+
+    # Read customer data
+    assignments = []
+    for j in range(n):
+        row = []
+        demand = float(tokens[cursor])
+        cursor += 1
+        for i in range(m):
+            row.append(float(tokens[cursor]))
+            cursor += 1
+        while len(row) < m:
+            row.append(0)
+        assignments.append((demand, row))
+
+    # Build the model
+    solver = pywraplp.Solver.CreateSolver('CBC')
+
+    # Define variables
+    y = [solver.BoolVar(f'open_facility_{i}') for i in range(m)]
+    x = [[solver.BoolVar(f'assign_customer_{j}_facility_{i}') for i in range(m)] for j in range(n)]
+
+    # Define objective function
+    objective = solver.Objective()
+    for i in range(m):
+        objective.SetCoefficient(y[i], facilities[i])
+    for j in range(n):
+  ",0,0,0,0,1034976.975,1034976.975,1.1248107410982242e-14,0.0365669727325439,,,,0.4538085142771403,0.0,0.4538085142771403,
+llm_token_prompt_v0,llm,groq,llama-3.1-8b-instant,token_v0,test,cap104,D:\aui\Ayoub\Spring_2026\AI for Digital Transformation\Project\Milestone X - Refactoring\CSC5382-Project\data\raw\cap104.txt,25,50,FAIL,"RuntimeError: GenValidationError: MISSING_HEADER_PARSE: token_v0 must parse m and n from the header tokens.
+
+RAW_PREVIEW:
+===BEGIN_CODE===
+from pathlib import Path
+from typing import Dict, Any
+from ortools.linear_solver import pywraplp
+
+def solve(instance_path: str) -> Dict[str, Any]:
+    tokens = Path(instance_path).read_text().split()
+    header = [float(tokens[0]), float(tokens[1])]
+    m, n = int(header[0]), int(header[1])
+    cursor = 2
+
+    # Read facility data
+    facilities = [float(tokens[cursor]) for cursor in range(m)]
+    cursor += m
+
+    # Read customer data
+    assignments = []
+    for j in range(n):
+        row = []
+        demand = float(tokens[cursor])
+        cursor += 1
+        for i in range(m):
+            row.append(float(tokens[cursor]))
+            cursor += 1
+        while len(row) < m:
+            row.append(0)
+        assignments.append((demand, row))
+
+    # Build the model
+    solver = pywraplp.Solver.CreateSolver('CBC')
+
+    # Define variables
+    y = [solver.BoolVar(f'open_facility_{i}') for i in range(m)]
+    x = [[solver.BoolVar(f'assign_customer_{j}_facility_{i}') for i in range(m)] for j in range(n)]
+
+    # Define objective function
+    objective = solver.Objective()
+    for i in range(m):
+        objective.SetCoefficient(y[i], facilities[i])
+    for j in range(n):
+  ",0,0,0,0,928941.75,928941.75,1.2532036785614904e-14,0.0560102462768554,,,,0.4538085142771403,0.0,0.4538085142771403,
+llm_token_prompt_v0,llm,groq,llama-3.1-8b-instant,token_v0,test,cap134,D:\aui\Ayoub\Spring_2026\AI for Digital Transformation\Project\Milestone X - Refactoring\CSC5382-Project\data\raw\cap134.txt,50,50,FAIL,"RuntimeError: GenValidationError: MISSING_HEADER_PARSE: token_v0 must parse m and n from the header tokens.
+
+RAW_PREVIEW:
+===BEGIN_CODE===
+from pathlib import Path
+from typing import Dict, Any
+from ortools.linear_solver import pywraplp
+
+def solve(instance_path: str) -> Dict[str, Any]:
+    tokens = Path(instance_path).read_text().split()
+    header = [float(tokens[0]), float(tokens[1])]
+    m, n = int(header[0]), int(header[1])
+    cursor = 2
+
+    # Read facility data
+    facilities = [float(tokens[cursor]) for cursor in range(m)]
+    cursor += m
+
+    # Read customer data
+    assignments = []
+    for j in range(n):
+        row = []
+        demand = float(tokens[cursor])
+        cursor += 1
+        for i in range(m):
+            row.append(float(tokens[cursor]))
+            cursor += 1
+        while len(row) < m:
+            row.append(0)
+        assignments.append((demand, row))
+
+    # Build the model
+    solver = pywraplp.Solver.CreateSolver('CBC')
+
+    # Define variables
+    y = [solver.BoolVar(f'open_facility_{i}') for i in range(m)]
+    x = [[solver.BoolVar(f'assign_customer_{j}_facility_{i}') for i in range(m)] for j in range(n)]
+
+    # Define objective function
+    objective = solver.Objective()
+    for i in range(m):
+        objective.SetCoefficient(y[i], facilities[i])
+    for j in range(n):
+  ",0,0,0,0,928941.75,928941.75,1.2532036785614904e-14,0.1330223083496093,,,,0.4538085142771403,0.0,0.4538085142771403,
+llm_token_prompt_v0,llm,groq,llama-3.1-8b-instant,token_v0,test,capc,D:\aui\Ayoub\Spring_2026\AI for Digital Transformation\Project\Milestone X - Refactoring\CSC5382-Project\data\raw\capc.txt,100,1000,FAIL,"RuntimeError: GenValidationError: MISSING_HEADER_PARSE: token_v0 must parse m and n from the header tokens.
+
+RAW_PREVIEW:
+===BEGIN_CODE===
+from pathlib import Path
+from typing import Dict, Any
+from ortools.linear_solver import pywraplp
+
+def solve(instance_path: str) -> Dict[str, Any]:
+    tokens = Path(instance_path).read_text().split()
+    header = [float(tokens[0]), float(tokens[1])]
+    m, n = int(header[0]), int(header[1])
+    cursor = 2
+
+    # Read facility data
+    facilities = [float(tokens[cursor]) for cursor in range(m)]
+    cursor += m
+
+    # Read customer data
+    assignments = []
+    for j in range(n):
+        row = []
+        demand = float(tokens[cursor])
+        cursor += 1
+        for i in range(m):
+            row.append(float(tokens[cursor]))
+            cursor += 1
+        while len(row) < m:
+            row.append(0)
+        assignments.append((demand, row))
+
+    # Build the model
+    solver = pywraplp.Solver.CreateSolver('CBC')
+
+    # Define variables
+    y = [solver.BoolVar(f'open_facility_{i}') for i in range(m)]
+    x = [[solver.BoolVar(f'assign_customer_{j}_facility_{i}') for i in range(m)] for j in range(n)]
+
+    # Define objective function
+    objective = solver.Objective()
+    for i in range(m):
+        objective.SetCoefficient(y[i], facilities[i])
+    for j in range(n):
+  ",0,0,0,0,11505594.328779982,11505594.329,-1.912265471743193e-09,141.83182668685913,,,,0.4538085142771403,0.0,0.4538085142771403,
+llm_token_prompt_v0,llm,groq,llama-3.1-8b-instant,token_v0,train,cap71,D:\aui\Ayoub\Spring_2026\AI for Digital Transformation\Project\Milestone X - Refactoring\CSC5382-Project\data\raw\cap71.txt,16,50,FAIL,"RuntimeError: GenValidationError: MISSING_HEADER_PARSE: token_v0 must parse m and n from the header tokens.
+
+RAW_PREVIEW:
+===BEGIN_CODE===
+from pathlib import Path
+from typing import Dict, Any
+from ortools.linear_solver import pywraplp
+
+def solve(instance_path: str) -> Dict[str, Any]:
+    tokens = Path(instance_path).read_text().split()
+    header = [float(tokens[0]), float(tokens[1])]
+    m, n = int(header[0]), int(header[1])
+    cursor = 2
+
+    # Read facility data
+    facilities = [float(tokens[cursor]) for cursor in range(m)]
+    cursor += m
+
+    # Read customer data
+    assignments = []
+    for j in range(n):
+        row = []
+        demand = float(tokens[cursor])
+        cursor += 1
+        for i in range(m):
+            row.append(float(tokens[cursor]))
+            cursor += 1
+        while len(row) < m:
+            row.append(0)
+        assignments.append((demand, row))
+
+    # Build the model
+    solver = pywraplp.Solver.CreateSolver('CBC')
+
+    # Define variables
+    y = [solver.BoolVar(f'open_facility_{i}') for i in range(m)]
+    x = [[solver.BoolVar(f'assign_customer_{j}_facility_{i}') for i in range(m)] for j in range(n)]
+
+    # Define objective function
+    objective = solver.Objective()
+    for i in range(m):
+        objective.SetCoefficient(y[i], facilities[i])
+    for j in range(n):
+  ",0,0,0,0,932615.75,932615.75,0.0,0.0339174270629882,,,,0.4538085142771403,0.0,0.4538085142771403,
+llm_token_prompt_v0,llm,groq,llama-3.1-8b-instant,token_v0,train,cap72,D:\aui\Ayoub\Spring_2026\AI for Digital Transformation\Project\Milestone X - Refactoring\CSC5382-Project\data\raw\cap72.txt,16,50,FAIL,"RuntimeError: GenValidationError: MISSING_HEADER_PARSE: token_v0 must parse m and n from the header tokens.
+
+RAW_PREVIEW:
+===BEGIN_CODE===
+from pathlib import Path
+from typing import Dict, Any
+from ortools.linear_solver import pywraplp
+
+def solve(instance_path: str) -> Dict[str, Any]:
+    tokens = Path(instance_path).read_text().split()
+    header = [float(tokens[0]), float(tokens[1])]
+    m, n = int(header[0]), int(header[1])
+    cursor = 2
+
+    # Read facility data
+    facilities = [float(tokens[cursor]) for cursor in range(m)]
+    cursor += m
+
+    # Read customer data
+    assignments = []
+    for j in range(n):
+        row = []
+        demand = float(tokens[cursor])
+        cursor += 1
+        for i in range(m):
+            row.append(float(tokens[cursor]))
+            cursor += 1
+        while len(row) < m:
+            row.append(0)
+        assignments.append((demand, row))
+
+    # Build the model
+    solver = pywraplp.Solver.CreateSolver('CBC')
+
+    # Define variables
+    y = [solver.BoolVar(f'open_facility_{i}') for i in range(m)]
+    x = [[solver.BoolVar(f'assign_customer_{j}_facility_{i}') for i in range(m)] for j in range(n)]
+
+    # Define objective function
+    objective = solver.Objective()
+    for i in range(m):
+        objective.SetCoefficient(y[i], facilities[i])
+    for j in range(n):
+  ",0,0,0,0,977799.4,977799.4,0.0,0.033761978149414,,,,0.4538085142771403,0.0,0.4538085142771403,
+llm_token_prompt_v0,llm,groq,llama-3.1-8b-instant,token_v0,train,cap101,D:\aui\Ayoub\Spring_2026\AI for Digital Transformation\Project\Milestone X - Refactoring\CSC5382-Project\data\raw\cap101.txt,25,50,FAIL,"RuntimeError: GenValidationError: MISSING_HEADER_PARSE: token_v0 must parse m and n from the header tokens.
+
+RAW_PREVIEW:
+===BEGIN_CODE===
+from pathlib import Path
+from typing import Dict, Any
+from ortools.linear_solver import pywraplp
+
+def solve(instance_path: str) -> Dict[str, Any]:
+    tokens = Path(instance_path).read_text().split()
+    header = [float(tokens[0]), float(tokens[1])]
+    m, n = int(header[0]), int(header[1])
+    cursor = 2
+
+    # Read facility data
+    facilities = [float(tokens[cursor]) for cursor in range(m)]
+    cursor += m
+
+    # Read customer data
+    assignments = []
+    for j in range(n):
+        row = []
+        demand = float(tokens[cursor])
+        cursor += 1
+        for i in range(m):
+            row.append(float(tokens[cursor]))
+            cursor += 1
+        while len(row) < m:
+            row.append(0)
+        assignments.append((demand, row))
+
+    # Build the model
+    solver = pywraplp.Solver.CreateSolver('CBC')
+
+    # Define variables
+    y = [solver.BoolVar(f'open_facility_{i}') for i in range(m)]
+    x = [[solver.BoolVar(f'assign_customer_{j}_facility_{i}') for i in range(m)] for j in range(n)]
+
+    # Define objective function
+    objective = solver.Objective()
+    for i in range(m):
+        objective.SetCoefficient(y[i], facilities[i])
+    for j in range(n):
+  ",0,0,0,0,796648.4375000001,796648.437,6.276295273223345e-08,0.0652625560760498,,,,0.4538085142771403,0.0,0.4538085142771403,
+llm_token_prompt_v0,llm,groq,llama-3.1-8b-instant,token_v0,train,cap102,D:\aui\Ayoub\Spring_2026\AI for Digital Transformation\Project\Milestone X - Refactoring\CSC5382-Project\data\raw\cap102.txt,25,50,FAIL,"RuntimeError: GenValidationError: MISSING_HEADER_PARSE: token_v0 must parse m and n from the header tokens.
+
+RAW_PREVIEW:
+===BEGIN_CODE===
+from pathlib import Path
+from typing import Dict, Any
+from ortools.linear_solver import pywraplp
+
+def solve(instance_path: str) -> Dict[str, Any]:
+    tokens = Path(instance_path).read_text().split()
+    header = [float(tokens[0]), float(tokens[1])]
+    m, n = int(header[0]), int(header[1])
+    cursor = 2
+
+    # Read facility data
+    facilities = [float(tokens[cursor]) for cursor in range(m)]
+    cursor += m
+
+    # Read customer data
+    assignments = []
+    for j in range(n):
+        row = []
+        demand = float(tokens[cursor])
+        cursor += 1
+        for i in range(m):
+            row.append(float(tokens[cursor]))
+            cursor += 1
+        while len(row) < m:
+            row.append(0)
+        assignments.append((demand, row))
+
+    # Build the model
+    solver = pywraplp.Solver.CreateSolver('CBC')
+
+    # Define variables
+    y = [solver.BoolVar(f'open_facility_{i}') for i in range(m)]
+    x = [[solver.BoolVar(f'assign_customer_{j}_facility_{i}') for i in range(m)] for j in range(n)]
+
+    # Define objective function
+    objective = solver.Objective()
+    for i in range(m):
+        objective.SetCoefficient(y[i], facilities[i])
+    for j in range(n):
+  ",0,0,0,0,854704.2000000001,854704.2,1.3620539342960386e-14,0.0555548667907714,,,,0.4538085142771403,0.0,0.4538085142771403,
+llm_token_prompt_v0,llm,groq,llama-3.1-8b-instant,token_v0,train,cap131,D:\aui\Ayoub\Spring_2026\AI for Digital Transformation\Project\Milestone X - Refactoring\CSC5382-Project\data\raw\cap131.txt,50,50,FAIL,"RuntimeError: GenValidationError: MISSING_HEADER_PARSE: token_v0 must parse m and n from the header tokens.
+
+RAW_PREVIEW:
+===BEGIN_CODE===
+from pathlib import Path
+from typing import Dict, Any
+from ortools.linear_solver import pywraplp
+
+def solve(instance_path: str) -> Dict[str, Any]:
+    tokens = Path(instance_path).read_text().split()
+    header = [float(tokens[0]), float(tokens[1])]
+    m, n = int(header[0]), int(header[1])
+    cursor = 2
+
+    # Read facility data
+    facilities = [float(tokens[cursor]) for cursor in range(m)]
+    cursor += m
+
+    # Read customer data
+    assignments = []
+    for j in range(n):
+        row = []
+        demand = float(tokens[cursor])
+        cursor += 1
+        for i in range(m):
+            row.append(float(tokens[cursor]))
+            cursor += 1
+        while len(row) < m:
+            row.append(0)
+        assignments.append((demand, row))
+
+    # Build the model
+    solver = pywraplp.Solver.CreateSolver('CBC')
+
+    # Define variables
+    y = [solver.BoolVar(f'open_facility_{i}') for i in range(m)]
+    x = [[solver.BoolVar(f'assign_customer_{j}_facility_{i}') for i in range(m)] for j in range(n)]
+
+    # Define objective function
+    objective = solver.Objective()
+    for i in range(m):
+        objective.SetCoefficient(y[i], facilities[i])
+    for j in range(n):
+  ",0,0,0,0,793439.5625000001,793439.562,6.30167823616018e-08,0.1196627616882324,,,,0.4538085142771403,0.0,0.4538085142771403,
+llm_token_prompt_v0,llm,groq,llama-3.1-8b-instant,token_v0,train,cap132,D:\aui\Ayoub\Spring_2026\AI for Digital Transformation\Project\Milestone X - Refactoring\CSC5382-Project\data\raw\cap132.txt,50,50,FAIL,"RuntimeError: GenValidationError: MISSING_HEADER_PARSE: token_v0 must parse m and n from the header tokens.
+
+RAW_PREVIEW:
+===BEGIN_CODE===
+from pathlib import Path
+from typing import Dict, Any
+from ortools.linear_solver import pywraplp
+
+def solve(instance_path: str) -> Dict[str, Any]:
+    tokens = Path(instance_path).read_text().split()
+    header = [float(tokens[0]), float(tokens[1])]
+    m, n = int(header[0]), int(header[1])
+    cursor = 2
+
+    # Read facility data
+    facilities = [float(tokens[cursor]) for cursor in range(m)]
+    cursor += m
+
+    # Read customer data
+    assignments = []
+    for j in range(n):
+        row = []
+        demand = float(tokens[cursor])
+        cursor += 1
+        for i in range(m):
+            row.append(float(tokens[cursor]))
+            cursor += 1
+        while len(row) < m:
+            row.append(0)
+        assignments.append((demand, row))
+
+    # Build the model
+    solver = pywraplp.Solver.CreateSolver('CBC')
+
+    # Define variables
+    y = [solver.BoolVar(f'open_facility_{i}') for i in range(m)]
+    x = [[solver.BoolVar(f'assign_customer_{j}_facility_{i}') for i in range(m)] for j in range(n)]
+
+    # Define objective function
+    objective = solver.Objective()
+    for i in range(m):
+        objective.SetCoefficient(y[i], facilities[i])
+    for j in range(n):
+  ",0,0,0,0,851495.3250000001,851495.325,1.3671868583299011e-14,0.1245663166046142,,,,0.4538085142771403,0.0,0.4538085142771403,
+llm_token_prompt_v0,llm,groq,llama-3.1-8b-instant,token_v0,train,capa,D:\aui\Ayoub\Spring_2026\AI for Digital Transformation\Project\Milestone X - Refactoring\CSC5382-Project\data\raw\capa.txt,100,1000,FAIL,"RuntimeError: GenValidationError: MISSING_HEADER_PARSE: token_v0 must parse m and n from the header tokens.
+
+RAW_PREVIEW:
+===BEGIN_CODE===
+from pathlib import Path
+from typing import Dict, Any
+from ortools.linear_solver import pywraplp
+
+def solve(instance_path: str) -> Dict[str, Any]:
+    tokens = Path(instance_path).read_text().split()
+    header = [float(tokens[0]), float(tokens[1])]
+    m, n = int(header[0]), int(header[1])
+    cursor = 2
+
+    # Read facility data
+    facilities = [float(tokens[cursor]) for cursor in range(m)]
+    cursor += m
+
+    # Read customer data
+    assignments = []
+    for j in range(n):
+        row = []
+        demand = float(tokens[cursor])
+        cursor += 1
+        for i in range(m):
+            row.append(float(tokens[cursor]))
+            cursor += 1
+        while len(row) < m:
+            row.append(0)
+        assignments.append((demand, row))
+
+    # Build the model
+    solver = pywraplp.Solver.CreateSolver('CBC')
+
+    # Define variables
+    y = [solver.BoolVar(f'open_facility_{i}') for i in range(m)]
+    x = [[solver.BoolVar(f'assign_customer_{j}_facility_{i}') for i in range(m)] for j in range(n)]
+
+    # Define objective function
+    objective = solver.Objective()
+    for i in range(m):
+        objective.SetCoefficient(y[i], facilities[i])
+    for j in range(n):
+  ",0,0,0,0,17156454.478299994,17156454.478,1.7485774979295783e-09,87.66307473182678,,,,0.4538085142771403,0.0,0.4538085142771403,
+llm_token_prompt_v0,llm,groq,llama-3.1-8b-instant,token_v0,val,cap73,D:\aui\Ayoub\Spring_2026\AI for Digital Transformation\Project\Milestone X - Refactoring\CSC5382-Project\data\raw\cap73.txt,16,50,FAIL,"RuntimeError: GenValidationError: MISSING_HEADER_PARSE: token_v0 must parse m and n from the header tokens.
+
+RAW_PREVIEW:
+===BEGIN_CODE===
+from pathlib import Path
+from typing import Dict, Any
+from ortools.linear_solver import pywraplp
+
+def solve(instance_path: str) -> Dict[str, Any]:
+    tokens = Path(instance_path).read_text().split()
+    header = [float(tokens[0]), float(tokens[1])]
+    m, n = int(header[0]), int(header[1])
+    cursor = 2
+
+    # Read facility data
+    facilities = [float(tokens[cursor]) for cursor in range(m)]
+    cursor += m
+
+    # Read customer data
+    assignments = []
+    for j in range(n):
+        row = []
+        demand = float(tokens[cursor])
+        cursor += 1
+        for i in range(m):
+            row.append(float(tokens[cursor]))
+            cursor += 1
+        while len(row) < m:
+            row.append(0)
+        assignments.append((demand, row))
+
+    # Build the model
+    solver = pywraplp.Solver.CreateSolver('CBC')
+
+    # Define variables
+    y = [solver.BoolVar(f'open_facility_{i}') for i in range(m)]
+    x = [[solver.BoolVar(f'assign_customer_{j}_facility_{i}') for i in range(m)] for j in range(n)]
+
+    # Define objective function
+    objective = solver.Objective()
+    for i in range(m):
+        objective.SetCoefficient(y[i], facilities[i])
+    for j in range(n):
+  ",0,0,0,0,1010641.45,1010641.45,0.0,0.0322415828704834,,,,0.4538085142771403,0.0,0.4538085142771403,
+llm_token_prompt_v0,llm,groq,llama-3.1-8b-instant,token_v0,val,cap103,D:\aui\Ayoub\Spring_2026\AI for Digital Transformation\Project\Milestone X - Refactoring\CSC5382-Project\data\raw\cap103.txt,25,50,FAIL,"RuntimeError: GenValidationError: MISSING_HEADER_PARSE: token_v0 must parse m and n from the header tokens.
+
+RAW_PREVIEW:
+===BEGIN_CODE===
+from pathlib import Path
+from typing import Dict, Any
+from ortools.linear_solver import pywraplp
+
+def solve(instance_path: str) -> Dict[str, Any]:
+    tokens = Path(instance_path).read_text().split()
+    header = [float(tokens[0]), float(tokens[1])]
+    m, n = int(header[0]), int(header[1])
+    cursor = 2
+
+    # Read facility data
+    facilities = [float(tokens[cursor]) for cursor in range(m)]
+    cursor += m
+
+    # Read customer data
+    assignments = []
+    for j in range(n):
+        row = []
+        demand = float(tokens[cursor])
+        cursor += 1
+        for i in range(m):
+            row.append(float(tokens[cursor]))
+            cursor += 1
+        while len(row) < m:
+            row.append(0)
+        assignments.append((demand, row))
+
+    # Build the model
+    solver = pywraplp.Solver.CreateSolver('CBC')
+
+    # Define variables
+    y = [solver.BoolVar(f'open_facility_{i}') for i in range(m)]
+    x = [[solver.BoolVar(f'assign_customer_{j}_facility_{i}') for i in range(m)] for j in range(n)]
+
+    # Define objective function
+    objective = solver.Objective()
+    for i in range(m):
+        objective.SetCoefficient(y[i], facilities[i])
+    for j in range(n):
+  ",0,0,0,0,893782.1125,893782.112,5.594205514334421e-08,0.0568594932556152,,,,0.4538085142771403,0.0,0.4538085142771403,
+llm_token_prompt_v0,llm,groq,llama-3.1-8b-instant,token_v0,val,cap133,D:\aui\Ayoub\Spring_2026\AI for Digital Transformation\Project\Milestone X - Refactoring\CSC5382-Project\data\raw\cap133.txt,50,50,FAIL,"RuntimeError: GenValidationError: MISSING_HEADER_PARSE: token_v0 must parse m and n from the header tokens.
+
+RAW_PREVIEW:
+===BEGIN_CODE===
+from pathlib import Path
+from typing import Dict, Any
+from ortools.linear_solver import pywraplp
+
+def solve(instance_path: str) -> Dict[str, Any]:
+    tokens = Path(instance_path).read_text().split()
+    header = [float(tokens[0]), float(tokens[1])]
+    m, n = int(header[0]), int(header[1])
+    cursor = 2
+
+    # Read facility data
+    facilities = [float(tokens[cursor]) for cursor in range(m)]
+    cursor += m
+
+    # Read customer data
+    assignments = []
+    for j in range(n):
+        row = []
+        demand = float(tokens[cursor])
+        cursor += 1
+        for i in range(m):
+            row.append(float(tokens[cursor]))
+            cursor += 1
+        while len(row) < m:
+            row.append(0)
+        assignments.append((demand, row))
+
+    # Build the model
+    solver = pywraplp.Solver.CreateSolver('CBC')
+
+    # Define variables
+    y = [solver.BoolVar(f'open_facility_{i}') for i in range(m)]
+    x = [[solver.BoolVar(f'assign_customer_{j}_facility_{i}') for i in range(m)] for j in range(n)]
+
+    # Define objective function
+    objective = solver.Objective()
+    for i in range(m):
+        objective.SetCoefficient(y[i], facilities[i])
+    for j in range(n):
+  ",0,0,0,0,893076.7125,893076.712,5.5986228150697176e-08,0.1251528263092041,,,,0.4538085142771403,0.0,0.4538085142771403,
+llm_token_prompt_v0,llm,groq,llama-3.1-8b-instant,token_v0,val,capb,D:\aui\Ayoub\Spring_2026\AI for Digital Transformation\Project\Milestone X - Refactoring\CSC5382-Project\data\raw\capb.txt,100,1000,FAIL,"RuntimeError: GenValidationError: MISSING_HEADER_PARSE: token_v0 must parse m and n from the header tokens.
+
+RAW_PREVIEW:
+===BEGIN_CODE===
+from pathlib import Path
+from typing import Dict, Any
+from ortools.linear_solver import pywraplp
+
+def solve(instance_path: str) -> Dict[str, Any]:
+    tokens = Path(instance_path).read_text().split()
+    header = [float(tokens[0]), float(tokens[1])]
+    m, n = int(header[0]), int(header[1])
+    cursor = 2
+
+    # Read facility data
+    facilities = [float(tokens[cursor]) for cursor in range(m)]
+    cursor += m
+
+    # Read customer data
+    assignments = []
+    for j in range(n):
+        row = []
+        demand = float(tokens[cursor])
+        cursor += 1
+        for i in range(m):
+            row.append(float(tokens[cursor]))
+            cursor += 1
+        while len(row) < m:
+            row.append(0)
+        assignments.append((demand, row))
+
+    # Build the model
+    solver = pywraplp.Solver.CreateSolver('CBC')
+
+    # Define variables
+    y = [solver.BoolVar(f'open_facility_{i}') for i in range(m)]
+    x = [[solver.BoolVar(f'assign_customer_{j}_facility_{i}') for i in range(m)] for j in range(n)]
+
+    # Define objective function
+    objective = solver.Objective()
+    for i in range(m):
+        objective.SetCoefficient(y[i], facilities[i])
+    for j in range(n):
+  ",0,0,0,0,12979071.58142998,12979071.582,-4.3918373011690055e-09,49.16669726371765,,,,0.4538085142771403,0.0,0.4538085142771403,
+llm_robust_prompt_v1,llm,groq,llama-3.1-8b-instant,robust_v1,test,cap74,D:\aui\Ayoub\Spring_2026\AI for Digital Transformation\Project\Milestone X - Refactoring\CSC5382-Project\data\raw\cap74.txt,16,50,FAIL,"RuntimeError: GenValidationError: MISSING_COST_ACCUMULATION: robust_v1 must accumulate customer costs until len(row) == m.
+
+RAW_PREVIEW:
+===BEGIN_CODE===
+import pathlib
+from typing import Dict, List
+import re
+from ortools.linear_solver import pywraplp
+
+def _numbers(line: str) -> List[float]:
+    return [float(token) for token in re.findall(r""[-+]?\d*\.\d+|[-+]?\d+"", line)]
+
+def solve(instance_path: str) -> Dict:
+    lines = [line.strip() for line in pathlib.Path(instance_path).read_text().splitlines() if line.strip()]
+    header = _numbers(lines[0])
+    m = int(header[0])
+    n = int(header[1])
+    line_idx = 1
+    fixed = []
+    for _ in range(m):
+        values = _numbers(lines[line_idx])
+        line_idx += 1
+        fixed.append(values[-1])
+    assignments = [0] * m
+    open_facilities = set()
+    solver = pywraplp.Solver.CreateSolver('CBC')
+    y = [solver.BoolVar(f'open_facility_{i}') for i in range(n)]
+    x = [[solver.BoolVar(f'assign_customer_{j}_{i}') for i in range(n)] for j in range(m)]
+    objective = 0
+    for i in range(n):
+        objective += fixed[i] * y[i]
+        for j in range(m):
+            values = _numbers(lines[line_idx])
+            line_idx += 1
+            while len(values) < m:
+                line_idx += 1
+                values = _numbers(lines[line_idx])
+            for k in range(m)",0,0,0,0,1034976.975,1034976.975,1.1248107410982242e-14,0.0365669727325439,,,,3.4349193572998047,0.0,3.4349193572998047,
+llm_robust_prompt_v1,llm,groq,llama-3.1-8b-instant,robust_v1,test,cap104,D:\aui\Ayoub\Spring_2026\AI for Digital Transformation\Project\Milestone X - Refactoring\CSC5382-Project\data\raw\cap104.txt,25,50,FAIL,"RuntimeError: GenValidationError: MISSING_COST_ACCUMULATION: robust_v1 must accumulate customer costs until len(row) == m.
+
+RAW_PREVIEW:
+===BEGIN_CODE===
+import pathlib
+from typing import Dict, List
+import re
+from ortools.linear_solver import pywraplp
+
+def _numbers(line: str) -> List[float]:
+    return [float(token) for token in re.findall(r""[-+]?\d*\.\d+|[-+]?\d+"", line)]
+
+def solve(instance_path: str) -> Dict:
+    lines = [line.strip() for line in pathlib.Path(instance_path).read_text().splitlines() if line.strip()]
+    header = _numbers(lines[0])
+    m = int(header[0])
+    n = int(header[1])
+    line_idx = 1
+    fixed = []
+    for _ in range(m):
+        values = _numbers(lines[line_idx])
+        line_idx += 1
+        fixed.append(values[-1])
+    assignments = [0] * m
+    open_facilities = set()
+    solver = pywraplp.Solver.CreateSolver('CBC')
+    y = [solver.BoolVar(f'open_facility_{i}') for i in range(n)]
+    x = [[solver.BoolVar(f'assign_customer_{j}_{i}') for i in range(n)] for j in range(m)]
+    objective = 0
+    for i in range(n):
+        objective += fixed[i] * y[i]
+        for j in range(m):
+            values = _numbers(lines[line_idx])
+            line_idx += 1
+            while len(values) < m:
+                line_idx += 1
+                values = _numbers(lines[line_idx])
+            for k in range(m)",0,0,0,0,928941.75,928941.75,1.2532036785614904e-14,0.0560102462768554,,,,3.4349193572998047,0.0,3.4349193572998047,
+llm_robust_prompt_v1,llm,groq,llama-3.1-8b-instant,robust_v1,test,cap134,D:\aui\Ayoub\Spring_2026\AI for Digital Transformation\Project\Milestone X - Refactoring\CSC5382-Project\data\raw\cap134.txt,50,50,FAIL,"RuntimeError: GenValidationError: MISSING_COST_ACCUMULATION: robust_v1 must accumulate customer costs until len(row) == m.
+
+RAW_PREVIEW:
+===BEGIN_CODE===
+import pathlib
+from typing import Dict, List
+import re
+from ortools.linear_solver import pywraplp
+
+def _numbers(line: str) -> List[float]:
+    return [float(token) for token in re.findall(r""[-+]?\d*\.\d+|[-+]?\d+"", line)]
+
+def solve(instance_path: str) -> Dict:
+    lines = [line.strip() for line in pathlib.Path(instance_path).read_text().splitlines() if line.strip()]
+    header = _numbers(lines[0])
+    m = int(header[0])
+    n = int(header[1])
+    line_idx = 1
+    fixed = []
+    for _ in range(m):
+        values = _numbers(lines[line_idx])
+        line_idx += 1
+        fixed.append(values[-1])
+    assignments = [0] * m
+    open_facilities = set()
+    solver = pywraplp.Solver.CreateSolver('CBC')
+    y = [solver.BoolVar(f'open_facility_{i}') for i in range(n)]
+    x = [[solver.BoolVar(f'assign_customer_{j}_{i}') for i in range(n)] for j in range(m)]
+    objective = 0
+    for i in range(n):
+        objective += fixed[i] * y[i]
+        for j in range(m):
+            values = _numbers(lines[line_idx])
+            line_idx += 1
+            while len(values) < m:
+                line_idx += 1
+                values = _numbers(lines[line_idx])
+            for k in range(m)",0,0,0,0,928941.75,928941.75,1.2532036785614904e-14,0.1330223083496093,,,,3.4349193572998047,0.0,3.4349193572998047,
+llm_robust_prompt_v1,llm,groq,llama-3.1-8b-instant,robust_v1,test,capc,D:\aui\Ayoub\Spring_2026\AI for Digital Transformation\Project\Milestone X - Refactoring\CSC5382-Project\data\raw\capc.txt,100,1000,FAIL,"RuntimeError: GenValidationError: MISSING_COST_ACCUMULATION: robust_v1 must accumulate customer costs until len(row) == m.
+
+RAW_PREVIEW:
+===BEGIN_CODE===
+import pathlib
+from typing import Dict, List
+import re
+from ortools.linear_solver import pywraplp
+
+def _numbers(line: str) -> List[float]:
+    return [float(token) for token in re.findall(r""[-+]?\d*\.\d+|[-+]?\d+"", line)]
+
+def solve(instance_path: str) -> Dict:
+    lines = [line.strip() for line in pathlib.Path(instance_path).read_text().splitlines() if line.strip()]
+    header = _numbers(lines[0])
+    m = int(header[0])
+    n = int(header[1])
+    line_idx = 1
+    fixed = []
+    for _ in range(m):
+        values = _numbers(lines[line_idx])
+        line_idx += 1
+        fixed.append(values[-1])
+    assignments = [0] * m
+    open_facilities = set()
+    solver = pywraplp.Solver.CreateSolver('CBC')
+    y = [solver.BoolVar(f'open_facility_{i}') for i in range(n)]
+    x = [[solver.BoolVar(f'assign_customer_{j}_{i}') for i in range(n)] for j in range(m)]
+    objective = 0
+    for i in range(n):
+        objective += fixed[i] * y[i]
+        for j in range(m):
+            values = _numbers(lines[line_idx])
+            line_idx += 1
+            while len(values) < m:
+                line_idx += 1
+                values = _numbers(lines[line_idx])
+            for k in range(m)",0,0,0,0,11505594.328779982,11505594.329,-1.912265471743193e-09,141.83182668685913,,,,3.4349193572998047,0.0,3.4349193572998047,
+llm_robust_prompt_v1,llm,groq,llama-3.1-8b-instant,robust_v1,train,cap71,D:\aui\Ayoub\Spring_2026\AI for Digital Transformation\Project\Milestone X - Refactoring\CSC5382-Project\data\raw\cap71.txt,16,50,FAIL,"RuntimeError: GenValidationError: MISSING_COST_ACCUMULATION: robust_v1 must accumulate customer costs until len(row) == m.
+
+RAW_PREVIEW:
+===BEGIN_CODE===
+import pathlib
+from typing import Dict, List
+import re
+from ortools.linear_solver import pywraplp
+
+def _numbers(line: str) -> List[float]:
+    return [float(token) for token in re.findall(r""[-+]?\d*\.\d+|[-+]?\d+"", line)]
+
+def solve(instance_path: str) -> Dict:
+    lines = [line.strip() for line in pathlib.Path(instance_path).read_text().splitlines() if line.strip()]
+    header = _numbers(lines[0])
+    m = int(header[0])
+    n = int(header[1])
+    line_idx = 1
+    fixed = []
+    for _ in range(m):
+        values = _numbers(lines[line_idx])
+        line_idx += 1
+        fixed.append(values[-1])
+    assignments = [0] * m
+    open_facilities = set()
+    solver = pywraplp.Solver.CreateSolver('CBC')
+    y = [solver.BoolVar(f'open_facility_{i}') for i in range(n)]
+    x = [[solver.BoolVar(f'assign_customer_{j}_{i}') for i in range(n)] for j in range(m)]
+    objective = 0
+    for i in range(n):
+        objective += fixed[i] * y[i]
+        for j in range(m):
+            values = _numbers(lines[line_idx])
+            line_idx += 1
+            while len(values) < m:
+                line_idx += 1
+                values = _numbers(lines[line_idx])
+            for k in range(m)",0,0,0,0,932615.75,932615.75,0.0,0.0339174270629882,,,,3.4349193572998047,0.0,3.4349193572998047,
+llm_robust_prompt_v1,llm,groq,llama-3.1-8b-instant,robust_v1,train,cap72,D:\aui\Ayoub\Spring_2026\AI for Digital Transformation\Project\Milestone X - Refactoring\CSC5382-Project\data\raw\cap72.txt,16,50,FAIL,"RuntimeError: GenValidationError: MISSING_COST_ACCUMULATION: robust_v1 must accumulate customer costs until len(row) == m.
+
+RAW_PREVIEW:
+===BEGIN_CODE===
+import pathlib
+from typing import Dict, List
+import re
+from ortools.linear_solver import pywraplp
+
+def _numbers(line: str) -> List[float]:
+    return [float(token) for token in re.findall(r""[-+]?\d*\.\d+|[-+]?\d+"", line)]
+
+def solve(instance_path: str) -> Dict:
+    lines = [line.strip() for line in pathlib.Path(instance_path).read_text().splitlines() if line.strip()]
+    header = _numbers(lines[0])
+    m = int(header[0])
+    n = int(header[1])
+    line_idx = 1
+    fixed = []
+    for _ in range(m):
+        values = _numbers(lines[line_idx])
+        line_idx += 1
+        fixed.append(values[-1])
+    assignments = [0] * m
+    open_facilities = set()
+    solver = pywraplp.Solver.CreateSolver('CBC')
+    y = [solver.BoolVar(f'open_facility_{i}') for i in range(n)]
+    x = [[solver.BoolVar(f'assign_customer_{j}_{i}') for i in range(n)] for j in range(m)]
+    objective = 0
+    for i in range(n):
+        objective += fixed[i] * y[i]
+        for j in range(m):
+            values = _numbers(lines[line_idx])
+            line_idx += 1
+            while len(values) < m:
+                line_idx += 1
+                values = _numbers(lines[line_idx])
+            for k in range(m)",0,0,0,0,977799.4,977799.4,0.0,0.033761978149414,,,,3.4349193572998047,0.0,3.4349193572998047,
+llm_robust_prompt_v1,llm,groq,llama-3.1-8b-instant,robust_v1,train,cap101,D:\aui\Ayoub\Spring_2026\AI for Digital Transformation\Project\Milestone X - Refactoring\CSC5382-Project\data\raw\cap101.txt,25,50,FAIL,"RuntimeError: GenValidationError: MISSING_COST_ACCUMULATION: robust_v1 must accumulate customer costs until len(row) == m.
+
+RAW_PREVIEW:
+===BEGIN_CODE===
+import pathlib
+from typing import Dict, List
+import re
+from ortools.linear_solver import pywraplp
+
+def _numbers(line: str) -> List[float]:
+    return [float(token) for token in re.findall(r""[-+]?\d*\.\d+|[-+]?\d+"", line)]
+
+def solve(instance_path: str) -> Dict:
+    lines = [line.strip() for line in pathlib.Path(instance_path).read_text().splitlines() if line.strip()]
+    header = _numbers(lines[0])
+    m = int(header[0])
+    n = int(header[1])
+    line_idx = 1
+    fixed = []
+    for _ in range(m):
+        values = _numbers(lines[line_idx])
+        line_idx += 1
+        fixed.append(values[-1])
+    assignments = [0] * m
+    open_facilities = set()
+    solver = pywraplp.Solver.CreateSolver('CBC')
+    y = [solver.BoolVar(f'open_facility_{i}') for i in range(n)]
+    x = [[solver.BoolVar(f'assign_customer_{j}_{i}') for i in range(n)] for j in range(m)]
+    objective = 0
+    for i in range(n):
+        objective += fixed[i] * y[i]
+        for j in range(m):
+            values = _numbers(lines[line_idx])
+            line_idx += 1
+            while len(values) < m:
+                line_idx += 1
+                values = _numbers(lines[line_idx])
+            for k in range(m)",0,0,0,0,796648.4375000001,796648.437,6.276295273223345e-08,0.0652625560760498,,,,3.4349193572998047,0.0,3.4349193572998047,
+llm_robust_prompt_v1,llm,groq,llama-3.1-8b-instant,robust_v1,train,cap102,D:\aui\Ayoub\Spring_2026\AI for Digital Transformation\Project\Milestone X - Refactoring\CSC5382-Project\data\raw\cap102.txt,25,50,FAIL,"RuntimeError: GenValidationError: MISSING_COST_ACCUMULATION: robust_v1 must accumulate customer costs until len(row) == m.
+
+RAW_PREVIEW:
+===BEGIN_CODE===
+import pathlib
+from typing import Dict, List
+import re
+from ortools.linear_solver import pywraplp
+
+def _numbers(line: str) -> List[float]:
+    return [float(token) for token in re.findall(r""[-+]?\d*\.\d+|[-+]?\d+"", line)]
+
+def solve(instance_path: str) -> Dict:
+    lines = [line.strip() for line in pathlib.Path(instance_path).read_text().splitlines() if line.strip()]
+    header = _numbers(lines[0])
+    m = int(header[0])
+    n = int(header[1])
+    line_idx = 1
+    fixed = []
+    for _ in range(m):
+        values = _numbers(lines[line_idx])
+        line_idx += 1
+        fixed.append(values[-1])
+    assignments = [0] * m
+    open_facilities = set()
+    solver = pywraplp.Solver.CreateSolver('CBC')
+    y = [solver.BoolVar(f'open_facility_{i}') for i in range(n)]
+    x = [[solver.BoolVar(f'assign_customer_{j}_{i}') for i in range(n)] for j in range(m)]
+    objective = 0
+    for i in range(n):
+        objective += fixed[i] * y[i]
+        for j in range(m):
+            values = _numbers(lines[line_idx])
+            line_idx += 1
+            while len(values) < m:
+                line_idx += 1
+                values = _numbers(lines[line_idx])
+            for k in range(m)",0,0,0,0,854704.2000000001,854704.2,1.3620539342960386e-14,0.0555548667907714,,,,3.4349193572998047,0.0,3.4349193572998047,
+llm_robust_prompt_v1,llm,groq,llama-3.1-8b-instant,robust_v1,train,cap131,D:\aui\Ayoub\Spring_2026\AI for Digital Transformation\Project\Milestone X - Refactoring\CSC5382-Project\data\raw\cap131.txt,50,50,FAIL,"RuntimeError: GenValidationError: MISSING_COST_ACCUMULATION: robust_v1 must accumulate customer costs until len(row) == m.
+
+RAW_PREVIEW:
+===BEGIN_CODE===
+import pathlib
+from typing import Dict, List
+import re
+from ortools.linear_solver import pywraplp
+
+def _numbers(line: str) -> List[float]:
+    return [float(token) for token in re.findall(r""[-+]?\d*\.\d+|[-+]?\d+"", line)]
+
+def solve(instance_path: str) -> Dict:
+    lines = [line.strip() for line in pathlib.Path(instance_path).read_text().splitlines() if line.strip()]
+    header = _numbers(lines[0])
+    m = int(header[0])
+    n = int(header[1])
+    line_idx = 1
+    fixed = []
+    for _ in range(m):
+        values = _numbers(lines[line_idx])
+        line_idx += 1
+        fixed.append(values[-1])
+    assignments = [0] * m
+    open_facilities = set()
+    solver = pywraplp.Solver.CreateSolver('CBC')
+    y = [solver.BoolVar(f'open_facility_{i}') for i in range(n)]
+    x = [[solver.BoolVar(f'assign_customer_{j}_{i}') for i in range(n)] for j in range(m)]
+    objective = 0
+    for i in range(n):
+        objective += fixed[i] * y[i]
+        for j in range(m):
+            values = _numbers(lines[line_idx])
+            line_idx += 1
+            while len(values) < m:
+                line_idx += 1
+                values = _numbers(lines[line_idx])
+            for k in range(m)",0,0,0,0,793439.5625000001,793439.562,6.30167823616018e-08,0.1196627616882324,,,,3.4349193572998047,0.0,3.4349193572998047,
+llm_robust_prompt_v1,llm,groq,llama-3.1-8b-instant,robust_v1,train,cap132,D:\aui\Ayoub\Spring_2026\AI for Digital Transformation\Project\Milestone X - Refactoring\CSC5382-Project\data\raw\cap132.txt,50,50,FAIL,"RuntimeError: GenValidationError: MISSING_COST_ACCUMULATION: robust_v1 must accumulate customer costs until len(row) == m.
+
+RAW_PREVIEW:
+===BEGIN_CODE===
+import pathlib
+from typing import Dict, List
+import re
+from ortools.linear_solver import pywraplp
+
+def _numbers(line: str) -> List[float]:
+    return [float(token) for token in re.findall(r""[-+]?\d*\.\d+|[-+]?\d+"", line)]
+
+def solve(instance_path: str) -> Dict:
+    lines = [line.strip() for line in pathlib.Path(instance_path).read_text().splitlines() if line.strip()]
+    header = _numbers(lines[0])
+    m = int(header[0])
+    n = int(header[1])
+    line_idx = 1
+    fixed = []
+    for _ in range(m):
+        values = _numbers(lines[line_idx])
+        line_idx += 1
+        fixed.append(values[-1])
+    assignments = [0] * m
+    open_facilities = set()
+    solver = pywraplp.Solver.CreateSolver('CBC')
+    y = [solver.BoolVar(f'open_facility_{i}') for i in range(n)]
+    x = [[solver.BoolVar(f'assign_customer_{j}_{i}') for i in range(n)] for j in range(m)]
+    objective = 0
+    for i in range(n):
+        objective += fixed[i] * y[i]
+        for j in range(m):
+            values = _numbers(lines[line_idx])
+            line_idx += 1
+            while len(values) < m:
+                line_idx += 1
+                values = _numbers(lines[line_idx])
+            for k in range(m)",0,0,0,0,851495.3250000001,851495.325,1.3671868583299011e-14,0.1245663166046142,,,,3.4349193572998047,0.0,3.4349193572998047,
+llm_robust_prompt_v1,llm,groq,llama-3.1-8b-instant,robust_v1,train,capa,D:\aui\Ayoub\Spring_2026\AI for Digital Transformation\Project\Milestone X - Refactoring\CSC5382-Project\data\raw\capa.txt,100,1000,FAIL,"RuntimeError: GenValidationError: MISSING_COST_ACCUMULATION: robust_v1 must accumulate customer costs until len(row) == m.
+
+RAW_PREVIEW:
+===BEGIN_CODE===
+import pathlib
+from typing import Dict, List
+import re
+from ortools.linear_solver import pywraplp
+
+def _numbers(line: str) -> List[float]:
+    return [float(token) for token in re.findall(r""[-+]?\d*\.\d+|[-+]?\d+"", line)]
+
+def solve(instance_path: str) -> Dict:
+    lines = [line.strip() for line in pathlib.Path(instance_path).read_text().splitlines() if line.strip()]
+    header = _numbers(lines[0])
+    m = int(header[0])
+    n = int(header[1])
+    line_idx = 1
+    fixed = []
+    for _ in range(m):
+        values = _numbers(lines[line_idx])
+        line_idx += 1
+        fixed.append(values[-1])
+    assignments = [0] * m
+    open_facilities = set()
+    solver = pywraplp.Solver.CreateSolver('CBC')
+    y = [solver.BoolVar(f'open_facility_{i}') for i in range(n)]
+    x = [[solver.BoolVar(f'assign_customer_{j}_{i}') for i in range(n)] for j in range(m)]
+    objective = 0
+    for i in range(n):
+        objective += fixed[i] * y[i]
+        for j in range(m):
+            values = _numbers(lines[line_idx])
+            line_idx += 1
+            while len(values) < m:
+                line_idx += 1
+                values = _numbers(lines[line_idx])
+            for k in range(m)",0,0,0,0,17156454.478299994,17156454.478,1.7485774979295783e-09,87.66307473182678,,,,3.4349193572998047,0.0,3.4349193572998047,
+llm_robust_prompt_v1,llm,groq,llama-3.1-8b-instant,robust_v1,val,cap73,D:\aui\Ayoub\Spring_2026\AI for Digital Transformation\Project\Milestone X - Refactoring\CSC5382-Project\data\raw\cap73.txt,16,50,FAIL,"RuntimeError: GenValidationError: MISSING_COST_ACCUMULATION: robust_v1 must accumulate customer costs until len(row) == m.
+
+RAW_PREVIEW:
+===BEGIN_CODE===
+import pathlib
+from typing import Dict, List
+import re
+from ortools.linear_solver import pywraplp
+
+def _numbers(line: str) -> List[float]:
+    return [float(token) for token in re.findall(r""[-+]?\d*\.\d+|[-+]?\d+"", line)]
+
+def solve(instance_path: str) -> Dict:
+    lines = [line.strip() for line in pathlib.Path(instance_path).read_text().splitlines() if line.strip()]
+    header = _numbers(lines[0])
+    m = int(header[0])
+    n = int(header[1])
+    line_idx = 1
+    fixed = []
+    for _ in range(m):
+        values = _numbers(lines[line_idx])
+        line_idx += 1
+        fixed.append(values[-1])
+    assignments = [0] * m
+    open_facilities = set()
+    solver = pywraplp.Solver.CreateSolver('CBC')
+    y = [solver.BoolVar(f'open_facility_{i}') for i in range(n)]
+    x = [[solver.BoolVar(f'assign_customer_{j}_{i}') for i in range(n)] for j in range(m)]
+    objective = 0
+    for i in range(n):
+        objective += fixed[i] * y[i]
+        for j in range(m):
+            values = _numbers(lines[line_idx])
+            line_idx += 1
+            while len(values) < m:
+                line_idx += 1
+                values = _numbers(lines[line_idx])
+            for k in range(m)",0,0,0,0,1010641.45,1010641.45,0.0,0.0322415828704834,,,,3.4349193572998047,0.0,3.4349193572998047,
+llm_robust_prompt_v1,llm,groq,llama-3.1-8b-instant,robust_v1,val,cap103,D:\aui\Ayoub\Spring_2026\AI for Digital Transformation\Project\Milestone X - Refactoring\CSC5382-Project\data\raw\cap103.txt,25,50,FAIL,"RuntimeError: GenValidationError: MISSING_COST_ACCUMULATION: robust_v1 must accumulate customer costs until len(row) == m.
+
+RAW_PREVIEW:
+===BEGIN_CODE===
+import pathlib
+from typing import Dict, List
+import re
+from ortools.linear_solver import pywraplp
+
+def _numbers(line: str) -> List[float]:
+    return [float(token) for token in re.findall(r""[-+]?\d*\.\d+|[-+]?\d+"", line)]
+
+def solve(instance_path: str) -> Dict:
+    lines = [line.strip() for line in pathlib.Path(instance_path).read_text().splitlines() if line.strip()]
+    header = _numbers(lines[0])
+    m = int(header[0])
+    n = int(header[1])
+    line_idx = 1
+    fixed = []
+    for _ in range(m):
+        values = _numbers(lines[line_idx])
+        line_idx += 1
+        fixed.append(values[-1])
+    assignments = [0] * m
+    open_facilities = set()
+    solver = pywraplp.Solver.CreateSolver('CBC')
+    y = [solver.BoolVar(f'open_facility_{i}') for i in range(n)]
+    x = [[solver.BoolVar(f'assign_customer_{j}_{i}') for i in range(n)] for j in range(m)]
+    objective = 0
+    for i in range(n):
+        objective += fixed[i] * y[i]
+        for j in range(m):
+            values = _numbers(lines[line_idx])
+            line_idx += 1
+            while len(values) < m:
+                line_idx += 1
+                values = _numbers(lines[line_idx])
+            for k in range(m)",0,0,0,0,893782.1125,893782.112,5.594205514334421e-08,0.0568594932556152,,,,3.4349193572998047,0.0,3.4349193572998047,
+llm_robust_prompt_v1,llm,groq,llama-3.1-8b-instant,robust_v1,val,cap133,D:\aui\Ayoub\Spring_2026\AI for Digital Transformation\Project\Milestone X - Refactoring\CSC5382-Project\data\raw\cap133.txt,50,50,FAIL,"RuntimeError: GenValidationError: MISSING_COST_ACCUMULATION: robust_v1 must accumulate customer costs until len(row) == m.
+
+RAW_PREVIEW:
+===BEGIN_CODE===
+import pathlib
+from typing import Dict, List
+import re
+from ortools.linear_solver import pywraplp
+
+def _numbers(line: str) -> List[float]:
+    return [float(token) for token in re.findall(r""[-+]?\d*\.\d+|[-+]?\d+"", line)]
+
+def solve(instance_path: str) -> Dict:
+    lines = [line.strip() for line in pathlib.Path(instance_path).read_text().splitlines() if line.strip()]
+    header = _numbers(lines[0])
+    m = int(header[0])
+    n = int(header[1])
+    line_idx = 1
+    fixed = []
+    for _ in range(m):
+        values = _numbers(lines[line_idx])
+        line_idx += 1
+        fixed.append(values[-1])
+    assignments = [0] * m
+    open_facilities = set()
+    solver = pywraplp.Solver.CreateSolver('CBC')
+    y = [solver.BoolVar(f'open_facility_{i}') for i in range(n)]
+    x = [[solver.BoolVar(f'assign_customer_{j}_{i}') for i in range(n)] for j in range(m)]
+    objective = 0
+    for i in range(n):
+        objective += fixed[i] * y[i]
+        for j in range(m):
+            values = _numbers(lines[line_idx])
+            line_idx += 1
+            while len(values) < m:
+                line_idx += 1
+                values = _numbers(lines[line_idx])
+            for k in range(m)",0,0,0,0,893076.7125,893076.712,5.5986228150697176e-08,0.1251528263092041,,,,3.4349193572998047,0.0,3.4349193572998047,
+llm_robust_prompt_v1,llm,groq,llama-3.1-8b-instant,robust_v1,val,capb,D:\aui\Ayoub\Spring_2026\AI for Digital Transformation\Project\Milestone X - Refactoring\CSC5382-Project\data\raw\capb.txt,100,1000,FAIL,"RuntimeError: GenValidationError: MISSING_COST_ACCUMULATION: robust_v1 must accumulate customer costs until len(row) == m.
+
+RAW_PREVIEW:
+===BEGIN_CODE===
+import pathlib
+from typing import Dict, List
+import re
+from ortools.linear_solver import pywraplp
+
+def _numbers(line: str) -> List[float]:
+    return [float(token) for token in re.findall(r""[-+]?\d*\.\d+|[-+]?\d+"", line)]
+
+def solve(instance_path: str) -> Dict:
+    lines = [line.strip() for line in pathlib.Path(instance_path).read_text().splitlines() if line.strip()]
+    header = _numbers(lines[0])
+    m = int(header[0])
+    n = int(header[1])
+    line_idx = 1
+    fixed = []
+    for _ in range(m):
+        values = _numbers(lines[line_idx])
+        line_idx += 1
+        fixed.append(values[-1])
+    assignments = [0] * m
+    open_facilities = set()
+    solver = pywraplp.Solver.CreateSolver('CBC')
+    y = [solver.BoolVar(f'open_facility_{i}') for i in range(n)]
+    x = [[solver.BoolVar(f'assign_customer_{j}_{i}') for i in range(n)] for j in range(m)]
+    objective = 0
+    for i in range(n):
+        objective += fixed[i] * y[i]
+        for j in range(m):
+            values = _numbers(lines[line_idx])
+            line_idx += 1
+            while len(values) < m:
+                line_idx += 1
+                values = _numbers(lines[line_idx])
+            for k in range(m)",0,0,0,0,12979071.58142998,12979071.582,-4.3918373011690055e-09,49.16669726371765,,,,3.4349193572998047,0.0,3.4349193572998047,
+llm_fine_tuned,llm,groq,,robust_v1,test,cap74,D:\aui\Ayoub\Spring_2026\AI for Digital Transformation\Project\Milestone X - Refactoring\CSC5382-Project\data\raw\cap74.txt,16,50,SKIPPED,Candidate is disabled in configuration.,0,0,0,0,1034976.975,1034976.975,1.1248107410982242e-14,0.0365669727325439,,,,0.0,0.0,0.0,
+llm_fine_tuned,llm,groq,,robust_v1,test,cap104,D:\aui\Ayoub\Spring_2026\AI for Digital Transformation\Project\Milestone X - Refactoring\CSC5382-Project\data\raw\cap104.txt,25,50,SKIPPED,Candidate is disabled in configuration.,0,0,0,0,928941.75,928941.75,1.2532036785614904e-14,0.0560102462768554,,,,0.0,0.0,0.0,
+llm_fine_tuned,llm,groq,,robust_v1,test,cap134,D:\aui\Ayoub\Spring_2026\AI for Digital Transformation\Project\Milestone X - Refactoring\CSC5382-Project\data\raw\cap134.txt,50,50,SKIPPED,Candidate is disabled in configuration.,0,0,0,0,928941.75,928941.75,1.2532036785614904e-14,0.1330223083496093,,,,0.0,0.0,0.0,
+llm_fine_tuned,llm,groq,,robust_v1,test,capc,D:\aui\Ayoub\Spring_2026\AI for Digital Transformation\Project\Milestone X - Refactoring\CSC5382-Project\data\raw\capc.txt,100,1000,SKIPPED,Candidate is disabled in configuration.,0,0,0,0,11505594.328779982,11505594.329,-1.912265471743193e-09,141.83182668685913,,,,0.0,0.0,0.0,
+llm_fine_tuned,llm,groq,,robust_v1,train,cap71,D:\aui\Ayoub\Spring_2026\AI for Digital Transformation\Project\Milestone X - Refactoring\CSC5382-Project\data\raw\cap71.txt,16,50,SKIPPED,Candidate is disabled in configuration.,0,0,0,0,932615.75,932615.75,0.0,0.0339174270629882,,,,0.0,0.0,0.0,
+llm_fine_tuned,llm,groq,,robust_v1,train,cap72,D:\aui\Ayoub\Spring_2026\AI for Digital Transformation\Project\Milestone X - Refactoring\CSC5382-Project\data\raw\cap72.txt,16,50,SKIPPED,Candidate is disabled in configuration.,0,0,0,0,977799.4,977799.4,0.0,0.033761978149414,,,,0.0,0.0,0.0,
+llm_fine_tuned,llm,groq,,robust_v1,train,cap101,D:\aui\Ayoub\Spring_2026\AI for Digital Transformation\Project\Milestone X - Refactoring\CSC5382-Project\data\raw\cap101.txt,25,50,SKIPPED,Candidate is disabled in configuration.,0,0,0,0,796648.4375000001,796648.437,6.276295273223345e-08,0.0652625560760498,,,,0.0,0.0,0.0,
+llm_fine_tuned,llm,groq,,robust_v1,train,cap102,D:\aui\Ayoub\Spring_2026\AI for Digital Transformation\Project\Milestone X - Refactoring\CSC5382-Project\data\raw\cap102.txt,25,50,SKIPPED,Candidate is disabled in configuration.,0,0,0,0,854704.2000000001,854704.2,1.3620539342960386e-14,0.0555548667907714,,,,0.0,0.0,0.0,
+llm_fine_tuned,llm,groq,,robust_v1,train,cap131,D:\aui\Ayoub\Spring_2026\AI for Digital Transformation\Project\Milestone X - Refactoring\CSC5382-Project\data\raw\cap131.txt,50,50,SKIPPED,Candidate is disabled in configuration.,0,0,0,0,793439.5625000001,793439.562,6.30167823616018e-08,0.1196627616882324,,,,0.0,0.0,0.0,
+llm_fine_tuned,llm,groq,,robust_v1,train,cap132,D:\aui\Ayoub\Spring_2026\AI for Digital Transformation\Project\Milestone X - Refactoring\CSC5382-Project\data\raw\cap132.txt,50,50,SKIPPED,Candidate is disabled in configuration.,0,0,0,0,851495.3250000001,851495.325,1.3671868583299011e-14,0.1245663166046142,,,,0.0,0.0,0.0,
+llm_fine_tuned,llm,groq,,robust_v1,train,capa,D:\aui\Ayoub\Spring_2026\AI for Digital Transformation\Project\Milestone X - Refactoring\CSC5382-Project\data\raw\capa.txt,100,1000,SKIPPED,Candidate is disabled in configuration.,0,0,0,0,17156454.478299994,17156454.478,1.7485774979295783e-09,87.66307473182678,,,,0.0,0.0,0.0,
+llm_fine_tuned,llm,groq,,robust_v1,val,cap73,D:\aui\Ayoub\Spring_2026\AI for Digital Transformation\Project\Milestone X - Refactoring\CSC5382-Project\data\raw\cap73.txt,16,50,SKIPPED,Candidate is disabled in configuration.,0,0,0,0,1010641.45,1010641.45,0.0,0.0322415828704834,,,,0.0,0.0,0.0,
+llm_fine_tuned,llm,groq,,robust_v1,val,cap103,D:\aui\Ayoub\Spring_2026\AI for Digital Transformation\Project\Milestone X - Refactoring\CSC5382-Project\data\raw\cap103.txt,25,50,SKIPPED,Candidate is disabled in configuration.,0,0,0,0,893782.1125,893782.112,5.594205514334421e-08,0.0568594932556152,,,,0.0,0.0,0.0,
+llm_fine_tuned,llm,groq,,robust_v1,val,cap133,D:\aui\Ayoub\Spring_2026\AI for Digital Transformation\Project\Milestone X - Refactoring\CSC5382-Project\data\raw\cap133.txt,50,50,SKIPPED,Candidate is disabled in configuration.,0,0,0,0,893076.7125,893076.712,5.5986228150697176e-08,0.1251528263092041,,,,0.0,0.0,0.0,
+llm_fine_tuned,llm,groq,,robust_v1,val,capb,D:\aui\Ayoub\Spring_2026\AI for Digital Transformation\Project\Milestone X - Refactoring\CSC5382-Project\data\raw\capb.txt,100,1000,SKIPPED,Candidate is disabled in configuration.,0,0,0,0,12979071.58142998,12979071.582,-4.3918373011690055e-09,49.16669726371765,,,,0.0,0.0,0.0,

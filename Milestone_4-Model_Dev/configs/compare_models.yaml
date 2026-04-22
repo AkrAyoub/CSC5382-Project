@@ -1,40 +1,33 @@
-run_name: facility_opening_model_comparison
+run_name: symbolic_generator_model_comparison
 random_seed: 42
-regenerate_labels: false
-feature_set: facility_plus_instance
+evaluation:
+  splits:
+    - train
+    - val
+    - test
+  exact_match_tolerance_pct: 1.0e-6
 tracking:
   enable_mlflow: true
-  experiment_name: milestone4-model-comparison
+  enable_codecarbon: false
+  experiment_name: milestone4-symbolic-comparison
 comparison:
-  model_names:
-    - dummy_prior
-    - logreg_numpy
-    - logreg_sklearn
-    - random_forest
-    - hist_gradient_boosting
-  random_forest:
-    n_estimators: 400
-    max_depth: 8
-    min_samples_leaf: 3
-    class_weight: balanced
-  hist_gradient_boosting:
-    learning_rate: 0.05
-    max_depth: 4
-    max_iter: 300
-    early_stopping: false
-  threshold_grid:
-    - 0.10
-    - 0.15
-    - 0.20
-    - 0.25
-    - 0.30
-    - 0.35
-    - 0.40
-    - 0.45
-    - 0.50
-    - 0.55
-    - 0.60
-    - 0.65
-    - 0.70
-    - 0.75
-    - 0.80
+  candidate_names:
+    - deterministic_baseline
+    - llm_token_prompt_v0
+    - llm_robust_prompt_v1
+    - llm_fine_tuned
+  llm_token_prompt_v0:
+    enabled: true
+    model_name: llama-3.1-8b-instant
+    prompt_template: token_v0
+    max_tokens: 650
+  llm_robust_prompt_v1:
+    enabled: true
+    model_name: llama-3.1-8b-instant
+    prompt_template: robust_v1
+    max_tokens: 850
+  llm_fine_tuned:
+    enabled: false
+    model_name: ""
+    prompt_template: robust_v1
+    max_tokens: 850

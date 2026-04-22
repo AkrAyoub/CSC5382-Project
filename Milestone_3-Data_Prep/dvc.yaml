@@ -3,7 +3,7 @@ stages:
     cmd: python pipeline/ingest_data.py
     deps:
       - pipeline/ingest_data.py
-      - data/raw
+      - ../data/raw
     outs:
       - data/interim/dataset_manifest.csv
       - data/interim/dataset_manifest.json
@@ -12,7 +12,7 @@ stages:
     cmd: python pipeline/preprocess_data.py
     deps:
       - pipeline/preprocess_data.py
-      - data/raw
+      - ../data/raw
       - data/interim/dataset_manifest.csv
       - data/interim/dataset_manifest.json
     outs:

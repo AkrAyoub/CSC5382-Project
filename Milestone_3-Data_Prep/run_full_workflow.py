@@ -4,8 +4,11 @@ import subprocess
 import sys
 from pathlib import Path
 
-
-PROJECT_ROOT = Path(__file__).resolve().parent
+try:
+    from paths import FEATURE_REPO_DIR, M3_ROOT
+except ImportError:
+    sys.path.insert(0, str(Path(__file__).resolve().parent))
+    from paths import FEATURE_REPO_DIR, M3_ROOT
 
 
 def run_step(step_name: str, cmd: list[str], cwd: Path | None = None) -> None:
@@ -15,7 +18,7 @@ def run_step(step_name: str, cmd: list[str], cwd: Path | None = None) -> None:
 
     result = subprocess.run(
         cmd,
-        cwd=cwd or PROJECT_ROOT,
+        cwd=cwd or M3_ROOT,
         check=False,
     )
 
@@ -30,19 +33,19 @@ def main() -> None:
 
     run_step(
         "Milestone 3 Data Pipeline",
-        [sys.executable, str(PROJECT_ROOT / "pipeline" / "run_data_pipeline.py")],
+        [sys.executable, str(M3_ROOT / "pipeline" / "run_data_pipeline.py")],
     )
 
     run_step(
         "Feast Repository Apply",
-        [sys.executable, str(PROJECT_ROOT / "feature_repo" / "apply_repo.py")],
-        cwd=PROJECT_ROOT / "feature_repo",
+        [sys.executable, str(FEATURE_REPO_DIR / "apply_repo.py")],
+        cwd=FEATURE_REPO_DIR,
     )
 
     run_step(
         "Feast Feature Retrieval Demo",
-        [sys.executable, str(PROJECT_ROOT / "feature_repo" / "run_feature_store_demo.py")],
-        cwd=PROJECT_ROOT / "feature_repo",
+        [sys.executable, str(FEATURE_REPO_DIR / "run_feature_store_demo.py")],
+        cwd=FEATURE_REPO_DIR,
     )
 
     print(f"\n{'=' * 80}")

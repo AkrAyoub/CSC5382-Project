@@ -1,13 +1,10 @@
-Milestone 4 model comparison summary
+Milestone 4 symbolic candidate comparison summary
 
-Ranking by validation F1, then validation ROC-AUC:
-- random_forest: val_f1=0.6349, test_f1=0.3571, val_roc_auc=0.8944, test_roc_auc=0.7849, threshold=0.50
-- hist_gradient_boosting: val_f1=0.6349, test_f1=0.2769, val_roc_auc=0.8539, test_roc_auc=0.6930, threshold=0.75
-- logreg_numpy: val_f1=0.4308, test_f1=0.2295, val_roc_auc=0.8059, test_roc_auc=0.7062, threshold=0.40
-- logreg_sklearn: val_f1=0.4242, test_f1=0.2617, val_roc_auc=0.8011, test_roc_auc=0.6924, threshold=0.50
-- dummy_prior: val_f1=0.2557, test_f1=0.1981, val_roc_auc=0.5000, test_roc_auc=0.5000, threshold=0.10
+Ranking by validation success rate, then exact match rate, then validation mean gap vs baseline:
+- llm_robust_prompt_v1: success_rate=0.0000, exact_match_rate=0.0000, mean_gap_vs_baseline_pct=0.0000, mean_runtime_s=3.4349
+- llm_token_prompt_v0: success_rate=0.0000, exact_match_rate=0.0000, mean_gap_vs_baseline_pct=0.0000, mean_runtime_s=0.4538
 
-Selected model by validation only: random_forest
-Best validation F1: 0.6349
-Validation ROC-AUC for selected model: 0.8944
-Observed held-out test F1: 0.3571
+Selected non-baseline candidate: llm_robust_prompt_v1
+Validation success rate: 0.0000
+Validation exact match rate: 0.0000
+Validation mean gap vs baseline: 0.0000

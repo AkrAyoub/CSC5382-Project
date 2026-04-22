@@ -1,52 +1,32 @@
 from __future__ import annotations
 
-import sys
 import unittest
-
-import numpy as np
 
 from _bootstrap import ensure_src_path
 
 
 M4_ROOT = ensure_src_path()
 
-from m4_model_dev.models.logistic_numpy import StandardScaler
-from m4_model_dev.models.model_registry import fit_model_bundle
+from m4_model_dev.models.model_registry import list_supported_candidate_names, resolve_candidate_spec
 
 
 class ModelRegistryTests(unittest.TestCase):
-    def test_hist_gradient_boosting_uses_configured_early_stopping(self) -> None:
-        x_train = np.array(
-            [
-                [0.1, 1.0],
-                [0.2, 0.9],
-                [0.8, 0.3],
-                [0.9, 0.2],
-                [0.15, 0.85],
-                [0.85, 0.25],
-            ],
-            dtype=float,
-        )
-        y_train = np.array([0, 0, 1, 1, 0, 1], dtype=int)
-        scaler = StandardScaler().fit(x_train)
-        bundle = fit_model_bundle(
-            model_name="hist_gradient_boosting",
-            config={
-                "training": {
-                    "learning_rate": 0.05,
-                    "max_depth": 2,
-                    "max_iter": 20,
-                    "early_stopping": False,
-                }
-            },
-            x_train_raw=x_train,
-            x_train_scaled=scaler.transform(x_train),
-            y_train=y_train,
-            scaler=scaler,
-            random_seed=42,
+    def test_default_candidates_include_expected_symbolic_variants(self) -> None:
+        supported = list_supported_candidate_names()
+        self.assertIn("deterministic_baseline", supported)
+        self.assertIn("llm_token_prompt_v0", supported)
+        self.assertIn("llm_robust_prompt_v1", supported)
+        self.assertIn("llm_fine_tuned", supported)
+
+    def test_override_updates_candidate_metadata(self) -> None:
+        spec = resolve_candidate_spec(
+            "llm_fine_tuned",
+            {"enabled": True, "model_name": "groq/fine-tuned-demo", "max_tokens": 900},
         )
 
-        self.assertFalse(bundle["model"].early_stopping)
+        self.assertTrue(spec.enabled)
+        self.assertEqual(spec.model_name, "groq/fine-tuned-demo")
+        self.assertEqual(spec.max_tokens, 900)
 
 
 if __name__ == "__main__":
